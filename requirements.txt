@@ -11,6 +11,7 @@ langchain-openai==1.6.0
 langchain-tavily==0.2.18
 langchain-pinecone==0.2.13
 langchain-text-splitters==1.1.2
+langchain-groq
 
 pinecone==7.3.0
 openai==3.3.1

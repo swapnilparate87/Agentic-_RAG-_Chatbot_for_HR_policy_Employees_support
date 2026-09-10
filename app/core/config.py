@@ -8,12 +8,13 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 class Settings(BaseSettings):
     app_name: str = "Agentic_RAG_Chatbot_for_HR_policy_Employees_support"
     app_env: str = "development"
-    openai_api_key: str = ""
+    groq_api_key: str = ""
+    huggingfacehub_api_key: str = ""
     tavily_api_key: str = ""
     pinecone_api_key: str = ""
     pinecone_index_name: str = "fde-hr-policy-rag"
     pinecone_namespace: str = "advanced_rag"
-    embedding_model: str = "text-embedding-3-small"
+    embedding_model: str = "sentence-transformers/all-minilm-l6-v2"
     groq_model: str = "openai/gpt-oss-120b"
     top_k: int = 4
     max_retries: int = 1
@@ -22,8 +23,6 @@ class Settings(BaseSettings):
     upload_dir: str = str(BASE_DIR / "uploads")
     sample_kb_dir: str = str(BASE_DIR / "data" / "sample_kb")
     model_config = SettingsConfigDict(env_file=str(BASE_DIR / ".env"), extra="ignore")
-
-
 
 
 @lru_cache
