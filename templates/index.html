@@ -10,71 +10,74 @@
   <div class="shell">
     <aside class="sidebar">
       <div>
-        <div class="brand-badge">FDE Project</div>
-        <h1>HR Policy<br/>Agentic RAG</h1>
-        <p class="muted">Private company HR knowledge first. External web only when evidence is weak.</p>
+        <h1>HR Policy<br />Assistant</h1>
+        <p class="muted">Answers from your company knowledge base first; public web only when internal evidence is weak.</p>
       </div>
-      <div class="workflow-card">
-        <h3>LangGraph Workflow</h3>
-        <div class="flow-step">1. Route question</div>
-        <div class="flow-step">2. Retrieve private KB</div>
-        <div class="flow-step">3. Grade evidence</div>
-        <div class="flow-step">4. Web fallback if weak</div>
-        <div class="flow-step">5. Rewrite & retry</div>
-        <div class="flow-step">6. Grounded answer</div>
-      </div>
-      <button id="openUpload" class="secondary-btn">+ Add HR Document</button>
+      <ol class="workflow">
+        <li>Route question</li>
+        <li>Retrieve knowledge base</li>
+        <li>Grade evidence</li>
+        <li>Web fallback if weak</li>
+        <li>Rewrite &amp; retry</li>
+        <li>Grounded answer</li>
+      </ol>
+      <button id="openUpload" class="btn secondary">+ Add HR document</button>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <div>
-          <span class="status-dot"></span>
-          <span>Employee Knowledge Copilot</span>
-        </div>
+        <span><span class="status-dot"></span>Employee Support</span>
         <span class="pill">Agentic RAG</span>
       </header>
-      <section id="chat" class="chat-area">
+
+      <section id="chat" class="chat">
         <div class="message assistant">
           <div class="avatar">HR</div>
           <div class="bubble">
             <strong>How can I help with HR policies or employee support?</strong>
-            <p>Try: “How many annual leave days do employees receive?” or ask something that may require current external employment information.</p>
+            <p>Ask about leave, payroll, benefits, remote work, onboarding and more.</p>
           </div>
         </div>
       </section>
+
       <section class="composer-wrap">
         <div class="examples">
           <button class="example">How many annual leave days do employees receive?</button>
           <button class="example">What is our remote work policy?</button>
-          <button class="example">What are the latest public holiday rules in India?</button>
+          <button class="example">How are payroll issues prioritised?</button>
         </div>
         <form id="chatForm" class="composer">
-          <textarea id="question" rows="2" placeholder="Ask an HR policy or employee support question..." required></textarea>
-          <button type="submit" class="send-btn">Ask Agent</button>
+          <textarea id="question" rows="2" placeholder="Ask an HR policy question…" required></textarea>
+          <button type="submit" class="btn primary">Send</button>
         </form>
       </section>
     </main>
+
     <aside class="trace-panel">
-      <h2>Agent Trace</h2>
-      <p class="muted">Watch LangGraph decisions while the request runs.</p>
-      <div id="trace" class="trace-list"><div class="empty">No request yet.</div></div>
+      <h2>Agent trace</h2>
+      <p class="muted">Each decision the agent made for the last question.</p>
+      <div id="trace" class="trace"><div class="empty">No request yet.</div></div>
       <div class="source-box">
-        <span>Final Source</span>
+        <span class="muted">Answer source</span>
         <strong id="sourceUsed">—</strong>
       </div>
     </aside>
   </div>
+
   <div id="uploadModal" class="modal hidden">
     <div class="modal-card">
-      <div class="modal-head"><h2>Ingest HR Document</h2><button id="closeUpload">×</button></div>
-      <p class="muted">Upload PDF, TXT, Markdown, or DOCX. The document is chunked, embedded, and indexed into Pinecone.</p>
+      <div class="modal-head">
+        <h2>Add HR document</h2>
+        <button id="closeUpload" class="icon-btn" aria-label="Close">×</button>
+      </div>
+      <p class="muted">PDF, TXT, Markdown or DOCX. The document is chunked, embedded and indexed.</p>
       <input id="adminKey" type="password" placeholder="Admin API key" />
       <input id="fileInput" type="file" accept=".pdf,.txt,.md,.docx" />
-      <button id="uploadBtn" class="send-btn full">Index Document</button>
-      <div id="uploadStatus" class="upload-status"></div>
+      <button id="uploadBtn" class="btn primary">Index document</button>
+      <div id="uploadStatus" class="muted"></div>
     </div>
   </div>
+
   <script src="/static/js/app.js"></script>
 </body>
 </html>

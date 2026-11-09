@@ -1,14 +1,23 @@
+# Secrets and local state never go into the image
 .env
+data/audit.db
+uploads
+
+# Development files
 .git
 .gitignore
 .vscode
+.deepeval
+venv
+.venv
+env
 __pycache__
 *.pyc
 *.pyo
 *.pyd
-venv
-.venv
-env
-.pytest_cache
-tests
 *.log
+.pytest_cache
+
+# Evaluation is run from a development machine, not in production
+evaluation
+requirements-eval.txt

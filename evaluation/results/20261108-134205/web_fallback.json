@@ -1,0 +1,934 @@
+{
+  "summary": {
+    "component": "web_fallback",
+    "goldens": 16,
+    "errors": 0,
+    "checks": {
+      "kb_grade_weak": {
+        "mean": 0.875,
+        "n": 16
+      },
+      "path_accuracy": {
+        "mean": 0.875,
+        "n": 16
+      }
+    },
+    "metrics": {
+      "Correctness [GEval]": {
+        "mean_score": 0.909,
+        "pass_rate": 0.909,
+        "n": 11,
+        "errors": 5
+      },
+      "External Disclaimer [GEval]": {
+        "mean_score": 0.846,
+        "pass_rate": 0.846,
+        "n": 13,
+        "errors": 3
+      }
+    },
+    "performance": {
+      "latency_s": {
+        "mean": 9.19,
+        "p50": 7.84,
+        "p95": 25.1,
+        "max": 25.1
+      },
+      "tokens_per_request": {
+        "mean": 4227.0,
+        "p50": 4391,
+        "p95": 5633,
+        "max": 5633
+      },
+      "input_tokens": 64140,
+      "output_tokens": 3491
+    },
+    "performance_by_path": {
+      "knowledge_base": {
+        "n": 2,
+        "latency_s": {
+          "mean": 4.07,
+          "p50": 3.56,
+          "p95": 4.57,
+          "max": 4.57
+        },
+        "tokens_per_request": {
+          "mean": 1946,
+          "p50": 1864,
+          "p95": 2028,
+          "max": 2028
+        },
+        "input_tokens": 3564,
+        "output_tokens": 328
+      },
+      "web_search": {
+        "n": 14,
+        "latency_s": {
+          "mean": 9.92,
+          "p50": 7.97,
+          "p95": 25.1,
+          "max": 25.1
+        },
+        "tokens_per_request": {
+          "mean": 4553.0,
+          "p50": 4602,
+          "p95": 5633,
+          "max": 5633
+        },
+        "input_tokens": 60576,
+        "output_tokens": 3163
+      }
+    },
+    "judge_tokens": {
+      "input": 17849,
+      "output": 17633,
+      "total": 35482
+    },
+    "timing_s": {
+      "generation": 147.0,
+      "judging": 5164.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "golden": {
+        "input": "What is the statutory maternity leave duration in India?",
+        "expected_output": "Under the Maternity Benefit Act, women are entitled to 26 weeks of paid maternity leave for their first two children (12 weeks from the third child).",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the statutory maternity leave duration in India is as follows:\n\n*   **First two children:** 26 weeks of paid leave.\n*   **Third child or subsequent children:** 12 weeks of paid leave.\n*   **Adoptive and commissioning mothers:** 12 weeks of paid leave.\n\nEligibility generally requires the employee to have worked for at least 80 days in the 12 months preceding the expected delivery date.\n\n***Disclaimer:** This information is derived from external public sources (e.g., Bajaj Finserv, Remofirst, Bharat Payroll) and has not been verified against the company's internal HR policy. Please validate this with your HR department before treating it as official company policy.*",
+        "retrieval_context": [
+          "Search answer: The statutory maternity leave duration in India is 26 weeks for the first two children, and 12 weeks for the third child or subsequent children, as well as for adoptive and commissioning mothers. This leave is legally mandated and employers are obligated to provide it to eligible female employees. To be eligible, an employee must have worked for at least 80 days in the 12 months preceding their expected delivery date. The leave is paid and job-protected.\n\nTitle: Maternity Leave Rule in India 2026 - Benefit, Eligibility & Laws\nURL: https://www.bajajfinserv.in/insurance/maternity-leave-policy\nContent: Maternity leave in India is a legally mandated, long-term paid leave designed to support pregnant employees. Employers are obligated to provide this leave to eligible female employees, both before and after childbirth. The standard duration of maternity leave is 26 weeks for the first two children, with up to 8 weeks permissible before the delivery. For a third or subsequent child, the leave entitlement is 12 weeks. Adopting mothers are also eligible for 12 weeks of leave, beginning from the [...] Is maternity leave 6 or 9 months?\n\nThe standard maternity leave duration in India is 6 months (26 weeks) for the first two children.\n\nWhat are the new rules for maternity leave in 2026?\n\nBased upon the information that is currently available, there have been recent updates regarding goverment sector employment, especially dealing with surrogacy. [...] In India, maternity leave typically spans 26 weeks. This duration is thoughtfully designed to provide comprehensive support to working mothers, allowing them to address both pre-and post-natal care needs.\n\nIs the maternity leave a fully paid leave in India?\n\nTitle: Maternity Leave in India (2026): What US Employers Must Know\nURL: https://pamgro.com/blog/maternity-leave-in-india\nContent: | Aspect | India (Code on Social Security 2020) | United States (Federal FMLA baseline) |\n --- \n| Statutory duration | 26 weeks of paid leave for first/second child; 12 weeks for third+; 12 weeks for adoption/commissioning; 6 weeks for miscarriage. | 12 weeks of unpaid, job‑protected leave in a 12‑month period for eligible employees. | [...] At its core, maternity leave in India is a statutory period of paid, job‑protected leave granted to women employees for pregnancy, childbirth, adoption, or commissioning (surrogacy), along with time for recovery and early childcare. It is not an optional benefit: once an employee qualifies, employers must grant leave and pay wages at the prescribed rate. [...] The law distinguishes based on the number of surviving children, not whether a birth is single or multiple. For women with fewer than two surviving children, meaning those with up to two children under the statutory threshold, 26 weeks’ leave applies (even in cases like twins); for women with two or more surviving children, the entitlement is 12 weeks.\n\n   \n\n8. How does maternity leave in india compare to US FMLA rules?\n\nTitle: How long is maternity leave in India? | Remofirst\nURL: https://www.remofirst.com/post/maternity-leave-in-india\nContent: India’s Maternity Benefit Act has been updated several times to safeguard and protect the interests of female employees. The last amendment was in 2017, and it gave rise to the Maternity Benefit (Amendment) Act 2017, which increased maternity leave duration to 26 weeks — that’s a 116% increase from the original 12 weeks. That said, the 26-week maternity leave policy only applies to mothers who are having their first or second child. After the second child, mothers only get 12 weeks of leave. [...] India's maternity leave policy of 26 weeks of paid leave is in line with international standards, but many other countries offer more generous policies. [...] To be eligible for maternity leave in India, an employee must have worked in an organisation for at least 80 calendar days in the 12 months preceding their expected delivery date. Maternity leave benefits are available to all employees who meet this criterion, regardless of whether they are permanent, temporary, or contractual.\n\nTitle: Guide to Maternity Leave Law in India\nURL: https://bharatpayroll.com/blog/maternity-leave\nContent: Eligible women employees receive twenty-six weeks of maternity leave for their first two children. For the third child or specific situations like adoption or surrogacy, the entitlement reduces to twelve weeks, as prescribed under Indian maternity regulations by statutory law.\n\n### 4. Does maternity leave apply to private companies? [...] Minimum 80 days of work in the preceding 12 months\n Employment with a covered employer\n Leave request related to pregnancy, childbirth, or adoption\n\n### Eligibility Checklist\n\n Employee meets the service period\n The employer is covered under the law\n Proper documentation submitted\n Request made within the eligible period\n\nExample:  \nAn employee with 95 working days in one year qualifies for maternity leave.\n\n## Duration: How Many Weeks of Maternity Leave Apply in India?\n\nTitle: What is Maternity Leave? | Keka HR\nURL: https://www.keka.com/glossary/maternity-leave\nContent: The maternity leave in India is usually for 26 weeks for women having their first or second children. It is reduced to 12 weeks for succeeding childbirth. Adoptive and surrogate mothers also get 12 weeks of paid leave.\n\n### 4. How many times can maternity leave be availed?\n\nThere is no limit on how many times a woman can avail of maternity leave. It can be availed for each pregnancy. The duration of the leave is limited after the first two childbirths.\n\nTRENDING TERMS [...] Maternity leave laws vary significantly across countries, reflecting different approaches to employee welfare and family support. Below is an overview of how India compares to some major regions: \n\nIndia: Women are entitled to 26 weeks of paid leave for the first two children, and 12 weeks for the third child onwards. Adoptive and commissioning mothers are entitled to 12 weeks. Employers bear the cost, and provisions like medical bonus, crèche facility, and work-from-home options exist. [...] To be eligible for maternity leave, women in India need to have been employed with their current employer for a minimum of 80 days in the 12 months leading up to their expected delivery date."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 9.992,
+      "tokens": {
+        "input": 3986,
+        "output": 180,
+        "total": 4166
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output includes all key facts from the Expected Output (26 weeks for first two children, 12 weeks for third/subsequent children) and adds relevant, non-contradictory details such as provisions for adoptive/commissioning mothers and eligibility criteria. It does not hallucinate or contradict the Expected Output, and the disclaimer appropriately notes the source basis. All evaluation steps are satisfied.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output fully satisfies all evaluation steps: it explicitly cites external public sources (Bajaj Finserv, Remofirst, Bharat Payroll), directly instructs validation with HR, clearly warns against treating the information as official company policy, and unambiguously distinguishes public information from binding internal policy through a prominent disclaimer.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 1,
+      "golden": {
+        "input": "How many weeks of leave does the US FMLA provide?",
+        "expected_output": "The FMLA provides eligible employees up to 12 workweeks of unpaid, job-protected leave in a 12-month period.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the US Family and Medical Leave Act (FMLA) provides eligible employees with **up to 12 weeks of unpaid, job-protected leave per year**.\n\nThe evidence also clarifies that this can be extended in specific circumstances:\n*   **Military Caregiver Leave:** FMLA leave can be extended up to **26 weeks** in circumstances where an employee is caring for a covered servicemember with a serious injury or illness.\n\nPlease note: This information is external public information derived from general sources (such as the U.S. Department of Labor and NCSL). It should be validated with your company's HR department before being treated as company policy, as the company knowledge base did not cover this question and internal policies may differ or provide additional benefits.",
+        "retrieval_context": [
+          "Search answer: The US Family and Medical Leave Act (FMLA) provides eligible employees with up to 12 weeks of unpaid, job-protected leave per year for family or medical reasons. This leave can be used for reasons such as caring for a newborn, adopted, or foster child, or to care for a family member or the employee's own serious health condition. FMLA applies to private employers with 50 or more employees and all public agencies, public and private elementary and secondary schools. The law also allows states to set standards that are more expansive than the federal law. In addition, military caregiver leave provisions can extend FMLA leave up to 26 weeks in certain circumstances.\n\nTitle: State Family and Medical Leave Laws\nURL: https://www.ncsl.org/labor-and-employment/state-family-and-medical-leave-laws\nContent: provides up to 12 weeks of unpaid leave during a 12-month period to care for a newborn, adopted or foster child, or to care for a family member, or to attend to the employee's own serious medical health condition. The law applies to private employers with 50 or more employees. The FMLA also allows states to set standards that are more expansive than the federal law and many states have chosen to do so. In response to the COVID-19 pandemic, many states have enacted or expanded family leave\n\nTitle: Family and Medical Leave (FMLA) | U.S. Department of Labor\nURL: https://www.dol.gov/general/topic/benefits-leave/fmla\nContent: The Family and Medical Leave Act (FMLA) provides certain employees with up to 12 weeks of unpaid, job-protected leave per year. It also requires that their group health benefits be maintained during the leave. [...] FMLA applies to all public agencies, all public and private elementary and secondary schools, and companies with 50 or more employees. These employers must provide an eligible employee with up to 12 weeks of unpaid leave each year for any of the following reasons: [...] Employees are eligible for leave if they have worked for their employer at least 12 months, at least 1,250 hours over the past 12 months, and work at a location where the company employs 50 or more employees within 75 miles. Whether an employee has worked the minimum 1,250 hours of service is determined according to FLSA principles for determining compensable hours or work.\n\nTime taken off work due to pregnancy complications can be counted against the 12 weeks of family and medical leave.\n\nTitle: FMLA Leave: Who's Eligible and for How Long?\nURL: https://myhrpartnerinc.com/blog/fmla-leave-whos-eligible-and-for-how-long\nContent: The federal Family and Medical Leave Act (FMLA) provides eligible employees with up to 12 weeks of job-protected unpaid leave per year for family or medical reasons, with all benefits (including the employee's health insurance) maintained during the leave. The 12 weeks do not have to be taken consecutively — employees may take FMLA leave intermittently or for an extended period (“continuous” FMLA leave), depending on their specific circumstances. Once the FMLA-qualifying employee's leave ends, [...] Employers that fall into the eligible categories must provide an employee with up to 12 weeks of unpaid leave each year for any of the following reasons:\n\n### Family Leave\n\nBoth mothers and fathers have the same right to unpaid leave under the Family and Medical Leave Act. FMLA leave covers both:\n\n the birth of a child\n placement with a child for adoption or foster care within one year of placement [...] Military family leave provisions, added to the Family and Medical Leave Act in 2008 and 2010, provide additional FMLA leave protection for active-duty military families. These provisions apply if the employee’s immediate family member (typically a spouse, child, or parent) is a covered military member on “covered active duty,\" or if an active servicemember is dealing with their own serious health condition. FMLA leave can be extended up to twenty-six weeks in circumstances where an employee is\n\nTitle: FMLA Frequently Asked Questions | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/fmla/faq\nContent: ## \n\n## General\n\n(Q) What does the Family and Medical leave act provide?\n\nThe Family and Medical Leave Act (FMLA) provides eligible employees up to 12 workweeks of unpaid leave a year, and requires group health benefits to be maintained during the leave as if employees continued to work instead of taking leave. Employees are also entitled to return to their same or an equivalent job at the end of their FMLA leave. [...] Qualifying exigency leave, like leave for a serious health condition, is a FMLA-qualifying reason for which an eligible employee may use his or her entitlement for up to 12 workweeks of FMLA leave each year. An eligible employee may take all 12 weeks of his or her FMLA leave entitlement as qualifying exigency leave or the employee may take a combination of 12 weeks of leave for both qualifying exigency leave and leave for a serious health condition. [...] Yes. The regulations provide that an eligible employee is entitled to a combined total of 26 workweeks of military caregiver leave and leave for any other FMLA-qualifying reason in this single 12-month period, provided that the employee may not take more than 12 workweeks of leave for any other FMLA-qualifying reason during this period. For example, in the single 12-month period an employee could take 12 weeks of FMLA leave to care for a newborn child and 14 weeks of military caregiver leave,\n\nTitle: Fact Sheet #28P: Taking Leave from Work When You or Your Family Member Has a Serious Health Condition under the FMLA | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/fact-sheets/28p-taking-leave-when-you-or-family-has-health-condition\nContent: Eligible employees may take up to 12 workweeks of FMLA in the FMLA leave year for, among other reasons, their own serious health condition or to care for a family member that has a serious health condition. An eligible employee may also take up to 26 workweeks of leave during a single 12-month period to care for a covered servicemember with a serious injury or illness when the employee is the spouse, son, daughter, parent, or next of kin of the servicemember. For more information about military [...] Eligible employees may take up to 12 workweeks of FMLA in a 12-month period, the FMLA leave year, for, among other reasons, their own serious health condition that makes the employee unable to perform the functions of their job. An employee is unable to perform the functions of his or her job where the health care provider finds that the employee is unable to work at all or is unable to perform any one of the essential functions of the employee's position, including when an employee must be [...] ## LEAVE FOR YOUR FAMILY MEMBER'S SERIOUS HEALTH CONDITION\n\nEmployees may also take up to 12 workweeks of FMLA in a 12-month period to care for a family member who has a serious health condition. An FMLA serious health condition generally involves a period of incapacity. Incapacity means an individual is unable to work, attend school or perform other regular daily activities because of the serious health condition, due to treatment of it, or for recovery from the condition."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 7.844,
+      "tokens": {
+        "input": 4430,
+        "output": 187,
+        "total": 4617
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output accurately states the core FMLA provision of up to 12 weeks of unpaid, job-protected leave per year, matching the expected output's key facts (12 workweeks, unpaid, job-protected, 12-month period). It adds supplementary information about military caregiver leave (up to 26 weeks) and a disclaimer, which do not contradict the expected output and are acceptable additional detail. No critical points are missing, and there are no factual conflicts.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "golden": {
+        "input": "Who is eligible for FMLA leave in the US?",
+        "expected_output": "Employees who have worked for a covered employer for at least 12 months, for at least 1,250 hours in the past 12 months, at a location with 50 or more employees within 75 miles.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence from the U.S. Department of Labor, eligibility for FMLA leave in the US is determined by the following criteria:\n\n**Eligible Employees:**\n*   **Employment Duration:** Must have worked for their employer for at least **12 months**.\n*   **Hours Worked:** Must have at least **1,250 hours of service** with the employer during the 12 months before their FMLA leave starts.\n*   **Work Location:** Must work at a location where the employer has at least **50 employees within 75 miles**.\n\n**Covered Employers:**\n*   FMLA applies to all public agencies (local, state, and federal).\n*   All public and private elementary and secondary schools.\n*   Companies with **50 or more employees**.\n\n**Important Note Regarding Public Agencies:**\nEmployees of public agencies (including local, state, and federal agencies, and public and private elementary and secondary schools) are eligible **regardless of the number of people employed**.\n\n***Disclaimer:** This information is external public information from the U.S. Department of Labor. It should be validated with your company's HR department before being treated as company policy, as internal policies may have additional requirements or variations.*",
+        "retrieval_context": [
+          "Search answer: Employees are eligible for FMLA leave if they have worked for their employer for at least 12 months, have at least 1,250 hours of service with the employer during the 12 months before their FMLA leave starts, and work at a location where the employer has at least 50 employees within 75 miles. FMLA applies to all public agencies, all public and private elementary and secondary schools, and companies with 50 or more employees. Employees of public agencies, including local, state, and federal agencies, and public and private elementary and secondary schools, are eligible regardless of the number of people employed.\n\nTitle: Family and Medical Leave (FMLA) | U.S. Department of Labor\nURL: https://www.dol.gov/general/topic/benefits-leave/fmla\nContent: Employees are eligible for leave if they have worked for their employer at least 12 months, at least 1,250 hours over the past 12 months, and work at a location where the company employs 50 or more employees within 75 miles. Whether an employee has worked the minimum 1,250 hours of service is determined according to FLSA principles for determining compensable hours or work.\n\nTime taken off work due to pregnancy complications can be counted against the 12 weeks of family and medical leave. [...] FMLA applies to all public agencies, all public and private elementary and secondary schools, and companies with 50 or more employees. These employers must provide an eligible employee with up to 12 weeks of unpaid leave each year for any of the following reasons:\n\nTitle: Fact Sheet #28: The Family and Medical Leave Act | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/fact-sheets/28-fmla\nContent: Eligible employees: Employees are eligible if they work for a covered employer for at least 12 months, have at least 1,250 hours of service with the employer during the 12 months before their FMLA leave starts, and work at a location where the employer has at least 50 employees within 75 miles.\n\nCovered employers: Covered employers under the FMLA include: [...] ## ABOUT THE FMLA\n\nThe FMLA provides eligible employees of covered employers with job-protected leave for qualifying family and medical reasons and requires continuation of their group health benefits under the same conditions as if they had not taken leave. FMLA leave may be unpaid or used at the same time as employer-provided paid leave. Employees must be restored to the same or virtually identical position when they return to work after FMLA leave. [...] Download “The Employee Guide to the Family and Medical Leave Act” for more information about the FMLA, including how to request FMLA leave.\n\n## USING FMLA LEAVE\n\nEligible employees may take:\n\n Up to 12 workweeks of leave in a 12-month period for any FMLA leave reason except military caregiver leave, and\n Up to 26 workweeks of military caregiver leave during a single 12-month period.\n\nExamples:\n\nTitle: The Family and Medical Leave Act (FMLA): The Basics • Bipartisan Policy Center\nURL: https://bipartisanpolicy.org/explainer/the-family-and-medical-leave-act-fmla-the-basics\nContent: The FMLA is a federal labor law, which allows eligible employees to take up to 12 weeks of unpaid, job-protected leave, or to substitute appropriate paid leave, if the employee has earned or accrued other forms of leave benefits for parental, family caregiver, and medical reasons.\n\n## Who Can Take FMLA Leave?\n\nCurrently, nearly 56% of all U.S. workers are eligible for unpaid leave under the FMLA. This policy covers employees who: [...] Have worked for a company for at least one year;\n Worked at least 1,250 hours during that year (or approximately 156 days);\n Live within 75 miles of the workplace; and\n Work for an employer who employs 50 or more employees for at least 20 weeks during the current or previous year.\n\nEmployees of public agencies, including local, state, and federal agencies, and public and private elementary and secondary schools, are also eligible regardless of the number of people employed. [...] In 2018, the U.S. Department of Labor fielded a survey to assess use of FMLA leave nationwide. It found that 17% of all eligible workers took unpaid, job-protected leave under the FMLA. Most leave was taken for an employee’s own illness (51%) and nearly half (40%) of all leaves taken were shorter than 10 days. Among all workers, 7% reported having an unmet need for leave and two-thirds (66%) of these workers cited their inability to afford unpaid time off as the reason why they didn’t take\n\nTitle: Fact Sheet #28P: Taking Leave from Work When You or Your Family Member Has a Serious Health Condition under the FMLA | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/fact-sheets/28p-taking-leave-when-you-or-family-has-health-condition\nContent: Eligible employees are those who work for covered employers under the FMLA and:\n\n Have worked for their employer for at least 12 months,\n Have at least 1,250 hours of service with the employer during the 12 months before their FMLA leave starts, and\n Work at a location where the employer has at least 50 employees within 75 miles. [...] Eligible employees may take up to 12 workweeks of FMLA in the FMLA leave year for, among other reasons, their own serious health condition or to care for a family member that has a serious health condition. An eligible employee may also take up to 26 workweeks of leave during a single 12-month period to care for a covered servicemember with a serious injury or illness when the employee is the spouse, son, daughter, parent, or next of kin of the servicemember. For more information about military [...] Eligible employees may take up to 12 workweeks of FMLA in a 12-month period, the FMLA leave year, for, among other reasons, their own serious health condition that makes the employee unable to perform the functions of their job. An employee is unable to perform the functions of his or her job where the health care provider finds that the employee is unable to work at all or is unable to perform any one of the essential functions of the employee's position, including when an employee must be\n\nTitle: Family and Medical Leave Act | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/fmla\nContent: An eligible employee who is the spouse, son, daughter, parent, or next of kin of a covered servicemember with a serious injury or illness may take up to 26 workweeks of leave during a single 12-month period to care for the servicemember. [...] Learn more about when two (or more) businesses may simultaneously employ an employee.\n\nEmployees are eligible if they:\n\n Work for a covered employer for at least 12 months,\n Have at least 1,250 hours of service with the employer during the 12 months before their FMLA leave starts, and\n Work at a location where the employer has at least 50 employees within 75 miles. [...] Eligible employees may use FMLA leave intermittently or on a reduced schedule when medically necessary and for qualifying exigencies. An employee also may use FMLA leave intermittently or on a reduced leave schedule for bonding with a newborn or newly placed child when the employer and employee agree.\n\nThe FMLA applies to covered employers, which include:"
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 10.51,
+      "tokens": {
+        "input": 4464,
+        "output": 280,
+        "total": 4744
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output includes all key eligibility criteria from the expected output (12 months employment, 1,250 hours, worksite with 50+ employees within 75 miles) and correctly identifies covered employers. It adds relevant detail about public agencies being covered regardless of size, which clarifies the 'covered employer' concept without contradicting the expected output. The disclaimer is appropriate and does not distort the core message.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly states the information is sourced from public web sources (U.S. Department of Labor) and includes a clear directive to validate with HR before treating it as company policy. The distinction between external/public information and official company policy is prominently communicated in the disclaimer, and the tone makes it unambiguous that this is not authoritative internal guidance.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 3,
+      "golden": {
+        "input": "What is the US federal minimum wage?",
+        "expected_output": "The US federal minimum wage is $7.25 per hour.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the US federal minimum wage is **$7.25 per hour**.\n\nThis rate was established by the Fair Labor Standards Act (FLSA) and has not been changed since 2009. While some states and local governments have set higher minimum wage rates, employers subject to the FLSA must pay at least the federal minimum wage of $7.25 per hour.\n\n***Disclaimer:** This information is external public information sourced from general web resources and the U.S. Department of Labor. It should be validated with your company's HR department before being treated as company policy, as the company knowledge base did not cover this question and internal policies may differ.*",
+        "retrieval_context": [
+          "Search answer: The US federal minimum wage is $7.25 per hour, as established by the Fair Labor Standards Act (FLSA) in 1938. This federal minimum wage has not been changed since 2009, according to multiple sources. While some states have enacted their own minimum wage laws that exceed the federal standard, employers subject to the FLSA must pay at least the federal minimum wage. As of March 2026, 30 states and the District of Columbia have minimum wages above the federal minimum wage, with 19 of these states setting it at $15.00 or above.\n\nTitle: State Minimum Wage Laws\nURL: https://www.dol.gov/agencies/whd/minimum-wage/state\nContent: Employers subject to the Fair Labor Standards Act must pay the current Federal minimum wage of $7.25 per hour.\n\nSome states set subminimum rates for minors and/or students or exempt them from coverage or have a training wage for new hires. Some local governments set minimum wage rates higher than their respective state minimum wage. Such differential provisions are not displayed in this table.\n\nTitle: minimum wage | Wex | US Law | LII / Legal Information Institute\nURL: https://www.law.cornell.edu/wex/minimum_wage\nContent: # minimum wage\n\nMinimum wage laws establish a base level of pay that employers are required to pay certain covered employees. The current federal minimum wage is $7.25 per hour. In addition to a federal minimum wage, some states also have their own minimum wages, codified either in a state statute or in the state's constitution. States are broken up into 4 classifications for minimum wage: [...] The national minimum wage was created by Congress under the Fair Labor Standards Act (FLSA) in 1938. Congress enacted this legislation under its authority in Article I, Section 8 of the U.S. Constitution: “The Congress shall have power to . . . regulate commerce . . . among the several states.” FLSA was a comprehensive federal scheme which provided for minimum wages, overtime pay, record keeping requirements, and child labor regulations. The purpose of the minimum wage was to stabilize the\n\nTitle: The Minimum Wage | Center on Budget and Policy Priorities\nURL: https://www.cbpp.org/research/economy/the-minimum-wage\nContent: # The Minimum Wage\n\nMinimum wage laws set the lowest hourly rate an employer can legally pay certain workers. The federal minimum wage is currently $7.25 per hour. Where states and municipalities have enacted their own higher minimum wage laws, employers must pay at least the state or local minimum. As of March 2026, 30 states and the District of Columbia have minimum wages above the federal minimum wage, of which 19 have set it at $15.00 or above.\n\nUpdated [...] Congress last increased the federal minimum wage in 2009 to $7.25 per hour. However, 30 states and Washington, D.C. have taken action to raise their own wage floors above the federal level. Minimum wage rates in these states range from $9 to more than $15 per hour and collectively cover over two-thirds of labor force. As states have raised their minimum wage, they have done so through different designs. Some enacted scheduled increases that set a series of wage hikes through a specified year, [...] the minimum wage is roughly 25 percent of the average wage for blue-collar factory workers and non-management service employees, as compared to being around half of that typical wage in the late 1960s (see chart). As a result, the annual income of a full-time worker earning the federal minimum wage is currently below the poverty line for a household of any size.\n\nTitle: What Is the Federal Minimum Wage? | Square\nURL: https://squareup.com/us/en/the-bottom-line/managing-your-finances/understanding-the-federal-minimum-wage\nContent: This article is for educational purposes and does not constitute legal, financial, or tax advice. For specific advice applicable to your business, please contact a professional.\n\n## What is the federal minimum wage in 2024?\n\nThe federal minimum wage is a rule set by the Fair Labor Standards Act (FLSA) that tells employers the lowest hourly wage they can pay their employees. The current federal minimum wage is $7.25, and it has not changed since 2009. [...] The idea of increasing the minimum wage is a popular one among organized labor and anti-poverty groups, who are pushing for $15 an hour as the new standard. Supporters of the Raise the Wage Act, a bill that has been introduced to Congress since 2017, are advocating for gradual increases to the federal wage rate so it reaches $15 per hour by 2025. [...] Prior to that, federal minimum wage history showed few fluctuations, raising less than 50 cents to $1 per year since 1938.\n\n## Can states have a higher minimum wage than the federal standard?\n\nYes, individual states can implement their own minimum wage laws, meaning the minimum wage by state varies. When a state’s minimum wage doesn’t match the federal standard of $7.25 an hour, hourly workers must be paid the higher of the two amounts.\n\nTitle: Minimum Wage Rate in the US by State (2026) | Paycom\nURL: https://www.paycom.com/resources/blog/minimum-wage-rate-by-state\nContent: The current federal minimum wage is $7.25 per hour. States with their own hourly wage requirements may exceed this rate, but employers specifically covered by the Fair Labor Standards Act (FLSA) must adhere to the federal minimum wage.\n\n## What legislation established the federal minimum wage?\n\nPresident Franklin D. Roosevelt signed the FLSA into law in 1938. At the time, the law placed the minimum wage at just 25 cents per hour. The law also created standards for child labor and overtime pay. [...] Takeaway\n\nMinimum wages can change every year. In fact, 22 states are experiencing wage increases in 2026. While many states still follow the federal requirement of $7.25, it’s crucial to understand the exact wage requirements of the state(s) where you operate. Read what you need to know about every state’s minimum hourly wage policy. [...] ### What is the difference between state minimum wage and federal minimum wage?\n\nIf a state’s minimum wage is less than the federal minimum wage of $7.25, employers must pay the federal rate. If the state minimum wage is more than the federal, employers must pay the state rate."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 7.356,
+      "tokens": {
+        "input": 3914,
+        "output": 163,
+        "total": 4077
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output correctly states the US federal minimum wage as $7.25 per hour, matching the expected output exactly. It adds supplementary context (FLSA, unchanged since 2009, state variations, disclaimer) without introducing any contradictions or omissions. All key facts are present and factually consistent.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "golden": {
+        "input": "What is the overtime rate under the US Fair Labor Standards Act?",
+        "expected_output": "Non-exempt employees must be paid at least 1.5 times their regular rate for hours worked over 40 in a workweek.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence from the U.S. Department of Labor and other federal sources:\n\n**Overtime Rate Under the US Fair Labor Standards Act (FLSA):**\nThe overtime rate is **1.5 times (time-and-a-half) the employee's regular rate of pay** for hours worked over 40 in a workweek.\n\n**Key Details from the Evidence:**\n*   **Threshold:** Overtime is required for hours worked over 40 in a workweek (defined as any fixed and regularly recurring period of 168 hours – seven consecutive 24-hour periods).\n*   **Calculation:** The rate is calculated as the employee's \"regular rate of pay\" multiplied by 1.5. The \"regular rate of pay\" is defined as the hourly rate plus the value of non-discretionary bonuses, shift differentials, and certain other forms of compensation.\n*   **Scope:** This applies to \"covered nonexempt employees.\" The FLSA does not require overtime pay for work on weekends, holidays, or regular days of rest unless overtime is actually worked on those days.\n*   **Exemptions:** Certain kinds of employees are exempt from these minimum wage and overtime requirements (known as \"exempt employees\").\n\n**Important Note:** This information is external public information from federal regulations and the U.S. Department of Labor. It should be validated with your company's HR department before being treated as company policy, as company policies may offer different rates, different thresholds, or additional provisions specific to your organization.",
+        "retrieval_context": [
+          "Search answer: Under federal law, the overtime rate is 1.5 times the employee’s regular rate of pay. The Fair Labor Standards Act (FLSA) requires employers to pay nonexempt employees overtime pay for hours worked over 40 in a workweek at this rate. The regular rate of pay includes an employee’s hourly rate plus the value of non-discretionary bonuses, shift differentials, and certain other forms of compensation.\n\nTitle: Overtime Rules and Exemptions Under the FLSA – Justworks Help Center\nURL: https://help.justworks.com/hc/en-us/articles/360004521811-Overtime-Rules-and-Exemptions-Under-the-FLSA\nContent: Under federal law, the overtime rate is 1.5 times the employee's regular rate of pay. \"Regular rate of pay\" includes an employee’s hourly rate plus the value of non-discretionary bonuses, shift differentials, and certain other forms of compensation. Not all types of compensation are included in the regular rate of pay. For further DOL resources and information on overtime calculation, see here. [...] The Fair Labor Standards Act (FLSA) is the federal wage and hour law which regulates minimum wage, overtime, equal pay, recordkeeping, and child labor. The FLSA generally requires employers to pay employees at least the minimum wage, and overtime if employees work more than 40 hours in a week. The FLSA does, however, exempt certain kinds of employees from the minimum wage and overtime requirements. These are known as “exempt employees”. [...] The One, Big, Beautiful Act, passed in July 2025, allows employees to claim tax deductions for eligible overtime premium wages beginning with the 2025 tax year. As mentioned, under federal law, overtime pay is generally paid at “time-and-a-half,” meaning employees receive their regular hourly rate plus an additional half of that rate for every hour worked over 40 in a workweek. The “half” portion, which is often called the federal overtime premium, is the part that qualifies as tax-deductible\n\nTitle: Wages and the Fair Labor Standards Act | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/flsa\nContent: FLSA Overtime: Covered nonexempt employees must receive overtime pay for hours worked over 40 per workweek (any fixed and regularly recurring period of 168 hours – seven consecutive 24-hour periods) at a rate not less than one and one-half times the regular rate of pay. There is no limit on the number of hours employees 16 years or older may work in any workweek. The FLSA does not require overtime pay for work on weekends, holidays, or regular days of rest, unless overtime is worked on such [...] The Fair Labor Standards Act (FLSA) establishes minimum wage, overtime pay, recordkeeping, and youth employment standards affecting employees in the private sector and in Federal, State, and local governments. Covered nonexempt workers are entitled to a minimum wage of not less than $7.25 per hour effective July 24, 2009. Overtime pay at a rate not less than one and one-half times the regular rate of pay is required after 40 hours of work in a workweek.\n\nTitle: Overtime Pay | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/whd/overtime\nContent: The federal overtime provisions are contained in the Fair Labor Standards Act (FLSA). Unless exempt, employees covered by the Act must receive overtime pay for hours worked over 40 in a workweek at a rate not less than time and one-half their regular rates of pay. There is no limit in the Act on the number of hours employees aged 16 and older may work in any workweek. The FLSA does not require overtime pay for work on Saturdays, Sundays, holidays, or regular days of rest, unless overtime is\n\nTitle: Fair Labor Standard Act (FLSA) – Human Resources\nURL: https://inside.wooster.edu/hr/fair-labor-standard-act-flsa\nContent: The Fair Labor Standards Act (FLSA) sets a minimum hourly wage, a 40-hour workweek, overtime rules, timekeeping requirements and other standards. Covered nonexempt workers are entitled to a minimum wage of not less than $7.25 per hour effective July 24, 2009. Overtime pay at a rate not less than one and one-half times the regular rate of pay is required after 40 hours of work in a workweek.  \n  \nWages and the Fair Labor Standards Act | U.S. Department of Labor (dol.gov) [...] “Covered nonexempt employees must receive overtime pay for hours worked over 40 per workweek (any fixed and regularly recurring period of 168 hours – seven consecutive 24-hour periods) at a rate not less than one and one-half times the regular rate of pay. There is no limit on the number of hours employees 16 years or older may work in any workweek. The FLSA does not require overtime pay for work on weekends, holidays, or regular days of rest, unless overtime is worked on such days.” [...] A 1938 federal employment law administered by the U.S. Department of Labor. It sets a minimum hourly wage, a 40-hour workweek, overtime rules, timekeeping requirements and child labor standards. The guidelines affect full-time and part-time workers in the private sector and in federal, state and local governments.\n\nTitle: How to Compute FLSA Overtime Pay\nURL: https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/how-to-compute-flsa-overtime-pay\nContent: Overtime pay for nonexempt employees is computed under the Fair Labor Standards Act (FLSA), subject to some special rules for Federal employees. Under the FLSA, overtime pay is determined by multiplying the employee’s “straight time rate of pay” by all overtime hours worked PLUS one-half of the employee’s “hourly regular rate of pay” times all overtime hours worked. All overtime work that is ordered or approved must be compensated. All overtime work that is “suffered or permitted” also must be [...] One-half x Hourly Regular Rate of Pay x All Overtime Hours Worked.  \n0.5 x $26.97 = $13.49.   \n$13.49 x 12 hours = $161.88.\n\nTotal FLSA Overtime Pay = $452.04 ($290.16 + $161.88).\n\nBasic Pay = $967.20.   \nNight Pay = $96.80.   \nSunday Premium Pay = $48.40.   \nFLSA Overtime Pay = $452.04.\n\nTotal Weekly Pay = $1,564.44 ($967.20 + $96.80 + $48.40 + $452.04).\n\nOPM [...] Basic Pay (40 hours).  \n$24.18 x 40 hours = $967.20.   \n  \nNight Pay (40 hours).  \n$24.18 x .10 = $2.42.   \n$2.42 x 40 hours = $96.80.   \n  \nSunday Premium Pay (8 hours).  \n$24.18 x .25 = $6.05.  \n$6.05 x 8 hours = $48.40.   \n  \nStraight Time Pay.  \n$24.18 x 12 hours = $290.16.\n\nTotal Remuneration =$1,402.56 ($967.20 + $96.80 + $48.40 + $290.16).\n\n$1,402.56 / 52 hours = $26.97.\n\nStraight Time Rate of Pay x All Overtime Hours Worked.  \n$24.18 x 12 hours = $290.16."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 25.102,
+      "tokens": {
+        "input": 4724,
+        "output": 337,
+        "total": 5061
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly states the information is sourced from public web sources (U.S. Department of Labor and federal regulations) and not internal policy. It includes a clear, prominent directive in an 'Important Note' section for the employee to validate the information with HR before treating it as company policy. The distinction between external public information and official company policy is prominently communicated, noting that company policies may differ. The tone and phrasing are unambiguous that the answer is not authoritative company guidance, using language such as 'external public information' and 'should be validated... before being treated as company policy.'",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 5,
+      "golden": {
+        "input": "How long can an employee keep health coverage under COBRA?",
+        "expected_output": "COBRA generally allows continuation of group health coverage for up to 18 months after job loss or reduced hours, longer in some circumstances.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the duration of COBRA coverage generally depends on the qualifying event and the beneficiary's status (employee vs. dependent).\n\nAccording to multiple sources, including the U.S. Department of Labor and insurance providers:\n\n*   **For employees:** COBRA coverage can last up to **18 months** from the date of the qualifying event (such as job loss or reduction in work hours).\n*   **For dependents:** Coverage can last up to **36 months** from the date of the qualifying event, particularly in circumstances such as divorce, legal separation, or the death of the covered employee.\n*   **Extensions:** There are specific circumstances that may extend these periods. For example, if a qualified beneficiary is deemed disabled by the Social Security Administration (SSA) within the first 60 days of COBRA coverage, the coverage may be extended to **29 months**.\n\nIt is important to note that this information is derived from external public sources (such as the U.S. Department of Labor and insurance industry sites) and does not reflect specific company policy. You should validate this information with your HR department before treating it as company policy.\n\n***Disclaimer:** This response is based on external public information and should be confirmed with your HR representative to ensure it aligns with your specific employer's benefits plan.*",
+        "retrieval_context": [
+          "Search answer: You may keep COBRA coverage for up to 18 months as an employee or for up to 36 months if you are a qualifying dependent, such as a spouse or children in circumstances like divorce or the death of the covered employee. If someone on the plan is deemed disabled by the Social Security Administration (SSA) within the first 60 days of COBRA coverage, the coverage may be extended to 29 months. The standard COBRA insurance duration is 18 months for employees and dependents who lose coverage due to termination or reduction in work hours, with possible extensions to 29 or 36 months depending on circumstances. COBRA coverage lasts 18 or 36 months, depending upon the qualifying event.\n\nTitle: How Long COBRA Coverage Lasts | Duration and Extensions\nURL: https://www.cobrainsurance.com/kb/how-long-can-you-stay-on-cobra\nContent: You may keep COBRA coverage for up to 18 months as an employee, or for up to 36 months if you are a qualifying dependent. Dependents such as a spouse or children may qualify for the longer coverage period under circumstances like divorce or the death of the covered employee. If someone on the plan is deemed disabled by the Social Security Administration (SSA) within the first 60 days of COBRA coverage, the coverage may be extended to 29 months. You must notify the plan administrator within 60 [...] COBRA is a federal law\n\n⚠️ View Your Insurance Options\n\nYour Right To Continue Coverage (COBRA)\n\nCOBRA is a federal law that allows you to keep your most recent employer-sponsored health coverage if it would otherwise end because of job loss or another qualifying life event. If you choose to continue the employer plan, you may do so for up to 18 or 36 months depending on the qualifying event.\n\nOn this website we answer common questions about navigating employer COBRA. [...] Leaving a job may be voluntary or involuntary. You can keep your employer’s group health insurance for up to 18 months after your job ends. By electing COBRA coverage, you have the right to retain your health benefits even if your employment status changes.\n\n## How Long Can Dependents Use COBRA?\n\nTitle: How Long Can You Keep Cobra Insurance? - CobraHelp\nURL: https://www.mycobrahelp.com/blog/how-long-keep-cobra-insurance\nContent: The standard COBRA insurance duration is 18 months for employees and dependents who lose coverage due to termination or reduction in work hours. This is the baseline period most people think of when they ask, “How long can you keep COBRA insurance?” [...] So, how long does COBRA last? For employees who experienced the loss of coverage either due to termination or reduction of hours the answer is 18 months, with possible extensions to 29 or 36 months depending on circumstances. When the loss of coverage is experienced by a dependent, they are entitled to 36 months. State extension laws can add more time, however, 36 months is the maximum time someone can stay on CORA, regardless of any circumstances. What doesn’t change is the need to track [...] COBRA continuation coverage is designed as a bridge, offering temporary health insurance when group benefits end. Yet many HR leaders and employees alike wonder how long COBRA actually lasts. The answer isn’t always as simple as “18 months.” While that’s the most common duration, extensions and state-specific rules can stretch or shorten timelines.\n\nTitle: Health Insurance Options After COBRA | Anthem\nURL: https://www.anthem.com/individual-and-family/insurance-basics/health-insurance/health-insurance-options-after-cobra\nContent: ## How Long Does COBRA Last?\n\nCOBRA coverage lasts 18 or 36 months, depending upon the qualifying event. If eligibility was triggered by job loss or reduced hours, COBRA coverage can last up to 18 months from the date of the event.\n\nIf eligibility was triggered by job loss or reduced hours AND the employee became eligible for Medicare within 18 months of the qualifying event, their spouse and dependents can be covered by COBRA for up to 36 months from the date they became Medicare eligible. [...] If the employee became eligible because of a different type of qualifying event, like divorce, COBRA coverage can last up to 36 months from the date of the event.\n\n## Health Insurance Options After COBRA Runs Out\n\nThe loss of COBRA can be stressful, but there are other health insurance options for individuals and families, including those impacted by unemployment:\n\nTitle: FAQs on COBRA Continuation Health Coverage for Workers | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/faqs/cobra-continuation-health-coverage-workers\nContent: |  |  |  |\n --- \n| Situation | Does COBRA apply? | How long does COBRA last? |\n| The employee enrolls in Medicare while still working. | Generally, no. Enrolling in Medicare while still employed does not typically result in a loss of group health coverage. | In the rare situation that coverage is lost, and COBRA still applies:  For the employee: Up to 18 months.  For dependents: Up to 36 months | [...] Just as with a first qualifying event, the qualified beneficiary must notify the plan within 60 days if the second qualifying event is a divorce, legal separation, or dependent child losing eligibility under the plan.\n\n \n\nYes, a divorced or legally separated spouse of a covered employee may continue health coverage under COBRA. [...] | The employee enrolls in Medicare while working and then experiences a qualifying event. | Yes, COBRA coverage is available following the qualifying event, even if the employee was already enrolled in Medicare. | For the employee: Up to 18 months from the date of the qualifying event.   For dependents: Up to 36 months from the date the employee became entitled to Medicare or 18 months from the date coverage was lost, whichever is later. |\n\nTitle: FAQ: COBRA Health Insurance Coverage | Department of Financial Services\nURL: https://www.dfs.ny.gov/consumers/health_insurance/cobra_faqs\nContent: Answer: You must request continuation of coverage in writing within 60 days following the later of: (1) the date of termination ; or (2) the date the employee is given notice of the right of continuation by either his employer or the plan.\n\nWhy would I want to continue my health insurance coverage under either COBRA or New York State Law? [...] Answer: The continuation of benefits will terminate at the first to occur of the following: (1) 36 months after the date that benefits under the policy would otherwise have terminated, (2) the end of the period for which premium payments were made, if the employee or member fails to make timely payment of a required premium payment, or (3) the date on which the group contract is terminated, or, in the case of an employee, the date his employer terminated participation under the group contract. [...] Can my coverage be terminated prior to the close of my eligibility period?\n\nAnswer: Generally, each qualified beneficiary has until at least 60 days after the date that the qualifying event would cause loss of coverage, to decide whether to elect COBRA continuation coverage. If the election is made during that period, coverage must be provided from the date that coverage would otherwise have been lost, unless the employer group no longer offers a group health plan."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 8.872,
+      "tokens": {
+        "input": 4308,
+        "output": 294,
+        "total": 4602
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output fully captures the key points of the Expected Output: it states that COBRA coverage lasts up to 18 months for employees after job loss or reduced hours, and explicitly mentions longer durations (36 months for dependents, 29 months for disability) as examples of 'longer in some circumstances.' There are no contradictions, and the extra detail is relevant and non‑conflicting. The disclaimer does not detract from factual alignment.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The response explicitly states the information is sourced from external public sources (U.S. Department of Labor, insurance providers) and not internal company policy. It instructs the employee to validate with HR before relying on it. It clearly distinguishes external guidance from official company policy by noting it does not reflect specific company policy. The disclaimer is prominent and unambiguous, placed at the end of the response.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 6,
+      "golden": {
+        "input": "What does Title VII of the Civil Rights Act prohibit?",
+        "expected_output": "Title VII prohibits employment discrimination based on race, color, religion, sex, and national origin.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, Title VII of the Civil Rights Act of 1964 prohibits employment discrimination based on the following protected characteristics:\n\n*   **Race**\n*   **Color**\n*   **Religion**\n*   **Sex** (including gender, pregnancy, sexual orientation, and gender identity)\n*   **National origin**\n\nAdditionally, Title VII prohibits retaliation against individuals for opposing employment practices made unlawful by the Act or for filing a discrimination charge, participating in an investigation, or proceeding under the Act. The law covers all terms and conditions of employment, including recruiting, hiring, compensation, benefits, promotions, training, work assignments, and termination.\n\n**Important Note:** This information is external public information derived from general legal resources (such as Cornell Law LII, Outsolve, and Thomson Reuters). It should be validated with your company's HR department before being treated as official company policy.",
+        "retrieval_context": [
+          "Search answer: Title VII of the Civil Rights Act of 1964 prohibits employment discrimination based on race, color, religion, sex (including gender, pregnancy, sexual orientation, and gender identity), and national origin. It also prohibits retaliation against individuals for opposing employment practices made unlawful by Title VII or for filing a discrimination charge or participating in an investigation or proceeding under the Act. The law covers all terms and conditions of employment, including recruiting, hiring, compensation, benefits, promotions, training, work assignments, and termination of employment.\n\nTitle: Title VII | Wex | US Law | LII / Legal Information Institute\nURL: https://www.law.cornell.edu/wex/title_vii\nContent: Title VII of the Civil Rights Act of 1964 is a federal employment law that prohibits employment discrimination based on race, color, religion, sex (including pregnancy), and national origin. Title VII gives employees a private right to action. However, such claims cannot be brought against a specific individual, such as a supervisor. Rather, employers are subject to vicarious liability to violations caused by its managing employees. Adverse employment actions and hostile work environments are [...] Moreover, many states have their own employment discrimination laws. For example, in New York, the Human Rights Law prohibits employers from refusing employment or fair compensation because of (among other characteristics) race, creed, color, national origin. See also: New York Executive Law, Article 15 §§ 290-301. Title VII does not preempt such state laws so long as they do not allow for acts that would be illegal under Title VII. As a result, state laws may supplement and even cover some [...] Under Title VII, a hostile work environment exists when the workplace is \"permeated with discriminatory, intimidation, ridicule, and insult, that is sufficiently severe or pervasive to alter the conditions of the victim's employment and create an abusive working environment.\" For example, evidence of sexual harassment is sufficient to show a hostile work environment. See: Faragher v. City of Boca Raton, 524 U.S. 775 (1998).\n\nTitle: What is Title VII of the Civil Rights Act? A Guide for Employers\nURL: https://www.outsolve.com/federal-compliance/merit-based-employment/non-discrimination/what-is-title-vii-of-the-civil-rights-act\nContent: Title VII prohibits discrimination in all terms and conditions of employment, including recruiting, hiring, compensation, benefits, promotions, advancement opportunities, training, work assignments, and termination of employment. By deeming discrimination unlawful, Title VII ensures that all employees and job applicants have an equal opportunity to succeed in the workplace. [...] \\In 2020, the Supreme Court ruled that Title VII of the Civil Rights Act prohibits discrimination on the basis of sexual orientation and/or transgender status. It's important to note that while Title VII continues to protect against discrimination based on sex, including sexual orientation and gender identity, the current administration has taken steps to redefine gender strictly as biological sex. This policy shift may influence the enforcement and interpretation of these protections. [...] Title VII of the Civil Rights Act of 1964 was enacted to prevent widespread discrimination in the workplace and continues to shape how employers engage with employees and job applicants. The law protects employees from discrimination and requires equal opportunity in the workplace.\n\nThis federal law that prohibits discrimination and harassment based on:\n\n Race\n Color\n Religion\n Sex – including gender, pregnancy, sexual orientation, and gender identity\\\n National origin.\n\nTitle: Title VII of the Civil Rights Act: The basics you should know | Thomson Reuters\nURL: https://legal.thomsonreuters.com/en/insights/articles/what-is-title-vii-civil-rights-act\nContent: Retaliation. Title VII prohibits an employer from retaliating against employees or applicants when they assert their rights under the law, including when an employee files a discrimination charge, opposes an employer practice that violates the law, or testifies or participates in an investigation or proceeding related to it. [...] But if you don't know this critical legislation's specific details and nuances, don't worry — you're not alone. Fortunately, this article will cover the fundamental concepts of Title VII, including its protections, prohibitions, and the potential claims employees may pursue under it. So, let's start with the basics.\n\n## What is Title VII of the Civil Rights Act — and what does it prohibit?\n\nTitle VII is the primary federal law that prohibits employment discrimination based on: [...] ## Exemption\n\nTitle VII forbids discrimination in employment based on race, color, religion, sex, or national origin, with some limited exceptions. These carve-outs are intended to strike a fair balance between the protection against discrimination and other vital interests like religious freedom, business necessity, and specific employment requirements.\n\nTitle: Laws and definitions - Office of Equal Opportunity - Wayne State University\nURL: https://oeo.wayne.edu/laws\nContent: Title VII of the Civil Rights Act of 1964 prohibits discrimination in employment on the basis of race, sex, national origin and religion. It also is unlawful under the Act for an employer to take retaliatory action against any individual for opposing employment practices made unlawful by Title VII or for filing a discrimination charge or for testifying or assisting or participating in an investigation, proceeding, or hearing under Title VII.  The Equal Employment Opportunity Commission (EEOC)\n\nTitle: Protections Against Discrimination and Other Prohibited Practices | Federal Trade Commission\nURL: https://www.ftc.gov/policy-notices/no-fear-act/protections-against-discrimination\nContent: Title VII of the Civil Rights Act of 1964. Title VII of the Civil Rights Act, as amended, protects employees and job applicants from employment discrimination based on race, color, religion, sex and national origin. Title VII protection covers the full spectrum of employment decisions, including recruitment, selections, terminations, and other decisions concerning terms and conditions of employment. See EEOC guidance on race/color, religion,sex, sexual harassment, pregnancy, and national origin [...] The Civil Rights Act of 1991. The Civil Rights Act of 1991 amends several sections of Title VII to strengthen and improve Federal civil rights laws and provide for the recovery of compensatory damages in Federal sector cases of intentional employment discrimination.\n\nAdditional information about unlawful discriminatory and retaliatory practices and the remedies is available to Federal employees and applicants who believe they have been subjected to such practices."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 7.648,
+      "tokens": {
+        "input": 3833,
+        "output": 209,
+        "total": 4042
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly identifies the information as external public information from general legal resources (Cornell Law LII, Outsolve, Thomson Reuters), directly instructs the employee to validate with HR before treating it as official company policy, clearly warns against treating the public information as official company policy, and unambiguously communicates the distinction between external reference material and binding internal policy.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 7,
+      "golden": {
+        "input": "Which US employers must comply with the Americans with Disabilities Act employment rules?",
+        "expected_output": "Employers with 15 or more employees must comply and provide reasonable accommodations to qualified individuals with disabilities.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the following entities are required to comply with the Americans with Disabilities Act (ADA) employment rules under Title I:\n\n*   **Private employers with 15 or more employees.**\n*   **State and local government employers.**\n*   **Employment agencies.**\n*   **Labor organizations.**\n*   **Joint labor-management committees.**\n\nThis information is considered external public information derived from general ADA guidance sources (such as the Job Accommodation Network and EEOC guidelines). It should be validated with your company's HR department before being treated as official company policy.",
+        "retrieval_context": [
+          "Search answer: US employers with 15 or more employees must comply with the Americans with Disabilities Act (ADA) employment rules. This includes private employers, state and local government employers, employment agencies, labor organizations, and joint labor-management committees. The ADA prohibits discrimination against individuals with disabilities in various aspects of employment, such as recruitment, hiring, promotions, training, pay, and social activities.\n\nTitle: Employers' Practical Guide to Reasonable Accommodation Under the Americans with Disabilities Act (ADA)\nURL: https://askjan.org/publications/employers/employers-guide.cfm\nContent: Only “covered entities” must comply with Title I of the ADA. The term covered entities includes private employers with 15 or more employees, state and local government employers, employment agencies, labor organizations, and joint labor-management committees. For simplicity, this guide will refer to covered entities as “employers.”\n\n For more information about covered entities, see EEOC's Threshold Issues, section 2-III-B.\n\n### Who is protected by Title I of the ADA? [...] or operate places of public accommodation and state and local governments must conform to more extensive accessibility requirements under Title III and Title II when making alterations to existing facilities or undertaking new construction. [...] Employers do not have to limit offers to current vacancies; they can give offers to fill current vacancies or reasonably anticipated openings. Employers may also give offers that exceed the number of vacancies or reasonably anticipated openings, but must comply with the ADA when taking people out of the pool to fill actual vacancies. The employer must notify an individual (orally or in writing) if his/her placement into an actual vacancy is in any way adversely affected by the results of a\n\nTitle: The Americans With Disabilities Act (ADA) & Employees' Legal Rights\nURL: https://www.justia.com/employment/employment-discrimination/disability-discrimination/americans-with-disabilities-act\nContent: Who Must Comply?\n\nThe American with Disabilities Act (ADA): Who Must Comply?\n\n   Employers with 15 or more employees\n   Private Companies\n   Employment Agencies\n   Labor Organizations\n   State & Local Governments\n\n## Title I—Employment [...] There are exceptions to this title of the ADA, so many private clubs, historical landmarks, and religious groups may not have to comply with Title III.\n\nTitle: Introduction to the Americans with Disabilities Act | ADA.gov\nURL: https://www.ada.gov/topics/intro-to-ada\nContent: Applies to: employers that have 15 or more employees, including state/local governments, employment agencies, and labor unions.\n\nGeneral requirement: Employers must provide people with disabilities an equal opportunity to benefit from the employment-related opportunities available to others. This includes things like recruitment, hiring, promotions, training, pay, and social activities. [...] The ADA covers many other disabilities not listed here.\n\n## The ADA Prohibits Disability Discrimination in Many Areas of Life\n\nTo prevent discrimination against people with disabilities, the ADA sets out requirements that apply to many of the situations you encounter in everyday life. Employers, state and local governments, businesses that are open to the public, commercial facilities, transportation providers, and telecommunication companies all have to follow the requirements of the ADA. [...] Religious organizations are exempt from the requirements of Title III of the ADA. For information about how the ADA’s employment obligations apply to religious entities, visit the EEOC’s website. Additionally, religious groups or organizations may still have to comply with state/local building codes or other laws prohibiting discrimination on the basis of disability.\n\n### Federal Agencies’ Roles\n\nTitle: ADA compliance for employers | Guardian\nURL: https://www.guardianlife.com/absence-management/ada-compliance\nContent: # ADA compliance for employers\n\nIf you’re an employer with 15 or more employees, you must comply with the Americans with Disabilities Act (ADA). Here are the key regulations, issues, and steps involved.\n\nLast updated January 29, 2026\n\nGuardian Life Insurance of America\n\nWritten by\n\nReviewed by [...] The Americans with Disabilities Act (ADA) prohibits discrimination against people with disabilities in key areas like employment, transportation, communications, and public accommodations. This federal regulation requires organizations — including employers with 15 or more employees — to provide accommodations for people with disabilities, including employees, job seekers, and customers.\n\n## How the ADA applies to employers\n\nThe ADA is divided into five titles: [...] Overall, the ADA prohibits employers from discriminating in their employment practices based on a team member’s disability. These employment practices include:\n\n recruitment\n pay\n hiring\n firing and lay-offs\n promotions and career advancement\n job assignments\n training or continual education\n leave\n benefits\n all other employment-related activities.\n\nEmployers who want to assess their current awareness and understanding of the ADA can consider taking our ADA Knowledge Quiz.\n\nTitle: Here’s what employers need to know about ADA compliance\nURL: https://www.cocoon.com/blog/americans-with-disabilities-act-ada-guide-for-employers\nContent: US Dept of Justice, Civil Rights Division: Introduction to the Americans with Disabilities Act\n US Dept of Labor: Americans with Disabilities Act Overview\n Job Accommodation Network (JAN): Employers’ Practical Guide to Reasonable Accommodation under the ADA\n\n## Build a more inclusive workplace, stress less about compliance [...] intermittent? Has the employee already taken leave? The list goes on… and on and on. To add another layer of complexity for employers, they must integrate ADA with the federal Family and Medical Leave Act (FMLA), which was passed three years after the ADA in 1993, plus state family and medical leave laws. [...] The Americans with Disabilities Act (ADA) is a federal law that passed in 1990 that prohibits discrimination against individuals with disabilities in many aspects of society—including employment, transportation, public accommodations, communications, and access to state and local government programs and services. To make it even more complex, most states and many municipalities have their own laws that are closely modeled after the ADA."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 6.965,
+      "tokens": {
+        "input": 3721,
+        "output": 143,
+        "total": 3864
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly labels the information as external public information derived from specific public sources (Job Accommodation Network and EEOC guidelines) and includes a clear, direct instruction to validate the information with HR before treating it as company policy. The disclaimer is prominent and unambiguous, effectively communicating both the external origin and the need for HR validation.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 8,
+      "golden": {
+        "input": "What age group does the US Age Discrimination in Employment Act protect?",
+        "expected_output": "The ADEA protects employees and job applicants who are 40 years of age or older.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the US Age Discrimination in Employment Act (ADEA) protects applicants and employees who are **40 years of age and older**.\n\nThe evidence confirms that the ADEA was originally enacted to protect employees aged 40 to 65, but amendments in 1978 and 1986 increased the upper age limit to 79 and then abolished the upper age limit for most employment sectors (with exceptions for certain public safety positions that allow retirement at 70).\n\n**Important Note:** This information is external public information derived from general legal resources (U.S. Department of Labor, legal information institutes, and employment law blogs). It should be validated with your company's HR department before being treated as company policy, as organizational policies may have additional provisions, different thresholds, or specific internal guidelines not reflected in federal law.",
+        "retrieval_context": [
+          "Search answer: The US Age Discrimination in Employment Act protects applicants and employees who are 40 years of age and older from discrimination on the basis of age in hiring, promotion, discharge, compensation, or terms, conditions or privileges of employment. The ADEA was originally enacted to protect employees aged 40 to 65, but amendments in 1978 and 1986 increased the upper age limit to 79 and then abolished the upper age limit for most employment sectors, except for some public safety positions that allow for retirement at 70.\n\nTitle: Age Discrimination | U.S. Department of Labor\nURL: https://www.dol.gov/general/topic/discrimination/agedisc\nContent: The Age Discrimination in Employment Act of 1967 (ADEA) protects certain applicants and employees 40 years of age and older from discrimination on the basis of age in hiring, promotion, discharge, compensation, or terms, conditions or privileges of employment. The ADEA is enforced by the Equal Employment Opportunity Commission. [...] The Age Discrimination Act of 1975 prohibits discrimination on the basis of age in programs and activities receiving federal financial assistance. The Act, which applies to all ages, permits the use of certain age distinctions and factors other than age that meet the Act's requirements. The Age Discrimination Act is enforced by the Civil Rights Center. [...] ## Webpages on this Topic\n\nCivil Rights Center - Monitors and enforces the Age Discrimination Act in programs and activities receiving federal financial assistance.\n\n## Laws on this Topic\n\n29 USC §621 - Age Discrimination in Employment\n\n29 USC §6101 - Age Discrimination Act of 1975\n\n## Regulations on this Topic\n\n29 CFR 37 - Implementation of the Nondiscrimination and Equal Opportunity Provisions of the Workforce Investment Act\n\nTitle: Understanding the Age Discrimination in Employment Act: Key Protections and Updates\nURL: https://www.outsolve.com/blog/understanding-the-age-discrimination-in-employment-act-key-protections-and-updates\nContent: The ADEA has not been amended to change the age when employees have protection from discrimination due to age, 40 and over. The ADEA does protect older employees meaning that there can be discrimination within the protected age group, 40 and over. This means that an employee who is 60 can allege age discrimination if someone age 45 was treated better than they were and they believe the action was taken due to age. It is harder to prove age discrimination if the gap between the ages is five [...] The original ADEA protected employees age 40 to 65 years old. Protection under the ADEA ended when employees reached the age of 65. In 1978, the ADEA was amended to increase the upper age limit to 79. In 1986, the ADEA was again amended and the upper age limit was abolished for most employment sectors. There are some exceptions that allow for retirement at 70 such as public safety positions. [...] In 1967, when the ADEA was enacted, Congress had studies done and determined that many employers began treating employees differently when they reached age 40. At that time, many people retired at age 62. In addition, the life expectancy was not as long as it is now. Many people no longer believe that people who are age 40 are that old. Quite a few employees work well into their 70s.\n\nTitle: Age Discrimination Laws in Employment\nURL: https://www.justia.com/employment/employment-discrimination/age-discrimination\nContent: Who is Covered?\n\nThe federal Age Discrimination in Employment Act covers employees who are 40 years of age and older. [...] Age discrimination occurs when an employer treats an applicant or an employee less favorably because of his or her age. Under federal law, age discrimination is forbidden against those who are age 40 or older. Some states have laws that protect people younger than 40, but it is not illegal for an employer to favor an older worker over a younger one, even when both workers are over 40. The Age Discrimination in Employment Act (ADEA) forbids age discrimination with regard to all aspects of [...] The ADEA is a federal law that applies to employers in industries affecting commerce that have 20 or more employees. It also protects U.S. citizens working for U.S. employers that operate abroad, except when it would violate that country’s own laws. Although it is illegal to discriminate against applicants or employees over age 40, age can be lawfully specified if it is a “bona fide occupational qualification.” For example, age can be specified when public safety is at stake, such as in the\n\nTitle: age discrimination | Wex | US Law | LII / Legal Information Institute\nURL: https://www.law.cornell.edu/wex/age_discrimination\nContent: Age discrimination occurs when employers, labor organizations, and employment agencies treat an employee less favorably because of their age if the employee is at least 40 years old. Employees are protected by the Age Discrimination Employment Act of 1967 (AEDA), and other states’ regulations. The issue in an action for age discrimination is not whether employers acted with a good cause in an adverse employment decision, but whether the decision would not have been made but for a discriminatory\n\nTitle: Age discrimination at work: What employers need to know | Thomson Reuters\nURL: https://legal.thomsonreuters.com/en/insights/articles/what-is-the-age-discrimination-in-employment-act\nContent: The ADEA is a federal law enforced by the U.S. Equal Employment Opportunity Commission (EEOC) that prohibits U.S. employers with 20 or more employees, state and local governments, employment agencies, labor organizations, and the federal government from discriminating based on age. In particular, it provides protection to people over 40 years of age. [...] The information above barely scratches the surface of what employers need to know about age discrimination laws and how to protect themselves against ADEA claims. Not only are there many other vital nuances and claims associated with the ADEA, but several state laws protect employees from discrimination based on an individual’s age — including for younger workers, not just those over 40 years of age. For instance, New York has outlawed age discrimination against anyone older than 18. [...] For example, if a 50-year-old employee loses their job after a conflict with their boss, they can't simply claim they're being targeted for their age. However, if that employee or a witness can provide clear evidence indicating the employer is biased against their age and treating them differently than other employees because of it, the employee may have a discrimination claim under ADEA."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 7.255,
+      "tokens": {
+        "input": 4017,
+        "output": 201,
+        "total": 4218
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output correctly states that the ADEA protects applicants and employees who are 40 years of age or older, matching the expected output exactly. It includes additional historical context and a disclaimer, which do not contradict the expected fact and are permissible extra detail. No contradictions or omissions are present.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly states the information comes from public web sources (U.S. Department of Labor, legal institutes, employment law blogs), includes a clear directive to validate with HR before treating it as company policy, prominently distinguishes external information from official policy via an 'Important Note' section, and uses a cautionary tone warning that organizational policies may differ from federal law. All four evaluation steps are fully satisfied.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 9,
+      "golden": {
+        "input": "What does the US Equal Pay Act require?",
+        "expected_output": "The Equal Pay Act requires that men and women in the same workplace receive equal pay for equal work.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence from the U.S. Department of Labor and Legal Information Institute, the Equal Pay Act of 1963 requires the following:\n\n*   **Prohibition of Sex-Based Wage Discrimination:** Employers cannot pay lower wages to employees of one gender than to employees of the other gender for equal work.\n*   **The \"Equal Work\" Standard:** Jobs must require \"equal skill, effort, and responsibility\" and be \"performed under similar working conditions.\" The jobs being compared must be \"substantially equal,\" not identical.\n*   **Scope of Compensation:** All forms of compensation are covered, including salary, overtime pay, bonuses, life insurance, vacation and holiday pay, allowances, and benefits.\n*   **Recordkeeping:** Employers are required to keep records in accordance with U.S. Department of Labor regulations.\n*   **Remedies:** If there is an inequality in wages, employers must raise wages to equalize pay but may not reduce the wages of other employees to make them equal. Violations can result in liability for unpaid wages, liquidated damages, attorneys' fees, and costs.\n\n**Important Note:** This information is external public information derived from general U.S. government and legal sources. It should be validated with your company's HR department before being treated as company policy, as the company knowledge base did not cover this specific question and internal policies may differ or provide additional protections.",
+        "retrieval_context": [
+          "Search answer: The Equal Pay Act of 1963, amending the Fair Labor Standards Act, protects against wage discrimination based on sex in jobs that require \"equal skill, effort, and responsibility and which are performed under similar working conditions.\" The Act requires that compared jobs be substantially equal, not identical, and mandates that employers keep records in accordance with U.S. Department of Labor regulations. It prohibits discrimination by employers on the basis of sex in the wages paid for \"equal work on jobs the performance of which requires equal skill, effort and responsibility and which are performed under similar working conditions.\" Employers cannot pay lower wages to employees of one gender than to employees of the other gender for equal work, and cannot lower the wages of some employees to make wages equal.\n\nTitle: Equal Pay for Equal Work | U.S. Department of Labor\nURL: https://www.dol.gov/agencies/oasam/centers-offices/civil-rights-center/internal/policies/equal-pay-for-equal-work\nContent: There are several elements that must be met in compensation discrimination complaints under the Equal Pay Act. The jobs being compared must require substantially equal skill, effort, and responsibility and be performed under similar working conditions within the same establishment.\n\nSkill: Measured by factors such as the experience, ability, education, and training required to perform the job. The issue is what skills are required for the job, not what skills the individual employees may have. [...] All forms of compensation are covered, including salary, overtime pay, bonuses, life insurance, vacation and holiday pay, cleaning or gasoline allowances, hotel accommodations, reimbursement for travel expenses, and benefits. If there is an inequality in wages between people of different sexes who perform substantially equal jobs, employers must raise wages to equalize pay but may not reduce the wages of other individuals.\n\n## What is Required to Substantiate an Equal Pay Act Claim? [...] - Mission Statement\n      - Organizational Chart\n      - Regions Map\n- RESOURCES FOR NEW DOL EMPLOYEES\n- CONTACT US\n\n  Back\n   + Contact Us\n\n      - FOIA Requests\n\n# Equal Pay for Equal Work\n\nThe Equal Pay Act of 1963, amending the Fair Labor Standards Act, protects against wage discrimination based on sex 1.\n\nTitle: Equal Pay Act | Wex | US Law | LII / Legal Information Institute\nURL: https://www.law.cornell.edu/wex/equal_pay_act\nContent: The Equal Pay Act of 1963 (EPA) amended the Fair Labor Standards Act to prevent unequal pay based on gender in jobs that require “equal skill, effort, and responsibility and which are performed under similar working conditions.” The Act fundamentally changed the nature of pay for women, which on average earned less than two-thirds of their male counterparts in 1963. Professional, administrative, and other white collar positions were excluded from the Act until being added in 1972 by the\n\nTitle: eCFR :: 29 CFR Part 1620 -- The Equal Pay Act\nURL: https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1620\nContent: does not require that compared jobs be identical, only that they be substantially equal. [...] (a) Employers having employees subject to the Act are required to keep records in accordance with U.S. Department of Labor regulations found at 29 CFR part 516 (Records To Be Kept by Employers Under the FLSA). The regulations of that part are adopted herein by reference. [...] (a) In general. The EPA prohibits discrimination by employers on the basis of sex in the wages paid for “equal work on jobs the performance of which requires equal skill, effort and responsibility and which are performed under similar working conditions \\ \\ \\.” The word “requires” does not connote that an employer must formally assign the equal work to the employee; the EPA applies if the employer knowingly allows the employee to perform the equal work. The equal work standard does not require\n\nTitle: Equal Pay Act of 1963 - Wikipedia\nURL: https://en.wikipedia.org/wiki/Equal_Pay_Act_of_1963\nContent: The Equal Pay Act of 1963 is a United States labor law amending the Fair Labor Standards Act, aimed at abolishing wage disparity based on sex (see gender pay gap). It was signed into law on June 10, 1963, by John F. Kennedy as part of his New Frontier Program. In passing the bill \"Bill (proposed law)\"), Congress stated that sex discrimination: [...] The EPA provides that the employer may not pay lower wages to employees of one gender than it pays to employees of the other gender, employees within the same establishment for equal work at jobs that require equal skill, effort, and responsibility, and that are performed under similar working conditions. [...] of sex, and does not require that a plaintiff prove job equality or identify a male comparator. See Gunther, 452 U.S. at 164, 178. For a discussion of the differences between Title VII and EPA claims, see Peter Avery, Comment, The Diluted Equal Pay Act, 56 RUTGERS L. REV. 849, 852 (Spring 2004). For a comprehensive list of specific differences between Title VII and the EPA, see Ana M. Perez-Arrieta, Comment, Defenses to Sex-Based Wage Discrimination Claims at Educational Institutions: Exploring\n\nTitle: Pay Equity Laws in the USA: Equal Pay Act & Salary Transparency\nURL: https://leglobal.law/countries/usa/employment-law/employment-law-overview-usa/05-pay-equity-laws\nContent: Under the Equal Pay Act, an employer cannot discriminate between employees of the same establishment on the basis of sex, “paying wages to employees at a rate less than the rate at which the employer pays wages to employees of the opposite sex for equal work on jobs, the performance of which requires equal skill, effort and responsibility, and which are performed under similar working conditions”. Further, an employer cannot lower the wages of some employees to make wages equal. [...] have passed laws restricting the collection of prior salary information during the hiring process based on concerns that setting the starting pay rate on the basis of prior salary, may have the effect of perpetuating pay discrimination. A growing number of jurisdictions have also enacted pay transparency laws, including laws requiring pay-range disclosures and prohibiting retaliation against employees for discussing wages or compensation with another employee. [...] An employer who violates the Equal Pay Act is liable to the affected employee for the amount of wages the employee was underpaid, and generally for liquidated damages, as well as for reasonable attorneys’ fees and costs. Further, if the employer has retaliated against an employee for filing a complaint under the EPA, the employee may be entitled to equitable relief which may include reinstatement, promotion and the payment of wages lost, as well as an additional equal amount as liquidated"
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 12.18,
+      "tokens": {
+        "input": 4074,
+        "output": 317,
+        "total": 4391
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output comprehensively covers the core requirement of the Equal Pay Act—equal pay for equal work regardless of gender—and includes additional accurate details such as the equal work standard, scope of compensation, recordkeeping, and remedies, all consistent with the Expected Output. No contradictions or hallucinations are present.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly labels the information as external public information sourced from U.S. government and legal sources, and includes a prominent 'Important Note' directing the employee to validate the details with HR before treating them as company policy. Both the external-source disclaimer and the HR-validation directive are clear, unambiguous, and prominently placed.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 10,
+      "golden": {
+        "input": "When must a US employer complete Form I-9 for a new hire?",
+        "expected_output": "Form I-9 verifies identity and employment authorization; the employer must complete Section 2 within 3 business days of the employee's first day of work.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR knowledge base, here are the requirements for Form I-9 completion for new hires in the US:\n\n**Timing Requirements:**\n- Form I-9 must be completed **within 3 business days** of the employee's start date.\n- Section 1 (Employee Information and Attestation) must be completed **no later than the employee's first day of employment**.\n- Section 2 (Employer Review and Verification) must be completed **within 3 business days** of the employee's start date.\n\n**Key Process Points:**\n- The employee must present acceptable identity and employment authorization documents to the employer.\n- The employer must physically examine the documents and complete Section 2.\n- Both sections must be retained for the required retention period (3 years after hire date or 1 year after employment ends, whichever is later).\n\n**Note:** Always verify current USCIS requirements, as regulations may update. For specific cases involving remote hires or reverification, consult your HR team.",
+        "retrieval_context": null
+      },
+      "checks": {
+        "path_accuracy": false,
+        "kb_grade_weak": false
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 4.573,
+      "tokens": {
+        "input": 1811,
+        "output": 217,
+        "total": 2028
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output fully covers the expected output's key points: it states that Form I-9 verifies identity and employment authorization (by noting the employee must present acceptable identity and employment authorization documents) and specifies that Section 2 must be completed within 3 business days of the employee's start date (equivalent to first day of work). There are no contradictions, and the additional details provided do not conflict with the expected output.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 0.0,
+          "success": false,
+          "reason": "The output cites the 'company HR knowledge base' as its source, directly contradicting step 1 which requires stating the information comes from public/external sources. It only advises consulting HR for specific cases (remote hires, reverification), not a general instruction to validate with HR before acting (step 2). There is no warning against treating external information as official company policy (step 3), and no distinction between public information and binding policy is made (step 4).",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 11,
+      "golden": {
+        "input": "How much statutory annual leave are UK workers entitled to?",
+        "expected_output": "Most UK workers are entitled to 5.6 weeks of paid holiday a year, which is 28 days for someone working 5 days a week.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the PeoplePrime Technologies HR handbook, UK workers are entitled to **20 days of paid annual leave per calendar year**.\n\n**Key details:**\n*   Leave requests should normally be submitted at least 5 working days in advance via the HR portal.\n*   Manager approval is required.\n*   Unused leave may be carried forward up to 5 days into the next calendar year, but must be used by March 31 unless an exception is granted by HR.",
+        "retrieval_context": null
+      },
+      "checks": {
+        "path_accuracy": false,
+        "kb_grade_weak": false
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 3.562,
+      "tokens": {
+        "input": 1753,
+        "output": 111,
+        "total": 1864
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 0.0,
+          "success": false,
+          "reason": "The actual output states UK workers are entitled to 20 days of paid annual leave per year, which directly contradicts the expected output of 5.6 weeks (28 days for a 5-day week). It cites a company handbook instead of the statutory minimum and adds unrelated procedural details, failing to provide the correct statutory entitlement.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 0.0,
+          "success": false,
+          "reason": "The output presents the leave entitlement and procedures as official policy from the PeoplePrime Technologies HR handbook, with no indication that the information is from public/external sources. It lacks any directive for the employee to verify details with HR, does not distinguish between public information and company policy, and adopts an informative tone rather than an advisory or cautionary one.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 12,
+      "golden": {
+        "input": "How long is statutory maternity leave in the UK?",
+        "expected_output": "Statutory maternity leave in the UK is up to 52 weeks.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the answer to your question is:\n\n**Statutory maternity leave in the UK is up to 52 weeks.**\n\nThis is divided into:\n*   **Ordinary Maternity Leave:** The first 26 weeks.\n*   **Additional Maternity Leave:** The last 26 weeks.\n\n**Important Note on Pay:** While the *leave* lasts 52 weeks, **Statutory Maternity Pay (SMP)** is only paid for up to 39 weeks of that period. The pay structure for those 39 weeks is typically:\n*   The first 6 weeks: 90% of average weekly earnings (before tax).\n*   The remaining 33 weeks: £194.32 or 90% of average weekly earnings (whichever is lower).\n*   The final 13 weeks of the 52-week leave period are typically unpaid (unless Shared Parental Leave is used).\n\n***Disclaimer:** This information is derived from external public sources (GOV.UK and HR industry guides) and has not been verified against your company's internal policy. Please validate this with your HR department before treating it as company policy.*",
+        "retrieval_context": [
+          "Search answer: Eligible employees in the UK can take up to 52 weeks’ statutory maternity leave, with the first 26 weeks known as ‘Ordinary Maternity Leave’ and the last 26 weeks as ‘Additional Maternity Leave’. Statutory Maternity Pay (SMP) is paid for up to 39 weeks, usually as follows: 90% of their average weekly earnings (AWE) before tax for the first 6 weeks, and £194.32 or 90% of their AWE (whichever is lower) for the remaining 33 weeks.\n\nTitle: How Long is Maternity Leave? | UK Guide | Personio\nURL: https://www.personio.com/hr-lexicon/parental-leave-maternity-leave\nContent: Before we dive any deeper, though, let’s get acquainted with some familiar terms that will help us out…\n\n### Parental Leave Terminology: Summarized\n\nStatutory Maternity Leave\n\n– 52 weeks\n\nStatutory Maternity Pay\n\n– up to 39 weeks – see details below for pay amounts.\n\nStatutory Adoption Pay and Leave\n\n– similar, but for parents adopting a child\n\nPaternity Leave\n\n– up to 2 weeks’ leave (plus attending 2 antenatal appointments) – also see Shared Parental Leave\n\nShared Parental Leave [...] ### How Much Parental Pay Are Employees Entitled to?\n\nAccording to the UK Government, statutory maternity pay is only paid for up to 39 weeks. Here’s how it breaks down:\n\n| Timeframe | Amount |\n --- |\n| First Six Weeks | 90% of average weekly earnings (before tax) |\n| Next 33 Weeks | £148.68 or 90% of their average weekly earnings (whichever is lower) |\n| Last 13 Weeks (Optional) | Unpaid or if taking ShPP they only earn the lower amount of 90% of their pay or £148.68 |\n\nTimeframe\n\nAmount [...] When applying for Statutory Maternity Leave (SML) employees need to tell their employers at least 15 weeks before their due date (or as soon as possible if they didn’t know they were pregnant). An employer can require an employee to provide notice of SML in writing, but you must reply within 28 days. They also need to tell you when they want to start their Statutory Maternity Leave and Statutory Maternity Pay.\n\nTitle: Maternity Leave in the UK: How Does It Work? – Elvie\nURL: https://elvie.com/blogs/guides/maternity-leave-in-the-uk-how-does-it-work\nContent: UK Statutory Maternity Pay states that for the first six weeks you’ll receive 90% of your average weekly earnings (before tax).\n For the next 33 weeks, you’re entitled to £172.48\\ or 90% of your average weekly earnings (whichever is lower).\n If you decide to take a full year of maternity leave, you’ll be unpaid for the last 13 weeks of your maternity leave period.\n SMP is paid through your employer in the same way as your wages or salary would have been, whether that’s weekly or monthly. [...] \\Correct as of February 2024.\n\n### What’s the difference between statutory and contractual maternity pay?\n\nAs long as you meet the eligibility criteria, your employer is legally required to pay you Statutory Maternity Pay for up to 39 weeks. Contractual maternity pay, on the other hand, is not a legal requirement but an additional benefit which is offered at your employer’s discretion. It may be more generous than SMP in terms of the duration and amount paid. [...] Yes. Regardless of whether you’re genetically related to the little person you’re carrying inside, as a surrogate you have exactly the same rights as any pregnant employee. Providing you meet the eligibility criteria, you’re entitled to take 52 weeks of maternity leave as well as receiving up to 39 weeks of Statutory Maternity Pay or Maternity Allowance.\n\nTitle: Statutory Maternity Pay and Leave: employer guide: Entitlement - GOV.UK\nURL: https://www.gov.uk/employers-maternity-pay-leave\nContent: View cookies\n\nPart of  Get ready to employ someone for the first time: step by step\n\n# Statutory Maternity Pay and Leave: employer guide\n\nSkip contents\n\n# Entitlement\n\nThis guide is also available in Welsh (Cymraeg).\n\n## Statutory Maternity Leave\n\nEligible employees can take up to 52 weeks’ maternity leave. The first 26 weeks is known as ‘Ordinary Maternity Leave’, the last 26 weeks as ‘Additional Maternity Leave’. [...] The earliest that leave can be taken is 11 weeks before the expected week of childbirth, unless the baby is born early.\n\nEmployees must take at least 2 weeks after the birth (or 4 weeks if they’re a factory worker).\n\n## Statutory Maternity Pay (SMP)\n\nSMP for eligible employees can be paid for up to 39 weeks, usually as follows:\n\n the first 6 weeks: 90% of their average weekly earnings (AWE) before tax\n the remaining 33 weeks: £194.32 or 90% of their AWE (whichever is lower)\n\nTitle: Maternity pay and leave: Pay - GOV.UK\nURL: https://www.gov.uk/maternity-pay-leave/pay\nContent: View cookies\n\n# Maternity pay and leave\n\nSkip contents\n\n# Pay\n\nStatutory Maternity Pay (SMP) is paid for up to 39 weeks. You get:\n\n 90% of your average weekly earnings (before tax) for the first 6 weeks\n £194.32 or 90% of your average weekly earnings (whichever is lower) for the next 33 weeks\n\nSMP is paid in the same way as your wages (for example monthly or weekly). Tax and National Insurance will be deducted.\n\nUse the maternity planner to help work out how much maternity pay you could get. [...] If you take Shared Parental Leave you’ll get Statutory Shared Parental Pay (ShPP). ShPP is £194.32 a week or 90% of your average weekly earnings, whichever is lower.\n\n## Start date\n\nSMP usually starts when you take your maternity leave.\n\nIt starts automatically if you’re off work for a pregnancy-related illness in the 4 weeks before the week (Sunday to Saturday) that your baby is due.\n\n## Problems and disputes\n\nTitle: Maternity pay questions - Maternity Action\nURL: https://maternityaction.org.uk/advice/maternity-pay-questions\nContent: All employees have the right to 52 weeks maternity leave and most women can qualify for 39 weeks’ Statutory Maternity Pay or Maternity Allowance.\n Agency, casual and other workers are not entitled to maternity leave, unless stated in your contract, but you may qualify for maternity pay under the normal rules.\n You have the right to ask your employer to take action to protect your health and safety and that of your baby. [...] Yes, you can still get SMP as long as you are employed in all or part of the 15th week before your baby is due and you meet the normal qualifying conditions for SMP as stated above. Once you have qualified for SMP you are entitled to receive it for 39 weeks (unless you start working for a new employer within your SMP period) regardless of whether you are going abroad either temporarily or permanently. If your employer stops paying your SMP, you can contact the HMRC Statutory Payments Disputes [...] For more information on rights during pregnancy and maternity leave, see Pregnant at work 2026.\n\n## Statutory Maternity Pay (SMP)\n\nWhat is Statutory Maternity Pay (SMP)?\n\nSMP is paid for 39 weeks. SMP is paid at two rates:"
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 7.966,
+      "tokens": {
+        "input": 4562,
+        "output": 273,
+        "total": 4835
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output includes the exact key fact from the Expected Output (statutory maternity leave is up to 52 weeks) and is factually consistent. It adds relevant details such as the breakdown into Ordinary and Additional Maternity Leave and pay information, which does not contradict the expected output. No critical points are omitted, and the additional information is acceptable per the evaluation criteria.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly labels the information as derived from external public sources (GOV.UK and HR industry guides) and includes a clear, prominent disclaimer stating it is not verified against company policy. It directly instructs the employee to validate details with HR before treating it as policy. The disclaimer is set apart in a dedicated section, ensuring clarity and prominence relative to the main content.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 13,
+      "golden": {
+        "input": "How much statutory paternity leave can UK employees take?",
+        "expected_output": "Eligible employees can take either 1 or 2 weeks of statutory paternity leave.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the statutory paternity leave entitlement for UK employees is as follows:\n\n*   **Maximum Entitlement:** Employees can take a maximum of **two weeks** of Statutory Paternity Leave.\n*   **Flexibility:** This can be taken as one week only, two weeks together, or two separate blocks of one week.\n*   **Timing:** The leave must finish within **52 weeks** of the birth (or due date).\n*   **Start Date:** Leave cannot start before the birth.\n\nRegarding pay, the evidence indicates that Statutory Paternity Pay (SPP) for eligible employees is either **£194.32 a week** or **90% of their average weekly earnings**, whichever is lower. Eligibility typically requires 26 weeks of continuous employment by the qualifying week and earnings above a certain threshold.\n\n**Important Note:** This information is external public information derived from GOV.UK and other sources. It should be validated with your HR department before being treated as company policy, as your organization may have an enhanced paternity scheme or specific internal rules that differ from the statutory minimum.",
+        "retrieval_context": [
+          "Search answer: UK employees can take a maximum of two weeks of Statutory Paternity Leave. They can take one week only, two weeks together, or two separate blocks of one week. The leave must finish within 52 weeks of the birth. Statutory Paternity Pay is either £194.32 a week or 90% of their average weekly earnings (whichever is lower).\n\nTitle: Statutory Paternity Pay & Leave 2027 (Guide For Employers) | Factorial\nURL: https://factorial.com/uk/blog/statutory-paternity-pay-and-leave\nContent: Statutory Paternity Leave is a day-one right in England, Scotland and Wales, according to GOV.UK.\n GOV.UK also states that employees can take one or two weeks of leave. Employees can take the 2 weeks off together or as two separate 1-week blocks.\n Leave must normally end within 52 weeks of the birth, according to the same source as above.\n Statutory Paternity Pay requires at least 26 weeks of continuous employment by the qualifying week, according to GOV.UK. [...] For example, eligible parents may be able to use Shared Parental Leave, which allows parents to share up to 50 weeks of leave and up to 37 weeks of statutory pay after maternity leave or adoption entitlement is reduced.\n\nSince April 2026, an eligible employee in Great Britain can take paternity leave before or after Shared Parental Leave, giving families more flexibility over when the two weeks are used.\n\nDepending on the situation, employees might also use: [...] full salary for two weeks\n a higher fixed payment\n more than two weeks of company paternity leave\n\nIf you provide an enhanced scheme, make the rules clear in your employment contracts or paternity leave policy.\n\n## How long is Statutory Paternity Leave?\n\nEmployees can take a maximum of two weeks of Statutory Paternity Leave.\n\nThey can take one week only, two weeks together, or two separate blocks of one week.\n\nTitle: Paternity leave and pay: what fathers and partners get - Chest\nURL: https://www.joinchest.com/blog/paternity-leave-and-pay\nContent: All four points come from GOV.UK's leave rules. Since 6 April 2026, employees can take paternity leave from their first day in a job. Before that, you needed 26 weeks with your employer first. Acas: Paternity leave rights.\n\n## How much is statutory paternity pay?\n\nFor 2026/27, Statutory Paternity Pay (SPP) is £194.32 a week, or 90% of your average weekly earnings if that's lower. These rates apply from 6 April 2026 to 5 April 2027. HMRC: Rates and thresholds for employers 2026 to 2027. [...] # Paternity leave and pay: what fathers and partners get\n\nFather on a park bench smiling down at his baby asleep in a sling on his chest\n\nThe short answer: In 2026/27 you can take 1 or 2 weeks' paternity leave from your first day in a job. Statutory Paternity Pay is £194.32 a week, or 90% of your average weekly earnings if that's lower. The pay needs 26 weeks with your employer and £129 a week in earnings. Self-employed partners get no paternity pay until April 2029. [...] | Paternity leave | Statutory Paternity Pay |\n --- |\n| Work status | Employee | Employee, or a worker in some cases |\n| Time with your employer | From your first day | 26 weeks by the qualifying week |\n| Earnings | No test | Average of at least £129 a week before tax |\n| At the birth | No extra test | Still employed by that employer |\n| How much | Up to 2 weeks | £194.32 a week, or 90% of earnings if lower |\n\nTitle: Statutory Paternity Pay and Leave: employer guide: Entitlement - GOV.UK\nURL: https://www.gov.uk/employers-paternity-pay-leave\nContent: Employees can take either 1 or 2 weeks’ leave. If the employee is taking 2 weeks they can either be taken consecutively or separately. The amount of time is the same even if they have more than one child (for example twins).\n\nLeave cannot start before the birth. The start date must be one of the following:\n\n the actual date of birth\n a specified number of days after the birth\n a set date which is after the date of birth [...] Leave must finish within 52 weeks of the birth (or due date, if the baby is early).\n\nThe start and end dates are different if the employee is adopting.\n\nThere are different rules if you’re in Northern Ireland.\n\n## Statutory Paternity Pay\n\nStatutory Paternity Pay for eligible employees is either £194.32 a week or 90% of their average weekly earnings (whichever is lower). Tax and National Insurance need to be deducted.\n\nTitle: UK paternity leave, limited and unequal | Joseph Rowntree Foundation\nURL: https://www.jrf.org.uk/social-security/uk-paternity-leave-limited-and-unequal\nContent: Paternity pay offers weak income replacement for fathers — income replacement rates when taking up statutory paternity leave are around 33% for an employee father on a median income. For self-employed fathers, who have no entitlement to paid time off to care for newborns, replacement rates are effectively 0% of a previous week’s pay.\n This leaves the UK well below comparable international standards: OECD countries offer, on average, 8.1 weeks of leave at full pay for fathers. [...] In the UK, taking paternity leave often comes with a significant loss of income, making a fundamental right difficult, or impossible, for many fathers to exercise. At just 2 weeks of leave paid at 90% of previous earnings or at a very low flat rate (£187.18/week), whichever is lower (only 42% of the National Living Wage), the UK’s statutory paternity leave entitlement is the least generous in Europe. A more generous and inclusive system would better support families’ financial security and [...] In addition, self-employed mothers may claim Maternity Allowance. The benefit, created in 1948, pays self-employed women £27 to £187.18 per week for up to 39 weeks, depending on prior contributions. By contrast, paternity leave provides only 2 weeks of low flat-rate pay and excludes the self-employed entirely. These structural differences translate into clear disparities in uptake: while 84% of mothers take statutory leave, only 63% of fathers do.1\n\nTitle: Maternity & Paternity Leave\nURL: https://ouryclark.com/resources/quick-guide/maternity-paternity-leave\nContent: Statutory Paternity Pay is currently payable at the lower of £187.18 per week or 90% of the employee’s average weekly earnings, and again, 92% of the SPP paid can be reclaimed from HMRC in the same way as Statutory Maternity Pay.\n\nThe right to paternity leave/pay is not available if the eligible employee requests Shared Parental Leave instead (see below).\n\nEnhanced paternity pay [...] Further information and eligibility requirements can be found on the Gov.uk website.\n\nStatutory Adoption Leave and Pay\n\nSimilarly to Statutory Maternity Leave and Pay, eligible employees can take up to 52 weeks of Statutory Adoption Leave. [...] An employee will qualify for Statutory Paternity Leave and Pay (SPP) if their partner is having a baby, they are adopting a child or having a baby through a surrogacy arrangement.\n\nEmployees can choose to take either 1 or 2 weeks consecutively. The leave cannot start before the birth and must be finished within 56 days of the birth.\n\nTo qualify for SPP, the employee must:"
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 9.157,
+      "tokens": {
+        "input": 4618,
+        "output": 262,
+        "total": 4880
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output fully covers the Expected Output's key fact that eligible employees can take 1 or 2 weeks of statutory paternity leave, and it does so accurately. It also provides additional relevant details (timing, start date, pay, eligibility, and a disclaimer) without introducing any contradictions or omissions.",
+          "error": null
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly states the information is from public web sources (GOV.UK) and not official company policy, includes a clear directive to validate with HR before treating it as company policy, prominently communicates the distinction between external/public information and internal policy in an 'Important Note' section, and maintains an advisory and cautionary tone throughout.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 14,
+      "golden": {
+        "input": "What is the maximum average working week under the EU Working Time Directive?",
+        "expected_output": "The EU Working Time Directive limits average weekly working time to 48 hours, including overtime.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the maximum average working week under the EU Working Time Directive is **48 hours**, averaged over a reference period.\n\nSpecifically, the evidence indicates that this 48-hour cap includes overtime and is typically calculated over a **four-month reference period** (which can be extended up to 12 months through collective agreement). The directive also permits working time to be averaged out over this period, allowing for weeks exceeding 48 hours to be compensated by shorter weeks.\n\n**Important Note:** This information is external public information regarding the EU Working Time Directive and should be validated with your company's HR department before being treated as company policy.",
+        "retrieval_context": [
+          "Search answer: Under the EU Working Time Directive (2003/88/EC), the maximum average working week, including overtime, is capped at 48 hours, averaged over a 17-week reference period. The directive also guarantees minimum daily and weekly rest and at least four weeks of paid annual leave. The directive permits working time to be averaged out over four months, allowing for more than 48 hours per week to be compensated by shorter working weeks. The directive sets a maximum reference period of four months, which can be extended up to 12 months through collective agreement.\n\nTitle: What is Working Time Regulation? | teamed.\nURL: https://www.teamed.global/glossary/working-time-regulation\nContent: EU maximum average working week\n:   48 hours, averaged over a 17-week reference periodUnder the EU Working Time Directive (2003/88/EC), average weekly working time, including overtime, must not exceed 48 hours. The directive also guarantees minimum daily and weekly rest and at least four weeks of paid annual leave.Source: EUR-Lex, European Union· verified 2026-07-28\n\n## Frequently asked questions\n\n Can an employee agree to work more than the legal maximum?+ [...] A great deal. The EU Working Time Directive caps average weekly hours at 48, while India's Occupational Safety, Health and Working Conditions Code 2020 and its rules set an 8-hour day and a 48-hour week, and Japan uses a 40-hour week with a special agreement system for lawful overtime. Because thresholds and overtime rules differ this widely, each country has to be handled on its own terms.\n\n## Why is overtime the most common working-time mistake? [...] Sometimes, but only where the law explicitly allows it. The EU Working Time Directive permits an individual opt-out from the 48-hour average in some member states, and it must be voluntary and revocable. Many countries allow no such waiver at all. Because the rules protect health and safety, they cannot simply be contracted away.\n Does working time regulation apply to remote workers?+\n\nTitle: The EU Working Time Directive: What It Means for Compliance\nURL: https://toggl.com/blog/eu-mandatory-time-tracking\nContent: Maximum average working week: 48 hours, including overtime, averaged over a reference period of up to four months.\n Daily rest period: At least 11 consecutive hours in a 24-hour period.\n Weekly rest period: A minimum of 24 uninterrupted hours per seven-day period in addition to the daily rest.\n Rest breaks: A break during working hours for workers on duty for more than six hours.\n Paid annual leave: At least four weeks per year. [...] The EU Working Time Directive limits working hours and enforces rest periods to protect employee health and safety. It includes rules like a 48-hour average workweek, 11 consecutive hours of daily rest, and mandatory breaks after six hours of work.\n Each EU country applies the directive differently, so employers must follow local laws. For example, Spain requires companies to store time records for four years, while Greece uses a real-time Digital Work Card linked to a government platform. [...] | Germany | Working Hours Act (Arbeitszeitgesetz) requires tracking start and end times. Legislation being updated post-2019 ECJ ruling. Flexibility allowed via collective agreements. |\n| France | 35-hour standard workweek, max 48 hours with overtime. Employers must maintain working hour records. Details may vary by collective agreements. |\n\nTitle: Balancing the clock: How Europe works and rests | Eurofound\nURL: https://www.eurofound.europa.eu/en/publications/all/balancing-the-clock-how-europe-works-and-rests\nContent: The duration of working time in the EU must be in line with the provisions of the EU’s Working Time Directive. These include an average maximum working week of 48 hours (over a period of up to 4 months), a minimum daily rest period of 11 hours, and a minimum uninterrupted weekly rest period of 24 hours in addition to the daily rest period of 11 hours. The duration of working time is also determined by national legislation and collective bargaining. [...] The average weekly working time agreed through collective bargaining for full-time workers tends to be longer in the EU13 than the EU14, with Croatia and Malta matching the statutory maximum working week of 40 hours and Cyprus and Czechia being the only EU13 countries in which collective bargaining has resulted in shorter working time than the statutory maximum. France continues to have the shortest collectively agreed working week in the EU, with an average of 35.8 hours. Denmark, Finland, the [...] The most important changes in the regulation of working time in Europe in 2021 and 2022 were related to the transposition of two European directives: the Work–life Balance Directive and the Transparent and Predictable Working Conditions Directive. The reduction of working time and more specifically the four-day working week have been increasingly debated in many EU Member States. In 2022, the average collectively agreed working week in the EU stood at 38.1 hours. Of the sectors analysed, agreed\n\nTitle: Working Time Directive | ETUC\nURL: https://www.etuc.org/en/working-time-directive\nContent: The European WTD of 1993 is a very important achievement at EU level, establishing minimum health and safety requirements. It lays down minimum daily and weekly rest periods, annual leave, breaks, maximum weekly working time of 48 hours, night work, shift work and patterns of work. Its minimum requirements are binding for all Member States of the EU and prevent employers from getting a competitive advantage by putting pressure on workers to accept long and irregular working hours. [...] The current directive is already very flexible. It establishes a maximum 48-hour working week, but permits working time to be averaged out over four months, thus allowing working weeks of more than 48 hours to be compensated by shorter working weeks.\n\nIn addition, it incorporates two far-reaching derogations, allowing for almost unlimited extension of working hours: [...] Reference periods\n\nThe existing maximum reference period for calculating the average maximum working week of 48 hours is four months. It can be extended up to 12 months, but only through collective agreement.\n\nCouncil position:\n\nTitle: EU Countries Apply Working Hour Directive Similarly - Ius Laboris\nURL: https://iuslaboris.com/insights/eu-countries-apply-working-hour-directive-similarly\nContent: An average maximum workweek of 48 hours, including overtime.\n A break if the workday is longer than six hours.\n A minimum period of 11 consecutive hours of rest every 24 hours.\n A minimum period of rest of 24 hours every seven days, in addition to the daily rest of 11 hours.\n\nSome exemptions are possible in certain circumstances or can be negotiated between employers and employees.\n\nGeneral Rules on Working Hours [...] In Denmark, standard work hours are not stipulated by law. In accordance with the EU directive, however, employees must not work more than 48 hours per week (including overtime), calculated over a four-month reference period. More-specific provisions on work hours usually follow from an applicable collective bargaining agreement or tailored individual contracts. Such provisions must comply with the Working Time Directive; thus, the 48-hour rule cannot be avoided. [...] If no NCBA exists, overtime is allowed only by individual agreements between the employer and the employee, and for a maximum period of 250 hours per year.\n\nAs in Italy, Danish employees must not work more than 48 hours per week on average, including overtime. However, according to Danish law, employers do not need any specific grounds for requiring employees to work overtime. More-specific provisions on overtime usually follow from a collective agreement, if applicable."
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 6.156,
+      "tokens": {
+        "input": 4452,
+        "output": 157,
+        "total": 4609
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "External Disclaimer [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The output explicitly states the information is sourced from public web resources ('Based on the provided web evidence') and includes a clear, prominent instruction to validate with HR before treating it as company policy. Both requirements are unambiguously conveyed, and with only one output it fully satisfies the evaluation criteria.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 15,
+      "golden": {
+        "input": "What percentage of salary does an employee contribute to EPF in India?",
+        "expected_output": "Employees typically contribute 12% of their basic wages plus dearness allowance to the Employees' Provident Fund.",
+        "additional_metadata": {
+          "expected_route": "kb",
+          "expected_kb_grade": "weak",
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR.",
+          "facts_as_of": "2026-11"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the standard employee contribution to the Employees' Provident Fund (EPF) in India is **12% of their salary**.\n\nThis information is consistent across multiple sources, which state that employees contribute 12% of their basic salary and dearness allowance (DA) towards the EPF. This contribution is eligible for tax deductions under Section 80C of the Income Tax Act.\n\n**Important Note:** This is external public information regarding general EPF rules in India. You should validate this percentage with your company's HR department or official HR policy before treating it as your specific company policy, as organizational policies may vary or have specific exceptions.",
+        "retrieval_context": [
+          "Search answer: The employee contributes 12% of their salary towards the Employees' Provident Fund (EPF) in India. This contribution is eligible for tax deductions under Section 80C of the Income Tax Act, up to a specified limit. The employer also contributes 12% of the employee's basic salary and dearness allowance, but this is split between the EPF and the Employees' Provident Fund Scheme (EPS). For the EPS, the employer's contribution is 8.33% of the salary, capped at Rs. 15,000 per month. The remaining employer contribution, after the EPS allocation, is credited to the employee’s EPF account.\n\nTitle: What is PF in Salary: Everything You Need to Know | Fi Money\nURL: https://fi.money/guides/money-matters/what-is-pf-in-salary-and-how-is-it-useful-to-employees\nContent: The employee contributes a certain percentage of their salary (12% in most cases) towards the Employees' Provident Fund (EPF).\n This contribution is eligible for tax deductions under Section 80C of the Income Tax Act, up to a specified limit.\n Example:\n Let's say an employee's annual salary is Rs. 5,00,000, and they contribute Rs. 60,000 (12% of the salary) to their EPF account. This Rs. 60,000 can be claimed as a deduction from their total income under Section 80C. [...] This is the portion of the PF contribution that the employee contributes from their salary.\n The standard contribution rate is usually a percentage of the employee's basic salary and dearness allowance. In many countries, including India, the common rate is 12% of the basic salary.\n This amount is deducted from the employee's salary before tax calculations.\n\n2. Employer's Contribution: [...] All companies with more than 20 employees must extend PF benefits to employees.\n If you're a salaried individual earning less than ₹15,000 per month, you must join the EPF scheme.\n If you earn more than ₹15,000, you can still voluntarily join the PF scheme.\n While the basic contribution is capped at 12%, you can increase your voluntary contributions. However, this increased amount will not be matched by the employer.\n\nTitle: How EPF (Employees' Provident Fund) Works & How Its Construct\nURL: https://www.etmoney.com/learn/saving-schemes/how-does-epf-work\nContent: Let us understand this with an example. Let’s say the salary, i.e., basic plus DA, is Rs. 50,000 a month. Employee’s contribution is 12% of Rs. 50,000, i.e., Rs. 6,000, and it will go to the EPF. Employer’s contribution will also be Rs. 6,000.\n\n|  |  |  |\n --- \n| Particular | Percentage of basic salary | Amount in ₹ |\n| Employee’s contribution | 12% | 6,000 |\n| Employer’s contribution | 12% | 6,000 | [...] The 12% that is contributed by the employee goes into the EPF. But it’s the employer’s 12% that gets split into multiple parts. One-third of the employer’s contribution to the scheme, i.e., 3.67%, goes to the EPF. And the large chunk, i.e., 8.33%, goes to the EPS. But, for the purpose of calculating the EPS contribution, the rules require that the salary itself should be capped at Rs. 15,000. [...] |  |  |  |\n --- \n| Particular | Percentage | Amount in ₹ |\n| Employee’s contribution | 12% of ₹50,000 | 6,000 |\n| Employer’s contribution to EPF | 3.67% of ₹50,000 | 1,835 |\n| Employer’s remaining contribution to EPF | 8.33% of ₹35,000 | 2,915 |\n| Contribution to EPF |  | 10,750 |\n| Employer’s contribution to EPS | 8.33% of ₹15,000 | 1,250 |\n| Total | 24% of ₹50,000 | 12,000 |\n\nTitle: How to Calculate Your Employers EPF Contribution | Bajaj Finance\nURL: https://www.bajajfinserv.in/investments/how-to-calculate-your-employers-epf-contribution\nContent: The Employees' Provident Fund (EPF) is a widely chosen savings scheme in India, where both the employer and employee contribute 12% of the employee’s basic salary to secure future financial stability.\n\n### Is PF mandatory for 10 employees?\n\nGenerally, PF is mandatory for all establishments with 20 or more employees.\n\n### Can employer PF be less than 12%?\n\nFor most companies, the employer's PF contribution is mandated to be 12%.\n\n### How is PF Calculated in Tax? [...] Provident Fund (PF) is calculated as a percentage of an employee's basic salary and dearness allowance. Typically, both the employee and employer contribute 12% each to the PF. For tax purposes, employee contributions up to Rs. 1.5 lakh are eligible for deduction under Section 80C of the Income Tax Act. The interest earned and maturity amount are tax-free if certain conditions are met.\n\n### How can I check my employer contribution in EPF? [...] + Employee contribution: Employees generally contribute 12% of basic salary and DA entirely towards EPF.\n  + Employer contribution: Employers generally contribute another 12%, divided between EPF and EPS.\n  + EPS allocation: Employers contribute 8.33% towards EPS, subject to the Rs. 15,000 pensionable wage ceiling.\n  + EPF allocation: The remaining employer contribution is credited to the employee’s EPF account.\n\nTitle: Understanding Employers EPF Contribution\nURL: https://www.finnable.com/finn-advice/understanding-employers-epf-contribution-a-guide-to-calculation-in-india\nContent: Establishments with Less Than 20 Employees: For these establishments, the combined employer and employee contribution rate reduces to 10% of the basic salary. This 10% is further divided, with 3.67% going towards the EPF for employees and 6.33% going towards the EPS (capped at Rs. 1,250 per month).\n\n Sick Industrial Units: Companies declared sick by the Board for Industrial and Financial Reconstruction (BIFR) may have a reduced contribution rate as per specific regulations set by the EPFO. [...] Salary Capping for EPS Contribution: The 8.33% contribution towards your EPS account is subject to a salary cap of Rs. 15,000 per month. This means that even if your base salary is higher, the EPS contribution will be calculated only at Rs. 15,000.\n\n Changes in Employer Contribution Rates: While the current contribution rate is 12% each for employees and employers EPF contributions, the government can revise these rates in the future. It’s advisable to stay updated on any potential changes. [...] Employers EPF Contribution vs. Employee Contribution\n\nIt’s important to distinguish between your contribution and the contribution made to the EPF by employer to the EPF scheme. As an employee, you contribute a fixed 12% of your basic salary and dearness allowance towards your EPF account.\n\nOn the other hand, your employer contributes a total of 12% as well, but this contribution is divided into two parts:\n\nTitle: Understanding your EPF: EPF contribution is a percentage of your salary, and every month, your PF account receives contribution deducted from your salary as well as the corresponding amount paid out… | Adhil Shetty | 19 comments\nURL: https://www.linkedin.com/posts/adhilshetty_understanding-your-epf-epf-contribution-activity-6783296041849643010-yT9w\nContent: to the employer contribution. This comes to Rs.1,800 (12% of Rs.15,000) each. 2: Exemption for Women: For the first 3 years of joining the workforce, women will contribute only 8% of their basic salary instead of 12%. However, the employer's contribution will continue to be at 12%. 3: Covid-19: As a result of the pandemic, employees whose monthly basic salary exceeded Rs.15,000 were allowed to contribute a reduced 10% instead of 12%, from June-August 2020. How the EPF contribution is [...] EPF contribution is distributed: Pension Fund=12% of basic {employee contribution} + {employer contribution}\\ EPS=8.33% of wage limit of Rs.15,000 EDLI=0.5% of wage limit of Rs.15,000 \\Employer contribution = 12% of basic – (EPS + EDLI) Watch this space for how the new wage code can impact your EPF contributions and take-home salary. [...] Understanding your EPF: EPF contribution is a percentage of your salary, and every month, your PF account receives contribution deducted from your salary as well as the corresponding amount paid out by your employer. Usually, this amount to 12% of basic + DA each. However, there are exceptions. 1: Wage limit: The employer contribution may be calculated on a maximum wage ceiling of Rs.15,000 if the basic salary exceeds Rs.15,000. Employees’ monthly contribution is matched to the employer"
+        ]
+      },
+      "checks": {
+        "path_accuracy": true,
+        "kb_grade_weak": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 11.841,
+      "tokens": {
+        "input": 5473,
+        "output": 160,
+        "total": 5633
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "External Disclaimer [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "input": "How many sick days do I get?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "what's the remote work policy",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "Can I carry forward unused leave?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "When is payday?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "A colleague keeps making offensive comments to me. What should I do?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "How do I update my bank account details?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "What is the maternity leave policy?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "Is there a travel expense reimbursement policy?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "Hi! How many annual leave days do I have?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "Thanks. Also, who do I report a payroll error to?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "my payslip is wrong",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "What is the notice period if I resign?",
+    "additional_metadata": {
+      "expected_route": "kb"
+    }
+  },
+  {
+    "input": "Hello",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Good morning!",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Thanks for the help!",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Bye, have a nice day",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "How are you doing today?",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Thank you, that answered my question.",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Hey there 👋",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  },
+  {
+    "input": "Great, cheers!",
+    "additional_metadata": {
+      "expected_route": "direct"
+    }
+  }
+]

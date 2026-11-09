@@ -1,0 +1,1054 @@
+{
+  "summary": {
+    "component": "retrieval",
+    "goldens": 18,
+    "errors": 0,
+    "checks": {
+      "context_hit": {
+        "mean": 1.0,
+        "n": 18
+      },
+      "source_hit": {
+        "mean": 1.0,
+        "n": 18
+      }
+    },
+    "metrics": {
+      "Contextual Precision": {
+        "mean_score": 0.953,
+        "pass_rate": 0.938,
+        "n": 16,
+        "errors": 2
+      },
+      "Contextual Recall": {
+        "mean_score": 1.0,
+        "pass_rate": 1,
+        "n": 16,
+        "errors": 2
+      },
+      "Contextual Relevancy": {
+        "mean_score": 0.11,
+        "pass_rate": 0,
+        "n": 15,
+        "errors": 3
+      }
+    },
+    "performance": {
+      "latency_s": {
+        "mean": 0.45,
+        "p50": 0.39,
+        "p95": 1.5,
+        "max": 1.5
+      },
+      "tokens_per_request": {
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "judge_tokens": {
+      "input": 102228,
+      "output": 103428,
+      "total": 205656
+    },
+    "timing_s": {
+      "generation": 8.1,
+      "judging": 88694.4
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "golden": {
+        "input": "vacation days allowance",
+        "context": [
+          "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Annual Leave"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.",
+        "retrieval_context": [
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.502,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts provides a comprehensive and directly relevant answer to the query about vacation days allowance, stating 'Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.' with no irrelevant nodes present.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all four sentences in the expected output are fully attributed to the 1st node in retrieval context, indicating perfect recall.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.16666666666666666,
+          "success": false,
+          "reason": "The score is 0.17 because the retrieval context is predominantly irrelevant, containing extensive information on sick days ('Employees may take up to 10 paid sick days per calendar year'), remote work policies, working hours, payroll, benefits enrollment, workplace conduct, and offboarding processes, none of which address vacation days allowance. Only a small subset of statements is relevant, specifically: 'Full-time employees receive 20 days of paid annual leave per calendar year,' 'Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date,' 'Manager approval is required,' and 'Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.'",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 1,
+      "golden": {
+        "input": "What happens to leave I don't use by the end of the year?",
+        "context": [
+          "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Annual Leave"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.",
+        "retrieval_context": [
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.427,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node directly answers the question with the exact carryover policy: 'Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.' The following nodes (rank 2, 3, and 4) are irrelevant — they cover payroll priorities, onboarding, and benefits enrollment — so the single relevant result is perfectly ranked at the top. Great job!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "Contextual Relevancy": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "golden": {
+        "input": "Do I need a doctor's note if I'm off sick for three days?",
+        "context": [
+          "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Sick Leave"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+        "retrieval_context": [
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.449,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the highly relevant node at rank 1 directly answers the question with the exact sick leave policy, while all irrelevant nodes (ranks 2, 3, and 4) cover unrelated topics like benefits, remote work, and payroll, and are correctly ranked lower.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "Contextual Relevancy": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "golden": {
+        "input": "hybrid work rules",
+        "context": [
+          "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Remote Work Policy"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.",
+        "retrieval_context": [
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.407,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output match verbatim the Remote Work Policy section in the 1st node in retrieval context — excellent retrieval coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "golden": {
+        "input": "What time does the workday start?",
+        "context": [
+          "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Working Hours and Attendance"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.",
+        "retrieval_context": [
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.392,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output are fully supported by node 1 in retrieval context, matching verbatim the 'Working Hours and Attendance' section. Perfect recall!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.058823529411764705,
+          "success": false,
+          "reason": "The score is 0.06 because although the retrieval context includes one relevant statement specifying 'Standard working hours are 9:00 AM to 6:00 PM', the vast majority of the content is irrelevant, covering topics such as 'remote work policy', 'payroll', 'annual leave entitlement', 'sick leave allowance', 'Payroll Issue Priority', 'Offboarding', 'medical plan', and 'workplace behavior expectations', which have nothing to do with the workday start time.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 5,
+      "golden": {
+        "input": "What happens if someone is repeatedly late to work?",
+        "context": [
+          "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Working Hours and Attendance"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.",
+        "retrieval_context": [
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.412,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts directly addresses repeated lateness with the 'Working Hours and Attendance' policy, while the second, third, and fourth nodes are irrelevant as they cover payroll, benefits, and onboarding without any mention of attendance escalation. The relevant node is ranked highest, and all irrelevant nodes are ranked lower, achieving perfect contextual precision.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output are fully attributed to the 1st node in retrieval context, showing perfect recall with no missing information. Excellent coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.047619047619047616,
+          "success": false,
+          "reason": "The score is 0.05 because the retrieval context is overwhelmingly irrelevant, containing extensive details on remote work eligibility, payroll processing, onboarding procedures, benefits enrollment, and exit protocols—none of which address consequences for repeated lateness. Only a single statement, 'Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR,' is pertinent to the input.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 6,
+      "golden": {
+        "input": "payday date",
+        "context": [
+          "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Payroll"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+        "retrieval_context": [
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.427,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts is perfectly relevant, containing the exact payroll information: 'Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.' Great job!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output are fully attributed to the 1st node in retrieval context, with no unsupported content.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.1111111111111111,
+          "success": false,
+          "reason": "The score is 0.11 because the retrieval context is overwhelmingly irrelevant to 'payday date', with only 2 out of 18 statements addressing payday information. The vast majority covers unrelated topics like remote work ('Eligible employees may work remotely up to 2 days per week with manager approval'), working hours, leave policies, benefits, and workplace conduct. The only relevant statements are 'Monthly salary is normally paid on the final business day of each month' and bank detail change deadlines before payroll cutoff, which provide minimal direct answer to the query.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 7,
+      "golden": {
+        "input": "Is there health insurance?",
+        "context": [
+          "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Benefits"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.",
+        "retrieval_context": [
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.437,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the relevant node at rank 1, which states 'Eligible full-time employees receive the company medical plan...', is perfectly ranked above irrelevant nodes at rank 2 (discussing 'Annual Leave and Sick Leave policies... but does not mention health insurance'), rank 3 (covering 'Remote Work Policy, Working Hours and Attendance, and Payroll... none of which address health insurance'), and rank 4 (detailing 'Payroll Issue Priority, Employee Record Changes, and Offboarding procedures... with no reference to health insurance'). Excellent precision!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are fully attributed to the 1st node in retrieval context, showing perfect recall with no missing information. Excellent coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.15384615384615385,
+          "success": false,
+          "reason": "The score is 0.15 because the retrieval context is predominantly irrelevant to the question about health insurance, containing extensive unrelated information such as 'Employees are expected to maintain a respectful, professional, and harassment-free workplace' and policies on leave, remote work, payroll, and offboarding. Only two statements mention health insurance: 'Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program' and 'Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.'",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 8,
+      "golden": {
+        "input": "employee assistance program",
+        "context": [
+          "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Benefits"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.",
+        "retrieval_context": [
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.375,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "Perfect 1.00! The first node (rank 1) delivers exactly the employee assistance program details: \"Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\" The second (rank 2) and third (rank 3) nodes are irrelevant—HR ops and remote work policies that \"do not mention the employee assistance program or benefits eligibility\" and \"do not reference the employee assistance program or the benefits enrollment details.\" All relevant content ranks first—contextual precision at its best!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are fully supported by the 1st node in retrieval context — excellent coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.045454545454545456,
+          "success": false,
+          "reason": "The score is 0.05 because the retrieval context is overwhelmingly irrelevant to 'employee assistance program'; 21 statements discuss unrelated topics such as benefits enrollment changes, workplace conduct, reporting procedures, anti-retaliation policy, onboarding verification, first-day access items, leave request troubleshooting, payroll priorities, employee record changes, offboarding, remote work policies, working hours, and salary payment, while only one statement mentions the program: 'Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program.'",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 9,
+      "golden": {
+        "input": "Can I be punished for raising a complaint?",
+        "context": [
+          "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Code of Conduct"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+        "retrieval_context": [
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.394,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node (rank 1) directly answers the question with a clear statement: \"Retaliation against employees who raise concerns in good faith is prohibited,\" while all subsequent nodes (ranks 2-4) cover unrelated topics like payroll, remote work, and onboarding, ensuring perfect ranking of relevant content above irrelevant content. Great job!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output are fully attributed to the 1st node in retrieval context, showing perfect alignment and complete coverage.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.0625,
+          "success": false,
+          "reason": "The score is 0.06 because the retrieval context is overwhelmingly irrelevant to the input question about punishment for raising a complaint. The vast majority of the context covers unrelated topics such as employee benefits and enrollment changes, payroll issue priorities, personal information updates, departure procedures, remote work policies, working hours, salary payment details, onboarding procedures, and leave request support. Only one statement is relevant: 'Retaliation against employees who raise concerns in good faith is prohibited,' which directly addresses the input but constitutes a tiny fraction of the provided context.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 10,
+      "golden": {
+        "input": "first-day checklist for new joiners",
+        "context": [
+          "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "New Employee Onboarding"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.",
+        "retrieval_context": [
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.31,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node (rank 1) delivers the exact 'New Employee Onboarding' section matching the first-day checklist, while the following nodes (ranks 2, 3, and 4) are irrelevant — covering 'Remote Work Policy', 'Payroll Issue Priority', and 'Annual Leave' — and are correctly ranked lower. Perfect ranking!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output match verbatim the content in node 1 in retrieval context, covering all onboarding steps perfectly.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.3076923076923077,
+          "success": false,
+          "reason": "The score is 0.31 because the retrieval context contains largely irrelevant information such as \"pre-start confirmations 'before the employee begins', not a first-day checklist,\" \"leave request support,\" \"Payroll Issue Priority,\" \"Employee Record Changes,\" \"Offboarding,\" and leave policies, which have nothing to do with a first-day checklist. Only a few statements are relevant: \"On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook,\" \"Eligible employees may work remotely up to 2 days per week...,\" \"Standard working hours are 9:00 AM to 6:00 PM...,\" and \"Monthly salary is normally paid on the final business day...\".",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 11,
+      "golden": {
+        "input": "HR portal is down, how do I log a leave request?",
+        "context": [
+          "If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Leave Request Support"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+        "retrieval_context": [
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.36,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node (rank 1) directly provides the exact procedure for when the HR portal is down: 'If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.' The second node (rank 2) only mentions 'Leave requests should normally be submitted through the HR portal' without any downtime guidance, and the third node (rank 3) covers unrelated remote work and payroll topics. All relevant information is perfectly ranked above the irrelevant nodes.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all three sentences in the expected output are fully attributed to the 1st node in retrieval context, indicating perfect recall!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.2,
+          "success": false,
+          "reason": "The score is 0.20 because while the retrieval context includes a relevant procedure for logging leave when the portal is down ('If an employee cannot submit leave through the HR portal... record the request by email and ask the manager to confirm approval'), the vast majority of the context is irrelevant, covering unrelated topics such as onboarding ('HR should confirm the signed offer...'), payroll categorization ('Payroll issues are categorized into priorities P1 through P4'), offboarding ('For planned departures, HR should confirm final working day...'), and various leave entitlements ('The statement discusses annual leave entitlement... not the process for logging a leave request when the HR portal is down').",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 12,
+      "golden": {
+        "input": "What counts as a P1 payroll incident?",
+        "context": [
+          "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Payroll Issue Priority"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.",
+        "retrieval_context": [
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.398,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts directly defines P1 payroll incident as 'multiple employees are missing salary or there is a major payroll processing failure', while the second, third, and fourth nodes are irrelevant (covering remote work policy, benefits, and leave policies) and are correctly ranked lower.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all four priority definitions (P1-P4) in the expected output match verbatim the content in node 1 in retrieval context, achieving perfect attribution. Excellent retrieval coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.05,
+          "success": false,
+          "reason": "The score is 0.05 because the retrieval context is overwhelmingly irrelevant, containing extensive information on 'P2', 'P3', 'P4' priority criteria, 'Employee Record Changes', 'Offboarding', remote work policies, working hours, payroll payment schedules, benefits, workplace conduct, and various leave policies (annual, sick, carryover), none of which define a P1 payroll incident. Only a single statement — 'P1: multiple employees are missing salary or there is a major payroll processing failure.' — directly addresses the input.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 13,
+      "golden": {
+        "input": "Wrong tax deduction on my payslip, what priority is that?",
+        "context": [
+          "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Payroll Issue Priority"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.",
+        "retrieval_context": [
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.356,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the only relevant node appears at rank 1, providing the exact Payroll Issue Priority definitions including 'P3: incorrect allowance, deduction, tax, or benefits line item' that directly answers the user's question. All irrelevant nodes — rank 2 (only payment timing, no priority levels), rank 3 (leave policies), and rank 4 (benefits and conduct) — are correctly ranked lower, ensuring perfect precision.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because all four priority definitions (P1-P4) in the expected output are fully attributed to the 1st node in retrieval context, with no missing or unsupported content.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.2,
+          "success": false,
+          "reason": "The score is 0.20 because while the retrieval context includes relevant statements defining 'P3: incorrect allowance, deduction, tax, or benefits line item' and the '5 business days' reporting window for payroll discrepancies, the vast majority of the context is irrelevant, covering unrelated topics such as 'remote work up to 2 days per week', '20 days of paid annual leave', 'company medical plan', and 'harassment-free workplace' policies which have nothing to do with tax deduction priority.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 14,
+      "golden": {
+        "input": "I moved house, how do I change my address?",
+        "context": [
+          "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Employee Record Changes"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.",
+        "retrieval_context": [
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.373,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts directly addresses changing home address via the HR portal, quoting \"Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal...\" while the second node is irrelevant, covering only \"annual leave and sick leave policies,\" and the third node is also irrelevant, discussing \"benefits enrollment and code of conduct,\" ensuring all relevant information is ranked highest. Perfect ranking!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are fully supported by the 1st node in retrieval context (HR Operations Runbook, Employee Record Changes section). Perfect recall!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.058823529411764705,
+          "success": false,
+          "reason": "The score is 0.06 because the retrieval context is dominated by irrelevant information such as onboarding procedures ('confirm the signed offer, identity and payroll documentation...'), leave policies ('Full-time employees receive 20 days of paid annual leave...'), payroll issues, offboarding, benefits, and conduct policies, with only one relevant statement addressing address changes: 'Employee Record Changes: Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable.'",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 15,
+      "golden": {
+        "input": "update emergency contact",
+        "context": [
+          "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Employee Record Changes"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.",
+        "retrieval_context": [
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Remote Work Policy\nEligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours.\n\n## Working Hours and Attendance\nStandard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR.\n\n## Payroll\nMonthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.376,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node directly provides the exact policy for updating emergency contacts, while the second node discusses benefits enrollment and code of conduct with 'no mention of emergency contact updates,' and the third node covers remote work policy but 'does not address emergency contact updates' — both irrelevant nodes are correctly ranked lower. Perfect ranking!",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are fully supported by the 2nd node in retrieval context — excellent coverage!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.0625,
+          "success": false,
+          "reason": "The score is 0.06 because the retrieval context is overwhelmingly dominated by irrelevant content including onboarding steps, leave request processes, payroll issue priorities, offboarding procedures, benefits details, workplace conduct policies, remote work policies, working hours, and payroll schedules, none of which relate to updating emergency contact. Only a single statement regarding 'Employee Record Changes' notes that 'Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal,' providing minimal relevant coverage.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 16,
+      "golden": {
+        "input": "Do I have to return my laptop when I leave the company?",
+        "context": [
+          "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Offboarding"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+        "retrieval_context": [
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited.",
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.331,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 0.25,
+          "success": false,
+          "reason": "The score is 0.25 because the only relevant node (node 4) is ranked after three irrelevant nodes. Node 1 covers onboarding and leave request support but does not mention offboarding or return of company assets. Node 2 details annual and sick leave policies, which are unrelated to returning assets upon departure. Node 3 describes benefits and code of conduct with no reference to offboarding procedures. Node 4 explicitly states under 'Offboarding' that HR should confirm 'return of company assets' as part of the planned departure process, directly answering the question. Since the relevant node appears last, contextual precision is low.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are fully attributed to the 3rd node in the retrieval context, showing perfect recall with no missing information. Excellent!",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.06666666666666667,
+          "success": false,
+          "reason": "The score is 0.07 because although the retrieval context includes one relevant statement mentioning 'return of company assets' during offboarding, the vast majority of the content is unrelated, covering onboarding verification steps, leave request troubleshooting, benefits enrollment, workplace conduct, payroll issue priorities, and employee record changes, which have nothing to do with laptop return policies.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 17,
+      "golden": {
+        "input": "When is system access removed for departing employees?",
+        "context": [
+          "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Offboarding"
+        }
+      },
+      "fields": {
+        "actual_output": "",
+        "expected_output": "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+        "retrieval_context": [
+          "## Payroll Issue Priority\nP1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request.\n\n## Employee Record Changes\nChanges to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff.\n\n## Offboarding\nFor a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day.",
+          "# HR Operations Runbook\n\n## New Employee Onboarding\nHR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook.\n\n## Leave Request Support\nIf an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored.",
+          "# PeoplePrime Technologies Internal HR Handbook\n\n## Annual Leave\nFull-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception.\n\n## Sick Leave\nEmployees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence.",
+          "## Benefits\nEligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation.\n\n## Code of Conduct\nEmployees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ]
+      },
+      "checks": {
+        "context_hit": true,
+        "source_hit": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.337,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because the first node (rank 1) directly answers the question with the exact offboarding procedure stating 'Access-removal requests should be coordinated with IT and the manager according to the employee's final working day,' while the second node (rank 2) discusses onboarding and leave requests, the third node (rank 3) covers leave policies, and the fourth node (rank 4) describes benefits and code of conduct, all of which are irrelevant to system access removal. The relevant node is ranked above all irrelevant nodes, achieving perfect contextual precision.",
+          "error": null
+        },
+        "Contextual Recall": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The score is 1.00 because both sentences in the expected output match verbatim the Offboarding section in node 1 in retrieval context, covering all key offboarding steps and access-removal coordination perfectly.",
+          "error": null
+        },
+        "Contextual Relevancy": {
+          "score": 0.058823529411764705,
+          "success": false,
+          "reason": "The score is 0.06 because the retrieval context is dominated by irrelevant information such as payroll issue priorities, employee record changes, onboarding procedures, leave policies, benefits enrollment, and workplace conduct expectations, with only one relevant statement noting that 'Access-removal requests should be coordinated with IT and the manager according to the employee's final working day' during offboarding.",
+          "error": null
+        }
+      }
+    }
+  ]
+}

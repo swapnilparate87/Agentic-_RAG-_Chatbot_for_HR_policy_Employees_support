@@ -1,0 +1,182 @@
+[
+  {
+    "input": "vacation days allowance",
+    "context": [
+      "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Annual Leave"
+    }
+  },
+  {
+    "input": "What happens to leave I don't use by the end of the year?",
+    "context": [
+      "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Annual Leave"
+    }
+  },
+  {
+    "input": "Do I need a doctor's note if I'm off sick for three days?",
+    "context": [
+      "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Sick Leave"
+    }
+  },
+  {
+    "input": "hybrid work rules",
+    "context": [
+      "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Remote Work Policy"
+    }
+  },
+  {
+    "input": "What time does the workday start?",
+    "context": [
+      "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Working Hours and Attendance"
+    }
+  },
+  {
+    "input": "What happens if someone is repeatedly late to work?",
+    "context": [
+      "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Working Hours and Attendance"
+    }
+  },
+  {
+    "input": "payday date",
+    "context": [
+      "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Payroll"
+    }
+  },
+  {
+    "input": "Is there health insurance?",
+    "context": [
+      "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Benefits"
+    }
+  },
+  {
+    "input": "employee assistance program",
+    "context": [
+      "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Benefits"
+    }
+  },
+  {
+    "input": "Can I be punished for raising a complaint?",
+    "context": [
+      "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Code of Conduct"
+    }
+  },
+  {
+    "input": "first-day checklist for new joiners",
+    "context": [
+      "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "New Employee Onboarding"
+    }
+  },
+  {
+    "input": "HR portal is down, how do I log a leave request?",
+    "context": [
+      "If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Leave Request Support"
+    }
+  },
+  {
+    "input": "What counts as a P1 payroll incident?",
+    "context": [
+      "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Payroll Issue Priority"
+    }
+  },
+  {
+    "input": "Wrong tax deduction on my payslip, what priority is that?",
+    "context": [
+      "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Payroll Issue Priority"
+    }
+  },
+  {
+    "input": "I moved house, how do I change my address?",
+    "context": [
+      "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Employee Record Changes"
+    }
+  },
+  {
+    "input": "update emergency contact",
+    "context": [
+      "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Employee Record Changes"
+    }
+  },
+  {
+    "input": "Do I have to return my laptop when I leave the company?",
+    "context": [
+      "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Offboarding"
+    }
+  },
+  {
+    "input": "When is system access removed for departing employees?",
+    "context": [
+      "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Offboarding"
+    }
+  }
+]

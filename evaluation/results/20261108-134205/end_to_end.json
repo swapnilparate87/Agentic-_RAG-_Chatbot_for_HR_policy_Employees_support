@@ -1,0 +1,965 @@
+{
+  "summary": {
+    "component": "end_to_end",
+    "goldens": 20,
+    "errors": 0,
+    "checks": {
+      "path_accuracy": {
+        "mean": 0.95,
+        "n": 20
+      },
+      "path_accuracy_direct": {
+        "mean": 1.0,
+        "n": 4
+      },
+      "path_accuracy_insufficient_evidence": {
+        "mean": 0.75,
+        "n": 4
+      },
+      "path_accuracy_knowledge_base": {
+        "mean": 1.0,
+        "n": 8
+      },
+      "path_accuracy_web_search": {
+        "mean": 1.0,
+        "n": 4
+      }
+    },
+    "metrics": {
+      "Correctness [GEval]": {
+        "mean_score": 0.877,
+        "pass_rate": 0.846,
+        "n": 13,
+        "errors": 7
+      }
+    },
+    "performance": {
+      "latency_s": {
+        "mean": 6.15,
+        "p50": 5.01,
+        "p95": 11.19,
+        "max": 11.77
+      },
+      "tokens_per_request": {
+        "mean": 2721.0,
+        "p50": 1889,
+        "p95": 5333,
+        "max": 5681
+      },
+      "input_tokens": 51726,
+      "output_tokens": 2697
+    },
+    "performance_by_path": {
+      "direct": {
+        "n": 4,
+        "latency_s": {
+          "mean": 2.88,
+          "p50": 1.14,
+          "p95": 8.03,
+          "max": 8.03
+        },
+        "tokens_per_request": {
+          "mean": 170.0,
+          "p50": 169,
+          "p95": 176,
+          "max": 176
+        },
+        "input_tokens": 587,
+        "output_tokens": 91
+      },
+      "insufficient_evidence": {
+        "n": 3,
+        "latency_s": {
+          "mean": 10.93,
+          "p50": 11.19,
+          "p95": 11.77,
+          "max": 11.77
+        },
+        "tokens_per_request": {
+          "mean": 5286.0,
+          "p50": 5333,
+          "p95": 5681,
+          "max": 5681
+        },
+        "input_tokens": 15698,
+        "output_tokens": 159
+      },
+      "knowledge_base": {
+        "n": 8,
+        "latency_s": {
+          "mean": 4.39,
+          "p50": 3.69,
+          "p95": 7.96,
+          "max": 7.96
+        },
+        "tokens_per_request": {
+          "mean": 1862.0,
+          "p50": 1850,
+          "p95": 1914,
+          "max": 1914
+        },
+        "input_tokens": 13878,
+        "output_tokens": 1016
+      },
+      "web_search": {
+        "n": 5,
+        "latency_s": {
+          "mean": 8.71,
+          "p50": 8.97,
+          "p95": 9.92,
+          "max": 9.92
+        },
+        "tokens_per_request": {
+          "mean": 4599.0,
+          "p50": 4652,
+          "p95": 4898,
+          "max": 4898
+        },
+        "input_tokens": 21563,
+        "output_tokens": 1431
+      }
+    },
+    "judge_tokens": {
+      "input": 9577,
+      "output": 9436,
+      "total": 19013
+    },
+    "timing_s": {
+      "generation": 129.7,
+      "judging": 780.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "golden": {
+        "input": "How many paid sick days do employees get?",
+        "expected_output": "Up to 10 paid sick days per calendar year.",
+        "context": [
+          "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Sick Leave",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR handbook, employees are entitled to **up to 10 paid sick days per calendar year**.\n\n**Key conditions apply:**\n*   For absences longer than **2 consecutive working days**, HR may request appropriate medical documentation.\n*   Employees should notify their manager as early as possible on the first day of absence."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 5.012,
+      "tokens": {
+        "input": 1747,
+        "output": 83,
+        "total": 1830
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output contains the exact key fact from the expected output — \"up to 10 paid sick days per calendar year\" — and is factually consistent. It also adds relevant policy details (medical documentation after 2 consecutive days, notification requirement) which do not contradict the expected output. All evaluation criteria are satisfied.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 1,
+      "golden": {
+        "input": "Can I work remotely three days a week?",
+        "expected_output": "No. Eligible employees may work remotely up to 2 days per week with manager approval.",
+        "context": [
+          "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Remote Work Policy",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR handbook, here are the guidelines regarding remote work:\n\n**Policy Summary:**\n*   **Eligibility:** Eligible employees may work remotely up to **2 days per week**.\n*   **Requirement:** This requires **manager approval**.\n*   **Expectations:** Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information.\n*   **Limitation:** Remote work is not a substitute for dependent-care arrangements during working hours.\n\n**To request this arrangement:**\n1.  Discuss your request with your manager to seek approval.\n2.  Once approved, ensure you adhere to the expectations of being reachable and using approved tools during your remote days."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 3.894,
+      "tokens": {
+        "input": 1747,
+        "output": 160,
+        "total": 1907
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output accurately states the policy limit of 2 remote days per week with manager approval, which directly addresses the user's question about three days (implicitly answering 'No'). It covers all key facts from the expected output and adds relevant, non-contradictory details about expectations, limitations, and request steps. No factual inconsistencies or omissions.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 2,
+      "golden": {
+        "input": "By when must unused carried-forward leave be used?",
+        "expected_output": "By March 31, unless HR grants an exception.",
+        "context": [
+          "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Annual Leave",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR handbook, unused carried-forward leave must be used by **March 31** of the following calendar year.\n\n**Key details:**\n- Employees may carry forward up to **5 unused leave days** into the next calendar year.\n- These carried-forward days **must be used by March 31**; failure to do so may result in forfeiture unless an exception is granted by HR.\n\nIf you need to plan your leave or request an exception, please contact HR through the portal."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 7.964,
+      "tokens": {
+        "input": 1796,
+        "output": 118,
+        "total": 1914
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output fully captures the expected answer — stating the deadline of March 31 and the possibility of an HR exception — and adds relevant, non‑contradictory details (carry‑forward limit, forfeiture rule, HR contact) that enhance clarity without distorting the core meaning.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 3,
+      "golden": {
+        "input": "Who do I report a payroll discrepancy to?",
+        "expected_output": "Payroll Support, within 5 business days of receiving the payslip.",
+        "context": [
+          "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Payroll",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR handbook, here are the steps to report a payroll discrepancy:\n\n1.  **Review your payslip** in the HR portal.\n2.  **Report the issue to Payroll Support** within **5 business days** of receiving the payslip.\n\nIf you are reporting an issue regarding a missing salary or major processing failure, reference the **P1/P2/P3/P4 priority levels** from the HR operations runbook (P1 for multiple missing salaries, P2 for an individual missing salary, P3 for incorrect line items)."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 3.476,
+      "tokens": {
+        "input": 1720,
+        "output": 130,
+        "total": 1850
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output includes all key facts from the expected output: it identifies Payroll Support as the contact and specifies the 5‑business‑day window. It also adds relevant procedural details (review payslip, priority levels) without contradicting the expected answer.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 4,
+      "golden": {
+        "input": "What priority is a major payroll processing failure?",
+        "expected_output": "P1.",
+        "context": [
+          "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Payroll Issue Priority",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the HR knowledge base, a major payroll processing failure is classified as a **P1 priority**.\n\n**Definition:** A P1 priority applies when multiple employees are missing salary or there is a major system failure affecting payroll processing.\n\n**Recommended Steps:**\n1.  **Immediate Escalation:** Report the issue to Payroll Support immediately.\n2.  **Notification:** Affected employees should be notified that the issue is being addressed as a high-priority incident.\n3.  **Resolution:** Work with the Payroll team to restore processing and ensure back pay or corrections are applied as swiftly as possible."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 4.634,
+      "tokens": {
+        "input": 1720,
+        "output": 140,
+        "total": 1860
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "golden": {
+        "input": "Is retaliation for reporting harassment allowed?",
+        "expected_output": "No. Retaliation against employees who raise concerns in good faith is prohibited.",
+        "context": [
+          "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Code of Conduct",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR handbook, **retaliation for reporting harassment is prohibited.**\n\nThe Code of Conduct explicitly states: *\"Retaliation against employees who raise concerns in good faith is prohibited.\"*\n\n**If you experience or witness retaliation:**\n1.  **Document the incident:** Record dates, times, and what occurred.\n2.  **Report it:** Contact your manager, HR, or use the confidential ethics channel.\n3.  **Seek support:** You can also reach out to the Employee Assistance Program if available.\n\nThe company treats retaliation as a serious violation of the Code of Conduct."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 3.491,
+      "tokens": {
+        "input": 1711,
+        "output": 134,
+        "total": 1845
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output accurately states that retaliation is prohibited, quoting the same Code of Conduct language as the expected output, and includes additional relevant steps for reporting retaliation without any contradictions.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 6,
+      "golden": {
+        "input": "What is included in the employee benefits?",
+        "expected_output": "The company medical plan, life insurance coverage, and access to the employee assistance program.",
+        "context": [
+          "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Benefits",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR knowledge base, the employee benefits included for eligible full-time employees are:\n\n*   **Company medical plan**\n*   **Life insurance coverage**\n*   **Access to the employee assistance program (EAP)**\n\n**Enrollment Note:** Changes to these benefits outside the annual enrollment window require a qualifying life event and supporting documentation."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 2.994,
+      "tokens": {
+        "input": 1714,
+        "output": 85,
+        "total": 1799
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output includes all three key benefits listed in the expected output (company medical plan, life insurance coverage, and access to the employee assistance program) and adds an enrollment note that does not contradict the expected information. No facts are missing or conflicting.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 7,
+      "golden": {
+        "input": "What should happen on a new employee's first day?",
+        "expected_output": "Provide access to the HR portal, benefits information, mandatory training, and the employee handbook.",
+        "context": [
+          "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "New Employee Onboarding",
+          "expected_source_used": "knowledge_base"
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the company HR knowledge base, here are the expected steps for a new employee's first day:\n\n**Before the employee starts:**\n*   HR must confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements.\n\n**On the first day:**\n*   **Provide access** to the HR portal.\n*   **Share benefits information** (medical plan, life insurance, and employee assistance program).\n*   **Assign mandatory training.**\n*   **Provide the employee handbook.**\n\nIf the employee encounters issues accessing the portal or submitting required documentation on their first day, refer to the \"Employee Record Changes\" and \"Leave Request Support\" sections for guidance on verification and email fallback procedures."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_knowledge_base": true
+      },
+      "source_used": "knowledge_base",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → GOOD",
+        "Answer → KNOWLEDGE BASE"
+      ],
+      "latency_s": 3.692,
+      "tokens": {
+        "input": 1723,
+        "output": 166,
+        "total": 1889
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output includes all four key items from the Expected Output (HR portal access, benefits information, mandatory training, employee handbook) and presents them factually consistent. It adds relevant pre‑start context and troubleshooting guidance, which is acceptable extra detail. No contradictions or missing critical information.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 8,
+      "golden": {
+        "input": "Hi!",
+        "expected_output": "A brief, friendly greeting offering HR help.",
+        "additional_metadata": {
+          "expected_source_used": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "Hi there! How can I help you today?"
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_direct": true
+      },
+      "source_used": "direct",
+      "trace": [
+        "Router → DIRECT",
+        "Answer → DIRECT"
+      ],
+      "latency_s": 1.122,
+      "tokens": {
+        "input": 144,
+        "output": 18,
+        "total": 162
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 0.4,
+          "success": false,
+          "reason": "The actual output provides a brief, friendly greeting, but it does not explicitly offer HR help as required by the expected output. It only asks generically how it can help, missing the specific behavioral requirement to mention HR assistance.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 9,
+      "golden": {
+        "input": "Thanks a lot!",
+        "expected_output": "A brief acknowledgement.",
+        "additional_metadata": {
+          "expected_source_used": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "You're very welcome! I'm here to help whenever you need it. Have a great day!"
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_direct": true
+      },
+      "source_used": "direct",
+      "trace": [
+        "Router → DIRECT",
+        "Answer → DIRECT"
+      ],
+      "latency_s": 1.239,
+      "tokens": {
+        "input": 148,
+        "output": 28,
+        "total": 176
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output provides a polite acknowledgement of the user's thanks, consistent with the Expected Output's requirement for a brief acknowledgement. It includes a welcoming response, an offer for further help, and a closing wish, all of which are contextually appropriate and do not contradict the expectation. The extra details are relevant and consistent with the input.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 10,
+      "golden": {
+        "input": "Good evening",
+        "expected_output": "A brief, friendly greeting.",
+        "additional_metadata": {
+          "expected_source_used": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "Good evening! How can I help you with your HR questions or employee support needs today?"
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_direct": true
+      },
+      "source_used": "direct",
+      "trace": [
+        "Router → DIRECT",
+        "Answer → DIRECT"
+      ],
+      "latency_s": 1.142,
+      "tokens": {
+        "input": 145,
+        "output": 26,
+        "total": 171
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 11,
+      "golden": {
+        "input": "Have a great weekend!",
+        "expected_output": "A brief, friendly reply.",
+        "additional_metadata": {
+          "expected_source_used": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "Thank you! You too! Enjoy your time off."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_direct": true
+      },
+      "source_used": "direct",
+      "trace": [
+        "Router → DIRECT",
+        "Answer → DIRECT"
+      ],
+      "latency_s": 8.029,
+      "tokens": {
+        "input": 150,
+        "output": 19,
+        "total": 169
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 12,
+      "golden": {
+        "input": "What does the US WARN Act require?",
+        "expected_output": "Covered employers (generally 100+ employees) must give 60 days' advance written notice of plant closings and mass layoffs.",
+        "additional_metadata": {
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR."
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, the US WARN Act requires the following:\n\n*   **Employer Coverage:** Employers with 100 or more full-time employees (excluding part-time employees who average fewer than 20 hours per week) are required to provide notice.\n*   **Triggering Events:** The Act requires 60-day advance written notice for **mass layoffs** or **plant closings**.\n*   **Mass Layoff Definition:** A mass layoff is defined as one affecting **50 or more employees**, or 50-499 employees constituting at least **one-third** of the full-time workforce at a single site.\n*   **Notice Recipients:** Written notice must be provided to affected employees (or their representative), the State dislocated worker unit, and the chief elected official of the local government where the closing or layoff will occur.\n\n***Disclaimer:** This information is derived from external public sources (legal summaries and government guides) and has not been verified against the company's internal HR policy handbook. Please validate this information with your HR department before treating it as official company policy.*"
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_web_search": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 8.486,
+      "tokens": {
+        "input": 4369,
+        "output": 255,
+        "total": 4624
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output fully covers the core key points of the expected output: it states that covered employers (100+ full-time employees) must provide 60-day advance written notice for plant closings and mass layoffs. All facts are consistent, and the additional details (mass layoff definition, notice recipients) are relevant and non-contradictory. The disclaimer does not affect factual alignment.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 13,
+      "golden": {
+        "input": "What is India's POSH Act?",
+        "expected_output": "The Sexual Harassment of Women at Workplace Act, 2013 requires employers with 10 or more employees to set up an Internal Committee to handle complaints.",
+        "additional_metadata": {
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR."
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, here is the information regarding India's POSH Act:\n\n**What is India's POSH Act?**\nThe POSH Act, formally known as the **Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013**, is a legislative act in India that seeks to protect women from sexual harassment at their place of work. It was passed by the Lok Sabha on 3 September 2012, by the Rajya Sabha on 26 February 2013, and received the assent of the President on 23 April 2013. The Act came into force on 9 May 2013.\n\n**Key provisions highlighted in the evidence include:**\n*   **Objective:** To provide protection against sexual harassment of women at the workplace and for the prevention and redressal of complaints.\n*   **Employer Duties:** Mandates that every employer provide a safe working environment, prohibit sexual harassment through strict policies, and establish an **Internal Committee (IC)** to investigate and redress complaints promptly and confidentially.\n*   **Definition of Workplace:** Defined as \"any place visited by the employee arising out of or during the course of employment including the transportation facilities provided by the employer.\"\n*   **Scope:** The Act applies to the whole of India.\n\n***\n\n**Important Note:** This information is derived from external public sources (including Wikipedia and HR training materials) and has **not** been verified against your company's internal HR policy knowledge base. \n\n**You must validate this information with your HR department before treating it as company policy.** Company policies may differ, include additional protections (such as gender-neutral provisions or broader definitions of workplace), or have specific internal procedures for complaint handling that go beyond the statutory minimum."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_web_search": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 9.92,
+      "tokens": {
+        "input": 4325,
+        "output": 401,
+        "total": 4726
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 14,
+      "golden": {
+        "input": "What is a 401(k) plan?",
+        "expected_output": "An employer-sponsored US retirement savings plan that lets employees contribute part of their salary, often with employer matching and tax advantages.",
+        "additional_metadata": {
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR."
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the provided web evidence, a 401(k) plan is defined as an employer-sponsored retirement savings plan that allows employees to contribute a portion of their paycheck into a tax-advantaged investment account.\n\n**Key points from the external sources include:**\n*   It is named after Section 401(k) of the Internal Revenue Code.\n*   It is one of the most popular retirement plans for private-sector workers.\n*   Employees typically choose from a range of investment options, often mutual funds.\n*   For 2026, employees can defer up to **$24,500**, with an additional **$8,000 catch-up contribution** for those 50 or older (note: one source cites $7,500 and $11,250 for ages 60-63, while another cites $8,000; limits vary by source).\n*   Contributions can generally be made with pre-tax (traditional) or after-tax (Roth) dollars, depending on the plan type.\n*   Early withdrawals before age 59½ generally trigger a tax penalty, with limited exceptions.\n*   Employer matching contributions may be subject to a vesting schedule.\n\n**Important Note:** This information is external public information gathered from general financial and retirement planning websites. It should be validated with your company's HR department or official plan documents before being treated as company policy, as specific eligibility requirements, contribution limits, and plan features (such as matching formulas or vesting schedules) vary by employer."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_web_search": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 9.837,
+      "tokens": {
+        "input": 4548,
+        "output": 350,
+        "total": 4898
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 15,
+      "golden": {
+        "input": "What does the US Pregnant Workers Fairness Act require?",
+        "expected_output": "Employers with 15 or more employees must provide reasonable accommodations for known limitations related to pregnancy, childbirth, or related conditions.",
+        "additional_metadata": {
+          "expected_source_used": "web_search",
+          "criteria": "The answer must state that this is external public information to be validated with HR."
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the US Pregnant Workers Fairness Act (PWFA) requires covered employers to provide \"reasonable accommodations\" to a worker's known limitations related to pregnancy, childbirth, or related medical conditions, unless the accommodation will cause the employer an \"undue hardship.\"\n\nKey requirements from the external public information include:\n\n*   **Coverage:** The law applies to all businesses with over 15 employees.\n*   **Accommodations:** Employers must provide reasonable accommodations for known limitations related to pregnancy, childbirth, or related medical conditions (including postpartum and pumping conditions).\n*   **Interactive Process:** Accommodations are generally arrived at through a timely interactive process between the employee and employer.\n*   **Employee Notice:** Employees must inform their employer of their need for an accommodation. The evidence indicates that employees do not need to use \"magic words,\" make a written request, or have a doctor's note; simply letting the employer know about a pregnancy-related limitation and need for adjustment is sufficient.\n*   **Non-Discrimination:** Employers must treat workers affected by pregnancy, childbirth, or related medical conditions the same as others similar in their ability or inability to work.\n\n***Disclaimer:** This information is external public knowledge from sources such as the EEOC, DOL, and National Women's Law Center. It should be validated with your company's HR department before being treated as company policy, as the company knowledge base did not cover this question.*"
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_web_search": true
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 8.969,
+      "tokens": {
+        "input": 3767,
+        "output": 327,
+        "total": 4094
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 16,
+      "golden": {
+        "input": "What is PeoplePrime Technologies' sabbatical policy?",
+        "expected_output": "The assistant should say it could not find reliable evidence and direct the employee to contact HR.",
+        "additional_metadata": {
+          "expected_source_used": "insufficient_evidence",
+          "criteria": "The assistant should say it could not find reliable evidence and direct the employee to contact HR."
+        }
+      },
+      "fields": {
+        "actual_output": "I couldn't find enough reliable evidence in the company HR knowledge base or external search to answer confidently. Please contact the HR team or share more details."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_insufficient_evidence": true
+      },
+      "source_used": "insufficient_evidence",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Query rewrite → PeoplePrime Technologies sabbatical leave policy eligibility duration",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Stopped → insufficient evidence"
+      ],
+      "latency_s": 11.19,
+      "tokens": {
+        "input": 4797,
+        "output": 46,
+        "total": 4843
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 17,
+      "golden": {
+        "input": "How much is the PeoplePrime employee referral bonus?",
+        "expected_output": "The assistant should say it could not find reliable evidence and direct the employee to contact HR.",
+        "additional_metadata": {
+          "expected_source_used": "insufficient_evidence",
+          "criteria": "The assistant should say it could not find reliable evidence and direct the employee to contact HR."
+        }
+      },
+      "fields": {
+        "actual_output": "Based on the web evidence provided, the Amazon employee referral bonus is up to **$125**.\n\n**External Public Information Notice:** This information is sourced from Amazon's official hiring page (`hiring.amazon.com`) and general program descriptions. It has not been verified against the internal company knowledge base. Please validate this amount with your HR department before treating it as official company policy."
+      },
+      "checks": {
+        "path_accuracy": false,
+        "path_accuracy_insufficient_evidence": false
+      },
+      "source_used": "web_search",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → GOOD",
+        "Answer → WEB SEARCH"
+      ],
+      "latency_s": 6.339,
+      "tokens": {
+        "input": 4554,
+        "output": 98,
+        "total": 4652
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 0.0,
+          "success": false,
+          "reason": "The Actual Output provides a specific referral bonus amount for Amazon ($125) rather than addressing the query about PeoplePrime, directly contradicting the Expected Output which requires the assistant to state it could not find reliable evidence and direct the employee to contact HR. The response fails to exhibit the required refusal/redirection behavior, omits the core message, and introduces irrelevant information about a different company.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 18,
+      "golden": {
+        "input": "How many days of bereavement leave does PeoplePrime offer?",
+        "expected_output": "The assistant should say it could not find reliable evidence and direct the employee to contact HR.",
+        "additional_metadata": {
+          "expected_source_used": "insufficient_evidence",
+          "criteria": "The assistant should say it could not find reliable evidence and direct the employee to contact HR."
+        }
+      },
+      "fields": {
+        "actual_output": "I couldn't find enough reliable evidence in the company HR knowledge base or external search to answer confidently. Please contact the HR team or share more details."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_insufficient_evidence": true
+      },
+      "source_used": "insufficient_evidence",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Query rewrite → How many days of paid bereavement leave does PeoplePrime provide per occurrence, and what is the eligibility criteria for this benefit?",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Stopped → insufficient evidence"
+      ],
+      "latency_s": 11.769,
+      "tokens": {
+        "input": 5271,
+        "output": 62,
+        "total": 5333
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output correctly states that it could not find reliable evidence and explicitly directs the employee to contact the HR team, matching the expected behavior. The additional suggestion to share more details does not contradict the expected output.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 19,
+      "golden": {
+        "input": "What is PeoplePrime's annual learning budget per employee?",
+        "expected_output": "The assistant should say it could not find reliable evidence and direct the employee to contact HR.",
+        "additional_metadata": {
+          "expected_source_used": "insufficient_evidence",
+          "criteria": "The assistant should say it could not find reliable evidence and direct the employee to contact HR."
+        }
+      },
+      "fields": {
+        "actual_output": "I couldn't find enough reliable evidence in the company HR knowledge base or external search to answer confidently. Please contact the HR team or share more details."
+      },
+      "checks": {
+        "path_accuracy": true,
+        "path_accuracy_insufficient_evidence": true
+      },
+      "source_used": "insufficient_evidence",
+      "trace": [
+        "Router → KB",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Query rewrite → What is the annual learning and development budget allocation per employee in PeoplePrime?",
+        "KB retrieval → 4 chunks",
+        "KB evidence → WEAK",
+        "Web search → 5 results",
+        "Web evidence → WEAK",
+        "Stopped → insufficient evidence"
+      ],
+      "latency_s": 9.834,
+      "tokens": {
+        "input": 5630,
+        "output": 51,
+        "total": 5681
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output states it could not find reliable evidence and explicitly directs the employee to contact HR, matching the expected behavior. It also adds an optional suggestion to share more details, which does not conflict with the expected output.",
+          "error": null
+        }
+      }
+    }
+  ]
+}

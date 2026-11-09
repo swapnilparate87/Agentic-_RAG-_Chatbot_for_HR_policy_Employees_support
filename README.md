@@ -1,410 +1,289 @@
-# 🧠 Agentic RAG Chatbot for HR Policy & Employee Support
+# Agentic RAG Chatbot for HR Policy & Employee Support
 
-> A tutorial-based HR knowledge assistant with conditional retrieval, evidence grading, web-search fallback, and query rewriting—built with LangGraph, Groq, Pinecone, and FastAPI.
+An HR assistant that answers employee questions from a company knowledge base, checks whether its own evidence is good enough, and falls back to web search or query rewriting when it isn't. Built with **LangGraph**, **NVIDIA NIM**, **Pinecone** and **FastAPI**, and evaluated component by component with **DeepEval**.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
-![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
-![LangGraph](https://img.shields.io/badge/Workflow-LangGraph-orange)
-![Groq](https://img.shields.io/badge/Inference-Groq-red)
-![Pinecone](https://img.shields.io/badge/Vector_Store-Pinecone-purple)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688)
+![LangGraph](https://img.shields.io/badge/LangGraph-orange)
+![NVIDIA](https://img.shields.io/badge/LLM-NVIDIA_NIM-76B900)
+![Pinecone](https://img.shields.io/badge/Vector_DB-Pinecone-purple)
+![DeepEval](https://img.shields.io/badge/Eval-DeepEval-blueviolet)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-This repository is a learning and portfolio implementation developed by following a YouTube tutorial. See [Acknowledgements](#acknowledgements) for attribution status.
+## Highlights
 
----
+- **Agentic workflow:** a LangGraph state machine that routes, retrieves, grades evidence, searches the web, rewrites queries and retries, instead of a single retrieve-then-answer chain.
+- **NVIDIA Nemotron models:** a fast 30B model runs the agent, and a 550B model acts as the evaluation judge.
+- **Evaluated on 127 golden questions** across 7 components, with quality scores, latency (p50/p95) and token usage per request. See [Evaluation](#evaluation).
+- **Hallucination guardrails:** answers are grounded in graded evidence, web answers are labelled as external, and the agent says "contact HR" rather than guessing.
+- **Transparent:** every response returns its source, citations and a step-by-step trace of the agent's decisions, and every request is logged to an audit database.
+- **Production-ready container:** CPU-only Docker image that runs as a non-root user, with the embedding model preloaded and a health check.
 
-## 📋 Table of Contents
+## Why agentic RAG
 
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Agentic Workflow](#agentic-workflow)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the App](#running-the-app)
-- [API Endpoints](#api-endpoints)
-- [Sample Knowledge Base](#sample-knowledge-base)
-- [Docker](#docker)
-- [Verification](#verification)
-- [Implementation Notes and Limitations](#implementation-notes-and-limitations)
-- [Troubleshooting](#troubleshooting)
-- [Future Improvements](#future-improvements)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+A plain RAG pipeline always retrieves and always answers, even when the retrieved chunks are irrelevant. This assistant treats each step as a decision:
 
----
+- **Routes** each message: HR questions go to retrieval, while small talk is answered directly.
+- **Grades** retrieved evidence before answering, and refuses to invent policy.
+- **Falls back** to web search only when internal evidence is weak, and labels those answers as external.
+- **Rewrites** the query and retries, up to a bounded limit, before admitting it doesn't know.
+- **Explains itself**: every response includes citations and a trace of the agent's decisions.
 
-## Overview
-
-Employees can ask questions about leave, remote work, payroll, benefits, onboarding, and other HR procedures through a browser interface or REST API.
-
-For HR questions, the application searches the company knowledge base first. An LLM grades the retrieved evidence. If that evidence is weak, the workflow searches the public web, grades those results, and can rewrite the query before retrying retrieval. When evidence remains insufficient, it returns a message directing the user to HR or asking for more details.
-
-Answers include a source category, source references where available, and an execution trace. Public-web answers are prompted to distinguish external information from company policy.
-
-**Project scope:** a tutorial-based prototype demonstrating an end-to-end agentic RAG workflow. Production deployment, benchmark results, and independently developed extensions are not claimed here.
-
-## Features
-
-| Capability | Implementation |
-|---|---|
-| 🧭 Question routing | Structured LLM output selects company-KB retrieval or a direct conversational response. |
-| 📄 Document ingestion | Upload and load PDF, TXT, Markdown, and DOCX files. |
-| ✂️ Document chunking | Recursive splitting with 900-character chunks and 120-character overlap; start indexes are retained. |
-| 🧠 Local embeddings | Hugging Face sentence-transformer embeddings are computed locally. |
-| 🗄️ Vector retrieval | Pinecone serverless index with cosine similarity and configurable top-k retrieval. |
-| ⚖️ Evidence grading | Separate structured `good`/`weak` assessments for KB and web evidence. |
-| 🌐 Web fallback | Tavily search returns up to five results when KB evidence is weak. |
-| 🔁 Query rewriting | A rewritten query restarts KB retrieval, bounded by `MAX_RETRIES`. |
-| 🛑 Insufficient-evidence response | Stops with a fixed fallback message once weak evidence exhausts retries. |
-| 📚 Source references | Deduplicated KB filenames or web titles and URLs accompany applicable responses. |
-| 🧾 Execution trace | Records routing, retrieval, grading, rewriting, and final generation decisions. |
-| 💬 Browser interface | Chat messages, sample prompts, source display, trace panel, and upload modal. |
-| 🔑 Upload protection | Ingestion checks the supplied `X-Admin-Key` header. |
-| 📝 Audit logging | SQLite stores timestamps, questions, source categories, and execution traces. |
-| 🐳 Container configuration | A Python 3.11 Docker build and Uvicorn startup command are included. |
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Language / container runtime | Python / Python 3.11 slim |
-| Workflow orchestration | LangGraph `StateGraph` |
-| LLM integration | `langchain-groq` / `ChatGroq`, temperature `0` |
-| Configured LLM | `openai/gpt-oss-120b`, served through Groq |
-| Embeddings | `langchain-huggingface` / `HuggingFaceEmbeddings` |
-| Embedding model | `sentence-transformers/all-MiniLM-L6-v2` (384 dimensions) |
-| Vector database | Pinecone serverless, AWS `us-east-1`, cosine similarity |
-| Public search | Tavily via `langchain-tavily` |
-| API / server | FastAPI / Uvicorn |
-| Frontend | Jinja2 templates, HTML, CSS, vanilla JavaScript |
-| Document processing | LangChain loaders, PyPDF, python-docx, recursive text splitter |
-| Configuration | Pydantic Settings and `.env` |
-| Audit persistence | SQLite |
-
-The active workflow uses Groq and Hugging Face embeddings. OpenAI-related packages remain in `requirements.txt`, and `project_flow.md` contains older OpenAI references; those do not describe the active inference and embedding implementation.
-
-## Agentic Workflow
+## Architecture
 
 ```mermaid
 flowchart TD
-    Q[Question] --> R{Route question}
-    R -->|Casual chat| D[Direct answer]
-    R -->|HR question| K[Retrieve KB]
+    Q[Question] --> R{Route}
+    R -->|small talk| D[Direct answer]
+    R -->|HR question| K[Retrieve from Pinecone]
     K --> G{Grade KB evidence}
-    G -->|Good| A[Answer from KB]
-    G -->|Weak| W[Tavily search]
+    G -->|good| A[Answer from knowledge base]
+    G -->|weak| W[Tavily web search]
     W --> V{Grade web evidence}
-    V -->|Good| B[Answer from web]
-    V -->|Weak| L{Retries remaining?}
-    L -->|Yes| X[Rewrite query]
-    X --> K
-    L -->|No| I[Insufficient evidence]
+    V -->|good| B[Answer from web, flagged as external]
+    V -->|weak| L{Retries left?}
+    L -->|yes| X[Rewrite query] --> K
+    L -->|no| I[Insufficient evidence → contact HR]
 ```
 
-The graph shares an `AgentState` containing the original question, current query, retrieved documents, web results, evidence grades, retry count, answer, source category, citations, and trace.
-
-- `RouteDecision` constrains routing to `kb` or `direct`.
-- `EvidenceGrade` constrains grading to `good` or `weak`.
-- `MAX_RETRIES=1` allows one rewrite after the initial retrieval/search attempt.
-- Rewriting returns to KB retrieval, rather than searching only the web again.
-- After `ask()` completes, the chat endpoint writes the audit record and returns the response.
-
-This is a predefined conditional graph with LLM-driven decisions. The grading and answer prompts encourage grounded responses; they do not guarantee factual correctness.
-
-## Project Structure
-
-| Path | Purpose |
+| Layer | Technology |
 |---|---|
-| `app/main.py` | FastAPI application, UI route, static files, and database initialization |
-| `app/api/routes.py` | Health, chat, and admin-key-protected ingestion endpoints |
-| `app/core/config.py` | Cached environment-backed application settings |
-| `app/core/logging.py` | Logging configuration |
-| `app/rag/state.py` | Shared graph state and structured routing/grading schemas |
-| `app/rag/workflow.py` | Graph nodes, conditional edges, generation, and `ask()` entry point |
-| `app/rag/vectorstore.py` | Embeddings, Pinecone index initialization, retrieval, and indexing |
-| `app/services/ingestion.py` | File loading and text chunking |
-| `app/services/audit.py` | SQLite table initialization and audit inserts |
-| `data/sample_kb/company_hr_handbook.md` | Sample employee policy document |
-| `data/sample_kb/hr_operations_runbook.md` | Sample operational HR procedures |
-| `data/audit.db` | SQLite audit database; the current repository includes this file |
-| `templates/index.html` | Browser interface and upload modal |
-| `static/css/style.css` | Interface styling |
-| `static/js/app.js` | Chat/upload requests, citations, and trace rendering |
-| `ingest_sample_kb.py` | Bulk indexing of the sample knowledge-base directory |
-| `run.py` | Local Uvicorn launcher on port 8080 |
-| `test.py` | Basic document-loading/chunk-count smoke check |
-| `create_project.py` | Project scaffolding helper |
-| `project_flow.md` | Development walkthrough with some older implementation references |
-| `requirements.txt` | Dependency list |
-| `dockerfile` | Container build and startup configuration |
-| `LICENSE` | Repository MIT license |
+| Agent orchestration | LangGraph `StateGraph` with structured (Pydantic) routing and grading |
+| Agent LLM | `nvidia/nemotron-3.5-lightning-30b-a3b` via NVIDIA NIM (`langchain-nvidia-ai-endpoints`), temperature 0, reasoning off for speed |
+| Evaluation judge | `nvidia/nemotron-3-ultra-550b-a55b`, reasoning on |
+| Embeddings | `sentence-transformers/all-MiniLM-L6-v2` (local, 384-dim) |
+| Vector store | Pinecone serverless, cosine similarity |
+| Web fallback | Tavily Search |
+| API and UI | FastAPI, Jinja2, vanilla JS (responsive, dark mode, live agent-trace panel) |
+| Ingestion | PDF, DOCX, Markdown and TXT with recursive chunking |
+| Audit | SQLite log of every question, answer source and agent trace |
+| Evaluation | DeepEval (Faithfulness, Answer Relevancy, Contextual Precision/Recall/Relevancy, GEval) |
+| Observability | Optional LangSmith tracing |
 
-## Installation
+## Project structure
 
-### Prerequisites
+```
+app/
+├── main.py              # FastAPI app, UI route, static files
+├── api/routes.py        # /api/health, /api/chat, /api/ingest
+├── core/config.py       # Typed settings loaded from .env
+├── rag/
+│   ├── llm.py           # Cached NVIDIA chat model factory
+│   ├── state.py         # Agent state and structured-output schemas
+│   ├── workflow.py      # LangGraph nodes, edges and ask() entry point
+│   └── vectorstore.py   # Embeddings, Pinecone index, retriever
+└── services/
+    ├── ingestion.py     # Load → chunk → index pipeline
+    └── audit.py         # SQLite audit log
+evaluation/
+├── build_datasets.py    # Generates the golden datasets
+├── datasets/            # 7 golden datasets (127 questions)
+├── judge.py             # DeepEval judge on NVIDIA, with rate limiting and retries
+├── run_eval.py          # Runs the evaluation, writes reports to results/
+└── results/             # Timestamped evaluation reports
+data/sample_kb/          # Sample HR handbook and operations runbook
+templates/, static/      # Chat UI
+ingest.py                # Bulk-index a folder of documents
+run.py                   # Local dev server
+Dockerfile
+requirements.txt         # App dependencies (pinned)
+requirements-eval.txt    # App + DeepEval
+```
 
-- Python 3.11 is the baseline used by the included container.
-- Git and network access for package/model downloads and external API calls.
-- Groq and Pinecone credentials; Tavily credentials for the web-fallback path.
+## Getting started
 
-### 1. Clone the repository
+### 1. Install
 
 ```bash
 git clone https://github.com/swapnilparate87/Agentic-_RAG-_Chatbot_for_HR_policy_Employees_support.git
 cd Agentic-_RAG-_Chatbot_for_HR_policy_Employees_support
+conda create -n Advanced_RAG python=3.11 -y
+conda activate Advanced_RAG
+pip install -r requirements.txt          # add -r requirements-eval.txt to run the evaluation
 ```
 
-### 2. Create a virtual environment
+With venv instead: `python -m venv .venv`, activate it (`source .venv/bin/activate`, or `.venv\Scripts\activate` on Windows), then install as above.
 
-```bash
-python -m venv .venv
-```
+Get an NVIDIA API key (it starts with `nvapi-`) from [build.nvidia.com](https://build.nvidia.com), a Pinecone key from [pinecone.io](https://www.pinecone.io) and a Tavily key from [tavily.com](https://tavily.com).
 
-**Windows PowerShell:**
+### 2. Configure
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux:**
-
-```bash
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install langchain-huggingface sentence-transformers
-python -m pip check
-```
-
-**Dependency caveat:** the current requirements file omits `langchain-huggingface` and `sentence-transformers`, which the embedding implementation needs. The extra command supplies those packages. Installation and compatibility of the full pinned dependency set still need validation in a clean environment; these instructions are based on source review, not a verified end-to-end run.
-
-### 4. Create `.env` in the repository root
+Create a `.env` file in the project root:
 
 ```dotenv
-GROQ_API_KEY=replace-with-your-groq-key
-PINECONE_API_KEY=replace-with-your-pinecone-key
-TAVILY_API_KEY=replace-with-your-tavily-key
+NVIDIA_API_KEY=nvapi-...
+PINECONE_API_KEY=...
+TAVILY_API_KEY=...
+ADMIN_API_KEY=a-long-random-secret
 
-GROQ_MODEL=openai/gpt-oss-120b
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-PINECONE_INDEX_NAME=fde-hr-policy-rag
-PINECONE_NAMESPACE=advanced_rag
+# Optional overrides
+PINECONE_INDEX_NAME=hr-policy-rag
+PINECONE_NAMESPACE=hr-kb
+NVIDIA_MODEL=nvidia/nemotron-3.5-lightning-30b-a3b
+NVIDIA_EVAL_MODEL=nvidia/nemotron-3-ultra-550b-a55b
 TOP_K=4
 MAX_RETRIES=1
-ADMIN_API_KEY=replace-with-a-long-random-secret
 ```
 
-The explicit embedding identifier above uses the canonical model-name capitalization rather than the lowercased default in `config.py`. Keep `.env` out of version control.
-
-## Configuration
-
-| Variable | Code default | Purpose |
+| Setting | Default | Purpose |
 |---|---|---|
-| `APP_NAME` | `Agentic_RAG_Chatbot_for_HR_policy_Employees_support` | Application title and health-response service name |
-| `APP_ENV` | `development` | Defined setting; no behavior switch is implemented |
-| `GROQ_API_KEY` | Empty | Credential used by `ChatGroq` |
-| `GROQ_MODEL` | `openai/gpt-oss-120b` | Groq-hosted model identifier |
-| `PINECONE_API_KEY` | Empty | Pinecone credential |
-| `PINECONE_INDEX_NAME` | `fde-hr-policy-rag` | Vector index name |
-| `PINECONE_NAMESPACE` | `advanced_rag` | Namespace for document vectors |
-| `EMBEDDING_MODEL` | `sentence-transformers/all-minilm-l6-v2` | Local Hugging Face embedding model; use the casing shown in `.env` above |
-| `TAVILY_API_KEY` | Empty | Credential for public-web fallback |
-| `TOP_K` | `4` | Number of retrieved KB chunks |
-| `MAX_RETRIES` | `1` | Maximum query-rewrite cycles |
-| `ADMIN_API_KEY` | `change-me-in-production` | Ingestion header secret; replace before use |
-| `AUDIT_DB_PATH` | Repository `data/audit.db` | SQLite database path |
-| `UPLOAD_DIR` | Repository `uploads/` | Uploaded document storage |
-| `SAMPLE_KB_DIR` | Repository `data/sample_kb/` | Bulk-ingestion source directory |
-| `HUGGINGFACEHUB_API_KEY` | Empty | Defined setting, not explicitly passed to the embedding constructor |
+| `NVIDIA_MODEL` | `nvidia/nemotron-3.5-lightning-30b-a3b` | Model that runs the agent |
+| `NVIDIA_EVAL_MODEL` | `nvidia/nemotron-3-ultra-550b-a55b` | DeepEval judge model |
+| `NVIDIA_REASONING` | `false` | Turn on Nemotron reasoning for the agent (slower, more tokens) |
+| `NVIDIA_MAX_TOKENS` | `8192` | Output limit; reasoning tokens count against it |
+| `EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | Local embedding model |
+| `TOP_K` | `4` | Chunks retrieved per query |
+| `MAX_RETRIES` | `1` | Query-rewrite attempts before giving up |
+| `WEB_MAX_RESULTS` | `5` | Tavily results per search |
+| `CHUNK_SIZE` / `CHUNK_OVERLAP` | `900` / `120` | Text splitter parameters (characters) |
+| `KNOWLEDGE_BASE_DIR` | `data/sample_kb` | Folder indexed by `ingest.py` |
 
-Chunk size (`900`) and overlap (`120`) are hardcoded in `app/services/ingestion.py`. Tavily result count (`5`) is configured in `app/rag/workflow.py`, not through `.env`.
+If the Pinecone index doesn't exist, it is created on first use. If an existing index's dimension doesn't match the embedding model, the app raises an error and never deletes data.
 
-**Index initialization warning:** the current `ensure_index()` deletes and recreates an existing named Pinecone index if its dimension differs from the configured embedding dimension. Use a dedicated project index. Do not point this application at an index containing unrelated data.
-
-## Running the App
-
-Run all commands from the repository root.
-
-### 1. Index the sample documents
+### 3. Index the knowledge base and run
 
 ```bash
-python ingest_sample_kb.py
-```
-
-The script loads files from `SAMPLE_KB_DIR`, chunks them, computes embeddings, and adds vectors to Pinecone. It prints document, chunk, and vector counts. It does not provide deduplication; repeated runs can add duplicate content.
-
-### 2. Start the server
-
-```bash
+python ingest.py            # or: python ingest.py path/to/your/hr-docs
 python run.py
 ```
 
-- Browser UI: `http://127.0.0.1:8080`
-- Interactive API documentation: `http://127.0.0.1:8080/docs`
-- Health endpoint: `http://127.0.0.1:8080/api/health`
+Open http://127.0.0.1:8080 for the chat UI, or http://127.0.0.1:8080/docs for the interactive API docs.
 
-The UI and API are served by the same FastAPI application. `run.py` enables development reload.
-
-### 3. Ask questions or upload a document
-
-Use a sample question or enter an HR query. For uploads, select **Add HR Document**, enter the configured admin key, and choose a supported file.
-
-The interface displays the completed answer, citations, final source, and trace after the request returns. It does not stream tokens or live graph events.
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/` | Browser chat interface |
-| `GET` | `/api/health` | Basic application health response |
-| `POST` | `/api/chat` | Run the agentic workflow and write an audit record |
-| `POST` | `/api/ingest` | Upload/index a document; requires `X-Admin-Key` |
-
-### Chat request
+### Docker
 
 ```bash
-curl -X POST http://127.0.0.1:8080/api/chat \
-  -H 'Content-Type: application/json' \
-  -d '{"question":"How many annual leave days do employees receive?"}'
-```
-
-`question` must contain between 2 and 3,000 characters.
-
-| Response field | Meaning |
-|---|---|
-| `answer` | Generated answer or insufficient-evidence message |
-| `source_used` | `private_kb`, `web_search`, `direct`, or `insufficient_evidence` |
-| `trace` | Ordered workflow decision messages |
-| `citations` | Objects with `title`, `url`, and `type`; KB URLs are empty strings |
-| `rewritten_query` | Final query used; equals the original question if no rewrite occurred |
-
-### Document upload
-
-```bash
-curl -X POST http://127.0.0.1:8080/api/ingest \
-  -H 'X-Admin-Key: replace-with-your-admin-secret' \
-  -F 'file=@data/sample_kb/company_hr_handbook.md'
-```
-
-Successful ingestion returns `message`, `file`, `chunks`, and `ids_created`. Unsupported extensions return HTTP 400; an incorrect admin key returns HTTP 401. On Windows PowerShell, use `curl.exe` and adapt line continuations, or use `/docs`.
-
-There is no audit-history retrieval endpoint in the current routes. `/api/health` does not validate external provider connectivity.
-
-## Sample Knowledge Base
-
-The repository includes two demonstration documents:
-
-- **Company HR handbook:** annual and sick leave, remote work, working hours, payroll, benefits, and conduct.
-- **HR operations runbook:** onboarding, leave-portal support, payroll issue priorities, employee-record changes, and offboarding.
-
-| Example question | Intended path / sample evidence |
-|---|---|
-| “Hello!” | Direct conversational answer |
-| “How many annual leave days do employees receive?” | KB; sample handbook specifies 20 days |
-| “What is our remote work policy?” | KB; sample handbook allows up to 2 days per week with approval |
-| “What should I do if the leave portal is unavailable?” | KB; runbook describes email recording and manager confirmation |
-| “How are payroll issues prioritized?” | KB; runbook defines P1–P4 |
-| A relevant question absent from the documents | May trigger web fallback, rewriting, or insufficient-evidence output |
-
-These are expected demonstrations, not recorded test results. Routing and evidence grades are model-generated. The sample policies are repository examples, not universal employment rules.
-
-## Docker
-
-The repository includes a lowercase `dockerfile` based on `python:3.11-slim`.
-
-**Before building:** add `langchain-huggingface` and `sentence-transformers` to `requirements.txt` and validate dependency resolution. The current Docker build installs only that file, so a clean container otherwise lacks the active embedding integration.
-
-```bash
-docker build -f dockerfile -t hr-agentic-rag .
+docker build -t hr-agentic-rag .
 docker run --rm -p 8080:8080 --env-file .env hr-agentic-rag
 ```
 
-The container starts Uvicorn on `0.0.0.0`, using `PORT` or 8080. Ingest the sample KB separately as shown above using the same Pinecone index and namespace. These container commands have not been runtime-verified as part of the README review.
+The image installs CPU-only PyTorch, downloads the embedding model at build time, runs as a non-root user and includes a health check on `/api/health`. Secrets, the audit database, uploads and the evaluation suite are excluded by `.dockerignore`. To keep the audit log and uploads across restarts, mount a volume at `/app/state` and set `AUDIT_DB_PATH=/app/state/audit.db` and `UPLOAD_DIR=/app/state/uploads`.
 
-Container-local uploads and new audit writes are not persistent after removal unless you mount suitable storage. The current build context includes `data/audit.db`; review that file before distributing an image.
+## API
 
-## Verification
-
-Run the included ingestion smoke check:
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | Liveness check |
+| `POST` | `/api/chat` | Run the agent on a question |
+| `POST` | `/api/ingest` | Upload and index a document (requires the `X-Admin-Key` header) |
 
 ```bash
-python test.py
+curl -X POST http://127.0.0.1:8080/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"question": "How many annual leave days do employees receive?"}'
 ```
 
-This loads the sample handbook, splits it, and prints the chunk count. It is not an automated assertion-based or end-to-end test suite.
+```json
+{
+  "answer": "Full-time employees receive 20 paid annual leave days per calendar year.",
+  "source_used": "knowledge_base",
+  "rewritten_query": "How many annual leave days do employees receive?",
+  "trace": ["Router → KB", "KB retrieval → 4 chunks", "KB evidence → GOOD", "Answer → KNOWLEDGE BASE"],
+  "citations": [{"title": "company_hr_handbook.md", "url": "", "type": "kb"}]
+}
+```
 
-For manual validation after setup:
+`source_used` is one of `knowledge_base`, `web_search`, `direct` or `insufficient_evidence`.
 
-1. Check `/api/health` and open the browser UI.
-2. Ingest the sample documents and ask a question with a known handbook answer.
-3. Inspect source labels, citations, and the returned trace.
-4. Exercise a question missing from the KB and inspect the fallback path.
-5. Check that ingestion rejects an incorrect admin key.
-6. Inspect SQLite audit records after chat requests.
+## Evaluation
 
-No measured accuracy, latency, throughput, or business-impact results are included in this repository review.
+Each component of the agent is tested on its own golden dataset, plus an end-to-end set for the full graph. Ground-truth contexts are copied verbatim from the knowledge base. Scoring combines deterministic checks (exact route, grade, path and retrieval hits) with DeepEval LLM-as-judge metrics, using Nemotron Ultra 550B as the judge.
 
-## Implementation Notes and Limitations
+```bash
+pip install -r requirements-eval.txt
+python evaluation/build_datasets.py                     # regenerate datasets (optional)
+python evaluation/run_eval.py                           # all components
+python evaluation/run_eval.py -c router end_to_end      # selected components
+python evaluation/run_eval.py --limit 3                 # quick smoke test
+```
 
-- **External services:** embeddings are local, but document chunks and vectors are stored in Pinecone; questions and retrieved context are sent to Groq. Fallback queries are sent to Tavily. “Private KB” identifies the company-document source, not an entirely local processing boundary.
-- **Access controls:** only ingestion checks an admin key. Chat has no employee authentication, tenant isolation, or document-level permissions.
-- **Evidence quality:** LLM grades are qualitative decisions, not calibrated confidence scores. Citations identify retrieved sources, not verified support for every sentence. There is no separate post-generation fact check.
-- **Policy boundaries:** external answers are prompted to require HR validation. No explicit sensitive-query redaction or company-policy-only search restriction is implemented.
-- **Conversation state:** chat messages remain visible in the page, but each API call passes only the current question. There is no conversational memory or durable chat session.
-- **Audit scope:** SQLite records the question, source category, timestamp, and trace. It does not store the complete answer or provide an audit viewer/API.
-- **Ingestion:** PDFs use text extraction without an OCR stage. DOCX loading extracts paragraphs rather than tables. There is no document versioning, deletion endpoint, or deduplication.
-- **Performance:** routing, grading, generation, and possible retries require several sequential calls. The current implementation provides no response streaming, explicit request-level caching, or measured latency targets.
-- **Embedding providers:** the dimension map includes OpenAI model names, but `get_embeddings()` always constructs `HuggingFaceEmbeddings`. Changing the model name alone does not enable OpenAI embeddings.
-- **Operational readiness:** dependency cleanup, upload size limits, stronger error handling, provider-failure handling, authentication, and automated tests remain areas for improvement.
+Each run writes `summary.md`, `summary.json` and per-question records to `evaluation/results/<timestamp>/`. Dataset details are in [evaluation/README.md](evaluation/README.md).
 
-## Troubleshooting
+### Results
 
-| Issue | Check |
+Latest run: [evaluation/results/20261108-134205](evaluation/results/20261108-134205/summary.md). Agent: Nemotron Lightning 30B (reasoning off). Judge: Nemotron Ultra 550B. `top_k=4`. Scores run from 0 to 1, and pass rate is the share of questions scoring at least 0.5.
+
+| Component | Questions | Measure | Score |
+|---|---|---|---|
+| Router | 20 | Route accuracy | **1.00** |
+| Retrieval | 18 | Hit rate (right section retrieved) | **1.00** |
+| | | Contextual Recall / Precision | 1.00 / 0.95 |
+| | | Contextual Relevancy | 0.11 ¹ |
+| KB evidence grader | 18 | Grade accuracy (good 10/10, weak 8/8) | **1.00** |
+| Answer from KB | 20 | Faithfulness | **0.99** |
+| | | Correctness (GEval) | **1.00** |
+| | | Answer Relevancy | 0.85 (pass 95%) |
+| Web fallback | 16 | Correct path to web search | 0.88 |
+| | | Correctness / external-source disclaimer (GEval) | 0.91 / 0.85 |
+| Query rewrite | 15 | Retrieval hit rate, original → rewritten | 0.93 → **1.00** |
+| | | Rewrite quality (GEval) | 0.78 |
+| End to end | 20 | Path accuracy (direct 4/4, KB 8/8, web 4/4, insufficient 3/4) | **0.95** |
+| | | Correctness (GEval) | 0.88 |
+
+¹ The sample knowledge base has only 5 chunks and `top_k=4`, so most retrieved text is unrelated to any single question. Recall and precision show the right chunk is retrieved and ranked first.
+
+### Latency and tokens
+
+Measured per request, run one at a time, including Pinecone, Tavily and NVIDIA API calls.
+
+| Request type | Latency p50 | Latency p95 | Tokens per request (p50) |
+|---|---|---|---|
+| **All requests** | **5.0 s** | **11.2 s** | **1,889** (mean 2,721) |
+| Small talk | 1.1 s | 8.0 s ² | 169 |
+| Answer from knowledge base | 3.7 s | 8.0 s | 1,850 |
+| Web search fallback | 9.0 s | 9.9 s | 4,652 |
+| Insufficient evidence (full retry loop) | 11.2 s | 11.8 s | 5,333 |
+
+² A single slow API response; the other small-talk requests took about 1.1 s.
+
+Single steps: router 0.5 s (121 tokens), retrieval 0.4 s, evidence grading 1.0 s (827 tokens), answer generation 2.8 s (942 tokens), query rewrite 1.4 s (81 tokens).
+
+The full evaluation used **651,017 tokens**: 159,667 by the agent and 491,350 by the judge. The judge uses about three times as many because the 550B model reasons before every score. Turning reasoning off for the agent made its responses about 20× faster during development.
+
+### Findings
+
+The agent is highly accurate when the knowledge base covers a question. The main weakness is with questions on a *related but different* topic:
+
+| Issue | Example | Cause |
+|---|---|---|
+| Company policy presented as law | "Statutory annual leave for UK workers?" answered with the company's 20 days (UK law is 5.6 weeks) | The KB grader checks topic relevance, not jurisdiction |
+| Invented source | "When must a US employer complete Form I-9?" answered as if from the knowledge base | Same as above |
+| Wrong company | "PeoplePrime referral bonus?" answered with another company's bonus from the web | The web grader doesn't check the company named in the question |
+| Weak rewrites of vague queries | "leave??" rewritten as a resignation question; "sick note thing" rewritten as a heading instead of a query | The rewrite prompt doesn't constrain the output format |
+
+About 12 of the roughly 250 judge scores are missing because of NVIDIA API rate limits (HTTP 429) and are excluded from the averages. With 15–20 questions per component, one question moves a score by 5–7 points.
+
+## Sample questions
+
+| Question | Expected path |
 |---|---|
-| Missing `langchain_huggingface` or sentence-transformer package | Install the extra embedding dependencies in the active environment. |
-| Dependency resolution failure | Validate the pins in `requirements.txt`; the checked-in dependency set is not a verified lockfile. |
-| Missing Groq, Pinecone, or Tavily key | Populate the corresponding `.env` setting and restart the process. |
-| Embedding model cannot load | Use `sentence-transformers/all-MiniLM-L6-v2`; check model-download access. |
-| Groq model request fails | Check that the configured model is accessible to your account and supports the workflow's structured-output calls. |
-| KB answers fall back to the web | Confirm ingestion used the same index and namespace; inspect retrieved-evidence grades in the trace. |
-| Upload returns 401 | Match `X-Admin-Key` to `ADMIN_API_KEY`. |
-| SQLite cannot open the database | Ensure the parent directory of `AUDIT_DB_PATH` exists and is writable. |
-| Startup import/path error | Activate the correct environment and run from the repository root. |
-| Slow first request or ingestion | Initial embedding-model download/loading and index readiness can add delay; later graph paths still make multiple provider calls. |
+| "Hi there!" | Direct reply, no retrieval |
+| "How many annual leave days do employees receive?" | Knowledge base (20 days) |
+| "What should I do if the leave portal is down?" | Knowledge base (operations runbook) |
+| "How are payroll issues prioritised?" | Knowledge base (P1–P4 levels) |
+| A question the documents don't cover | Web fallback, then rewrite, then an insufficient-evidence reply |
 
-## Future Improvements
+The bundled documents describe a fictional company, PeoplePrime Technologies. Replace them with your own policies and re-run `ingest.py`.
 
-The following are proposed extensions, not completed features:
+## Design notes and limitations
 
-- [ ] Add a reproducible dependency lock and CI smoke checks.
-- [ ] Replace destructive index recreation with a clear dimension-mismatch error.
-- [ ] Add retrieval and answer-quality evaluation with a labeled HR question set.
-- [ ] Measure per-node latency and provider usage before optimizing.
-- [ ] Add employee authentication and document access controls.
-- [ ] Add configurable web-search restrictions and sensitive-query handling.
-- [ ] Add document IDs, deduplication, versioning, and deletion.
-- [ ] Stream graph events and answers to the frontend.
-- [ ] Add an audit viewer and configurable retention.
+- **Data boundary:** embeddings run locally, but chunks are stored in Pinecone and prompts are sent to the NVIDIA API. Web fallback sends the query to Tavily.
+- **Access control:** only ingestion is protected (with an admin key). Chat has no user authentication or per-document permissions.
+- **Stateless chat:** each request is answered on its own; there is no conversation memory.
+- **Grading:** routing and evidence grades are LLM judgements, not calibrated confidence scores (see [Findings](#findings)).
+- **Ingestion:** there is no OCR for scanned PDFs, and re-indexing the same file creates duplicate vectors.
 
-## Acknowledgements
+## Roadmap
 
-This project was developed by following a YouTube tutorial as a hands-on exercise in agentic RAG. Credit for the tutorial's original design and teaching belongs to its creator. This repository documents the implemented system and does not claim that the architecture was independently invented.
-
-**Attribution to complete:** add the tutorial title, creator/channel, video URL, and original source repository if one was provided. The tutorial source has not yet been identified in this README.
-
-Any independent modifications should be documented separately after comparison with the tutorial baseline. The presence of a feature in this repository alone does not establish it as an original extension.
+- [x] Component-level and end-to-end evaluation with DeepEval
+- [x] Latency (p50/p95) and token-usage benchmarking
+- [ ] Stricter evidence grading: jurisdiction and company must match the question
+- [ ] Rewrite prompt that returns only the search query
+- [ ] Grader test cases for related-but-different topics, then re-run the evaluation
+- [ ] Streaming responses and live graph events in the UI
+- [ ] Conversation memory
+- [ ] Employee authentication and document-level access control
+- [ ] Document versioning, deduplication and deletion
 
 ## License
 
-The repository includes an [MIT License](LICENSE). Tutorial-source attribution remains to be completed.
-
----
-
-Maintained by [Swapnil Parate](https://github.com/swapnilparate87).
+[MIT](LICENSE) © Swapnil Parate

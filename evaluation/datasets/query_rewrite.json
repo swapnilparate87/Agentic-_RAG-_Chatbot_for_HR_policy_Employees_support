@@ -1,0 +1,240 @@
+[
+  {
+    "input": "leave??",
+    "expected_output": "How many days of paid annual leave do employees get and how do I request it?",
+    "context": [
+      "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Annual Leave",
+      "expected_keywords": [
+        "annual leave",
+        "request"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "wfh",
+    "expected_output": "What is the company remote work (work from home) policy?",
+    "context": [
+      "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Remote Work Policy",
+      "expected_keywords": [
+        "remote work"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "when do we get paid",
+    "expected_output": "On what date is the monthly salary paid?",
+    "context": [
+      "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Payroll",
+      "expected_keywords": [
+        "salary",
+        "paid"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "sick note thing",
+    "expected_output": "When is medical documentation required for sick leave?",
+    "context": [
+      "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Sick Leave",
+      "expected_keywords": [
+        "sick leave",
+        "medical documentation"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "carry over days",
+    "expected_output": "Can unused annual leave be carried forward to the next year?",
+    "context": [
+      "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Annual Leave",
+      "expected_keywords": [
+        "unused leave",
+        "carried forward"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "someone's harassing me",
+    "expected_output": "How do I report workplace harassment?",
+    "context": [
+      "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Code of Conduct",
+      "expected_keywords": [
+        "harassment",
+        "report"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "bank change",
+    "expected_output": "How do I update my bank details in the HR system?",
+    "context": [
+      "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Employee Record Changes",
+      "expected_keywords": [
+        "bank details",
+        "update"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "new joiner stuff",
+    "expected_output": "What is the onboarding process for new employees?",
+    "context": [
+      "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "New Employee Onboarding",
+      "expected_keywords": [
+        "onboarding",
+        "new employee"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "quitting, what now",
+    "expected_output": "What is the offboarding process when an employee leaves?",
+    "context": [
+      "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Offboarding",
+      "expected_keywords": [
+        "offboarding",
+        "final working day"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "payslip wrong",
+    "expected_output": "How do I report a payroll discrepancy on my payslip?",
+    "context": [
+      "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Payroll",
+      "expected_keywords": [
+        "payslip",
+        "discrepancy"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "change insurance",
+    "expected_output": "Can I change my benefits enrollment outside the annual window?",
+    "context": [
+      "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Benefits",
+      "expected_keywords": [
+        "benefits",
+        "enrollment"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "office timings?",
+    "expected_output": "What are the standard working hours?",
+    "context": [
+      "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Working Hours and Attendance",
+      "expected_keywords": [
+        "working hours"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "portal broken, need leave",
+    "expected_output": "How do I submit a leave request when the HR portal is unavailable?",
+    "context": [
+      "If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Leave Request Support",
+      "expected_keywords": [
+        "leave request",
+        "HR portal"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "salary not came",
+    "expected_output": "What should I do if I have not received my salary?",
+    "context": [
+      "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+    ],
+    "additional_metadata": {
+      "expected_source": "hr_operations_runbook.md",
+      "section": "Payroll Issue Priority",
+      "expected_keywords": [
+        "salary",
+        "not received"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  },
+  {
+    "input": "always late, will I get in trouble",
+    "expected_output": "What is the policy on repeated lateness or unapproved absence?",
+    "context": [
+      "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+    ],
+    "additional_metadata": {
+      "expected_source": "company_hr_handbook.md",
+      "section": "Working Hours and Attendance",
+      "expected_keywords": [
+        "lateness",
+        "attendance"
+      ],
+      "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+    }
+  }
+]

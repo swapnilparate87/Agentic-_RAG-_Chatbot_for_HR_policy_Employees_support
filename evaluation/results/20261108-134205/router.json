@@ -1,0 +1,501 @@
+{
+  "summary": {
+    "component": "router",
+    "goldens": 20,
+    "errors": 0,
+    "checks": {
+      "route_accuracy": {
+        "mean": 1.0,
+        "n": 20
+      }
+    },
+    "metrics": {},
+    "performance": {
+      "latency_s": {
+        "mean": 0.53,
+        "p50": 0.49,
+        "p95": 0.7,
+        "max": 1.05
+      },
+      "tokens_per_request": {
+        "mean": 121.0,
+        "p50": 121,
+        "p95": 128,
+        "max": 128
+      },
+      "input_tokens": 2289,
+      "output_tokens": 140
+    },
+    "judge_tokens": {
+      "input": 0,
+      "output": 0,
+      "total": 0
+    },
+    "timing_s": {
+      "generation": 10.7,
+      "judging": 0.0
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "golden": {
+        "input": "How many sick days do I get?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.05,
+      "tokens": {
+        "input": 115,
+        "output": 7,
+        "total": 122
+      }
+    },
+    {
+      "index": 1,
+      "golden": {
+        "input": "what's the remote work policy",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.558,
+      "tokens": {
+        "input": 114,
+        "output": 7,
+        "total": 121
+      }
+    },
+    {
+      "index": 2,
+      "golden": {
+        "input": "Can I carry forward unused leave?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.483,
+      "tokens": {
+        "input": 114,
+        "output": 7,
+        "total": 121
+      }
+    },
+    {
+      "index": 3,
+      "golden": {
+        "input": "When is payday?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.487,
+      "tokens": {
+        "input": 112,
+        "output": 7,
+        "total": 119
+      }
+    },
+    {
+      "index": 4,
+      "golden": {
+        "input": "A colleague keeps making offensive comments to me. What should I do?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.461,
+      "tokens": {
+        "input": 121,
+        "output": 7,
+        "total": 128
+      }
+    },
+    {
+      "index": 5,
+      "golden": {
+        "input": "How do I update my bank account details?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.565,
+      "tokens": {
+        "input": 116,
+        "output": 7,
+        "total": 123
+      }
+    },
+    {
+      "index": 6,
+      "golden": {
+        "input": "What is the maternity leave policy?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.463,
+      "tokens": {
+        "input": 115,
+        "output": 7,
+        "total": 122
+      }
+    },
+    {
+      "index": 7,
+      "golden": {
+        "input": "Is there a travel expense reimbursement policy?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.543,
+      "tokens": {
+        "input": 116,
+        "output": 7,
+        "total": 123
+      }
+    },
+    {
+      "index": 8,
+      "golden": {
+        "input": "Hi! How many annual leave days do I have?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.698,
+      "tokens": {
+        "input": 118,
+        "output": 7,
+        "total": 125
+      }
+    },
+    {
+      "index": 9,
+      "golden": {
+        "input": "Thanks. Also, who do I report a payroll error to?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.449,
+      "tokens": {
+        "input": 121,
+        "output": 7,
+        "total": 128
+      }
+    },
+    {
+      "index": 10,
+      "golden": {
+        "input": "my payslip is wrong",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.515,
+      "tokens": {
+        "input": 113,
+        "output": 7,
+        "total": 120
+      }
+    },
+    {
+      "index": 11,
+      "golden": {
+        "input": "What is the notice period if I resign?",
+        "additional_metadata": {
+          "expected_route": "kb"
+        }
+      },
+      "fields": {
+        "actual_output": "kb"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.485,
+      "tokens": {
+        "input": 116,
+        "output": 7,
+        "total": 123
+      }
+    },
+    {
+      "index": 12,
+      "golden": {
+        "input": "Hello",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.448,
+      "tokens": {
+        "input": 109,
+        "output": 7,
+        "total": 116
+      }
+    },
+    {
+      "index": 13,
+      "golden": {
+        "input": "Good morning!",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.434,
+      "tokens": {
+        "input": 110,
+        "output": 7,
+        "total": 117
+      }
+    },
+    {
+      "index": 14,
+      "golden": {
+        "input": "Thanks for the help!",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.394,
+      "tokens": {
+        "input": 112,
+        "output": 7,
+        "total": 119
+      }
+    },
+    {
+      "index": 15,
+      "golden": {
+        "input": "Bye, have a nice day",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.418,
+      "tokens": {
+        "input": 114,
+        "output": 7,
+        "total": 121
+      }
+    },
+    {
+      "index": 16,
+      "golden": {
+        "input": "How are you doing today?",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.493,
+      "tokens": {
+        "input": 113,
+        "output": 7,
+        "total": 120
+      }
+    },
+    {
+      "index": 17,
+      "golden": {
+        "input": "Thank you, that answered my question.",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.661,
+      "tokens": {
+        "input": 115,
+        "output": 7,
+        "total": 122
+      }
+    },
+    {
+      "index": 18,
+      "golden": {
+        "input": "Hey there 👋",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.528,
+      "tokens": {
+        "input": 113,
+        "output": 7,
+        "total": 120
+      }
+    },
+    {
+      "index": 19,
+      "golden": {
+        "input": "Great, cheers!",
+        "additional_metadata": {
+          "expected_route": "direct"
+        }
+      },
+      "fields": {
+        "actual_output": "direct"
+      },
+      "checks": {
+        "route_accuracy": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 0.514,
+      "tokens": {
+        "input": 112,
+        "output": 7,
+        "total": 119
+      }
+    }
+  ]
+}

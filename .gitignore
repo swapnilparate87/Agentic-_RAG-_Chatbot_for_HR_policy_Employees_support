@@ -203,6 +203,8 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+BUILD.md
+
 # Ruff stuff:
 .ruff_cache/
 
@@ -216,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Project runtime data
+data/audit.db
+uploads/
+
+# DeepEval local cache
+.deepeval/

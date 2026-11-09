@@ -1,0 +1,487 @@
+{
+  "totals": {
+    "agent_tokens": {
+      "input": 149752,
+      "output": 9915,
+      "total": 159667
+    },
+    "judge_tokens": {
+      "input": 227905,
+      "output": 263445,
+      "total": 491350
+    },
+    "wall_time_min": 1605.5
+  },
+  "components": [
+    {
+      "component": "router",
+      "goldens": 20,
+      "errors": 0,
+      "checks": {
+        "route_accuracy": {
+          "mean": 1.0,
+          "n": 20
+        }
+      },
+      "metrics": {},
+      "performance": {
+        "latency_s": {
+          "mean": 0.53,
+          "p50": 0.49,
+          "p95": 0.7,
+          "max": 1.05
+        },
+        "tokens_per_request": {
+          "mean": 121.0,
+          "p50": 121,
+          "p95": 128,
+          "max": 128
+        },
+        "input_tokens": 2289,
+        "output_tokens": 140
+      },
+      "judge_tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "timing_s": {
+        "generation": 10.7,
+        "judging": 0.0
+      }
+    },
+    {
+      "component": "retrieval",
+      "goldens": 18,
+      "errors": 0,
+      "checks": {
+        "context_hit": {
+          "mean": 1.0,
+          "n": 18
+        },
+        "source_hit": {
+          "mean": 1.0,
+          "n": 18
+        }
+      },
+      "metrics": {
+        "Contextual Precision": {
+          "mean_score": 0.953,
+          "pass_rate": 0.938,
+          "n": 16,
+          "errors": 2
+        },
+        "Contextual Recall": {
+          "mean_score": 1.0,
+          "pass_rate": 1,
+          "n": 16,
+          "errors": 2
+        },
+        "Contextual Relevancy": {
+          "mean_score": 0.11,
+          "pass_rate": 0,
+          "n": 15,
+          "errors": 3
+        }
+      },
+      "performance": {
+        "latency_s": {
+          "mean": 0.45,
+          "p50": 0.39,
+          "p95": 1.5,
+          "max": 1.5
+        },
+        "tokens_per_request": {
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "judge_tokens": {
+        "input": 102228,
+        "output": 103428,
+        "total": 205656
+      },
+      "timing_s": {
+        "generation": 8.1,
+        "judging": 88694.4
+      }
+    },
+    {
+      "component": "kb_grader",
+      "goldens": 18,
+      "errors": 0,
+      "checks": {
+        "grade_accuracy": {
+          "mean": 1.0,
+          "n": 18
+        },
+        "grade_accuracy_good": {
+          "mean": 1.0,
+          "n": 10
+        },
+        "grade_accuracy_weak": {
+          "mean": 1.0,
+          "n": 8
+        }
+      },
+      "metrics": {},
+      "performance": {
+        "latency_s": {
+          "mean": 1.12,
+          "p50": 0.98,
+          "p95": 2.99,
+          "max": 2.99
+        },
+        "tokens_per_request": {
+          "mean": 823.0,
+          "p50": 827,
+          "p95": 853,
+          "max": 853
+        },
+        "input_tokens": 14696,
+        "output_tokens": 126
+      },
+      "judge_tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "timing_s": {
+        "generation": 20.1,
+        "judging": 0.0
+      }
+    },
+    {
+      "component": "kb_generation",
+      "goldens": 20,
+      "errors": 0,
+      "checks": {
+        "context_hit": {
+          "mean": 1.0,
+          "n": 20
+        }
+      },
+      "metrics": {
+        "Answer Relevancy": {
+          "mean_score": 0.854,
+          "pass_rate": 0.95,
+          "n": 20,
+          "errors": 0
+        },
+        "Correctness [GEval]": {
+          "mean_score": 1.0,
+          "pass_rate": 1,
+          "n": 20,
+          "errors": 0
+        },
+        "Faithfulness": {
+          "mean_score": 0.994,
+          "pass_rate": 1,
+          "n": 20,
+          "errors": 0
+        }
+      },
+      "performance": {
+        "latency_s": {
+          "mean": 3.89,
+          "p50": 2.76,
+          "p95": 6.35,
+          "max": 24.17
+        },
+        "tokens_per_request": {
+          "mean": 949.0,
+          "p50": 942,
+          "p95": 1030,
+          "max": 1084
+        },
+        "input_tokens": 15990,
+        "output_tokens": 2988
+      },
+      "judge_tokens": {
+        "input": 90849,
+        "output": 114482,
+        "total": 205331
+      },
+      "timing_s": {
+        "generation": 77.8,
+        "judging": 672.4
+      }
+    },
+    {
+      "component": "web_fallback",
+      "goldens": 16,
+      "errors": 0,
+      "checks": {
+        "kb_grade_weak": {
+          "mean": 0.875,
+          "n": 16
+        },
+        "path_accuracy": {
+          "mean": 0.875,
+          "n": 16
+        }
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "mean_score": 0.909,
+          "pass_rate": 0.909,
+          "n": 11,
+          "errors": 5
+        },
+        "External Disclaimer [GEval]": {
+          "mean_score": 0.846,
+          "pass_rate": 0.846,
+          "n": 13,
+          "errors": 3
+        }
+      },
+      "performance": {
+        "latency_s": {
+          "mean": 9.19,
+          "p50": 7.84,
+          "p95": 25.1,
+          "max": 25.1
+        },
+        "tokens_per_request": {
+          "mean": 4227.0,
+          "p50": 4391,
+          "p95": 5633,
+          "max": 5633
+        },
+        "input_tokens": 64140,
+        "output_tokens": 3491
+      },
+      "performance_by_path": {
+        "knowledge_base": {
+          "n": 2,
+          "latency_s": {
+            "mean": 4.07,
+            "p50": 3.56,
+            "p95": 4.57,
+            "max": 4.57
+          },
+          "tokens_per_request": {
+            "mean": 1946,
+            "p50": 1864,
+            "p95": 2028,
+            "max": 2028
+          },
+          "input_tokens": 3564,
+          "output_tokens": 328
+        },
+        "web_search": {
+          "n": 14,
+          "latency_s": {
+            "mean": 9.92,
+            "p50": 7.97,
+            "p95": 25.1,
+            "max": 25.1
+          },
+          "tokens_per_request": {
+            "mean": 4553.0,
+            "p50": 4602,
+            "p95": 5633,
+            "max": 5633
+          },
+          "input_tokens": 60576,
+          "output_tokens": 3163
+        }
+      },
+      "judge_tokens": {
+        "input": 17849,
+        "output": 17633,
+        "total": 35482
+      },
+      "timing_s": {
+        "generation": 147.0,
+        "judging": 5164.0
+      }
+    },
+    {
+      "component": "query_rewrite",
+      "goldens": 15,
+      "errors": 0,
+      "checks": {
+        "context_hit_original": {
+          "mean": 0.933,
+          "n": 15
+        },
+        "context_hit_rewritten": {
+          "mean": 1.0,
+          "n": 15
+        },
+        "keyword_coverage": {
+          "mean": 0.433,
+          "n": 15
+        }
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "mean_score": 0.783,
+          "pass_rate": 0.75,
+          "n": 12,
+          "errors": 3
+        }
+      },
+      "performance": {
+        "latency_s": {
+          "mean": 1.73,
+          "p50": 1.43,
+          "p95": 4.8,
+          "max": 4.8
+        },
+        "tokens_per_request": {
+          "mean": 92.0,
+          "p50": 81,
+          "p95": 172,
+          "max": 172
+        },
+        "input_tokens": 911,
+        "output_tokens": 473
+      },
+      "judge_tokens": {
+        "input": 7402,
+        "output": 18466,
+        "total": 25868
+      },
+      "timing_s": {
+        "generation": 26.0,
+        "judging": 568.5
+      }
+    },
+    {
+      "component": "end_to_end",
+      "goldens": 20,
+      "errors": 0,
+      "checks": {
+        "path_accuracy": {
+          "mean": 0.95,
+          "n": 20
+        },
+        "path_accuracy_direct": {
+          "mean": 1.0,
+          "n": 4
+        },
+        "path_accuracy_insufficient_evidence": {
+          "mean": 0.75,
+          "n": 4
+        },
+        "path_accuracy_knowledge_base": {
+          "mean": 1.0,
+          "n": 8
+        },
+        "path_accuracy_web_search": {
+          "mean": 1.0,
+          "n": 4
+        }
+      },
+      "metrics": {
+        "Correctness [GEval]": {
+          "mean_score": 0.877,
+          "pass_rate": 0.846,
+          "n": 13,
+          "errors": 7
+        }
+      },
+      "performance": {
+        "latency_s": {
+          "mean": 6.15,
+          "p50": 5.01,
+          "p95": 11.19,
+          "max": 11.77
+        },
+        "tokens_per_request": {
+          "mean": 2721.0,
+          "p50": 1889,
+          "p95": 5333,
+          "max": 5681
+        },
+        "input_tokens": 51726,
+        "output_tokens": 2697
+      },
+      "performance_by_path": {
+        "direct": {
+          "n": 4,
+          "latency_s": {
+            "mean": 2.88,
+            "p50": 1.14,
+            "p95": 8.03,
+            "max": 8.03
+          },
+          "tokens_per_request": {
+            "mean": 170.0,
+            "p50": 169,
+            "p95": 176,
+            "max": 176
+          },
+          "input_tokens": 587,
+          "output_tokens": 91
+        },
+        "insufficient_evidence": {
+          "n": 3,
+          "latency_s": {
+            "mean": 10.93,
+            "p50": 11.19,
+            "p95": 11.77,
+            "max": 11.77
+          },
+          "tokens_per_request": {
+            "mean": 5286.0,
+            "p50": 5333,
+            "p95": 5681,
+            "max": 5681
+          },
+          "input_tokens": 15698,
+          "output_tokens": 159
+        },
+        "knowledge_base": {
+          "n": 8,
+          "latency_s": {
+            "mean": 4.39,
+            "p50": 3.69,
+            "p95": 7.96,
+            "max": 7.96
+          },
+          "tokens_per_request": {
+            "mean": 1862.0,
+            "p50": 1850,
+            "p95": 1914,
+            "max": 1914
+          },
+          "input_tokens": 13878,
+          "output_tokens": 1016
+        },
+        "web_search": {
+          "n": 5,
+          "latency_s": {
+            "mean": 8.71,
+            "p50": 8.97,
+            "p95": 9.92,
+            "max": 9.92
+          },
+          "tokens_per_request": {
+            "mean": 4599.0,
+            "p50": 4652,
+            "p95": 4898,
+            "max": 4898
+          },
+          "input_tokens": 21563,
+          "output_tokens": 1431
+        }
+      },
+      "judge_tokens": {
+        "input": 9577,
+        "output": 9436,
+        "total": 19013
+      },
+      "timing_s": {
+        "generation": 129.7,
+        "judging": 780.0
+      }
+    }
+  ]
+}

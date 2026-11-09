@@ -1,25 +1,28 @@
-from pathlib import Path
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from app.api.routes import router
-from app.core.config import get_settings, BASE_DIR
-from app.core.logging import configure_logging
-from app.services.audit import init_db
+import logging
 
+from dotenv import load_dotenv
 
-configure_logging()
+load_dotenv()  # exposes optional LANGSMITH_* tracing variables to LangChain
+
+from fastapi import FastAPI, Request  # noqa: E402
+from fastapi.staticfiles import StaticFiles  # noqa: E402
+from fastapi.templating import Jinja2Templates  # noqa: E402
+
+from app.api.routes import router  # noqa: E402
+from app.core.config import BASE_DIR, get_settings  # noqa: E402
+from app.services.audit import init_db  # noqa: E402
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
+
 settings = get_settings()
 init_db()
 
-
 app = FastAPI(title=settings.app_name, version="1.0.0")
 app.include_router(router)
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", include_in_schema=False)
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "app_name": settings.app_name})
+    return templates.TemplateResponse(request, "index.html", {"app_name": settings.app_name})

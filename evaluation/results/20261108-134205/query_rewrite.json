@@ -1,0 +1,699 @@
+{
+  "summary": {
+    "component": "query_rewrite",
+    "goldens": 15,
+    "errors": 0,
+    "checks": {
+      "context_hit_original": {
+        "mean": 0.933,
+        "n": 15
+      },
+      "context_hit_rewritten": {
+        "mean": 1.0,
+        "n": 15
+      },
+      "keyword_coverage": {
+        "mean": 0.433,
+        "n": 15
+      }
+    },
+    "metrics": {
+      "Rewrite Quality [GEval]": {
+        "mean_score": 0.783,
+        "pass_rate": 0.75,
+        "n": 12,
+        "errors": 3
+      }
+    },
+    "performance": {
+      "latency_s": {
+        "mean": 1.73,
+        "p50": 1.43,
+        "p95": 4.8,
+        "max": 4.8
+      },
+      "tokens_per_request": {
+        "mean": 92.0,
+        "p50": 81,
+        "p95": 172,
+        "max": 172
+      },
+      "input_tokens": 911,
+      "output_tokens": 473
+    },
+    "judge_tokens": {
+      "input": 7402,
+      "output": 18466,
+      "total": 25868
+    },
+    "timing_s": {
+      "generation": 26.0,
+      "judging": 568.5
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "golden": {
+        "input": "leave??",
+        "expected_output": "How many days of paid annual leave do employees get and how do I request it?",
+        "context": [
+          "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Annual Leave",
+          "expected_keywords": [
+            "annual leave",
+            "request"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "**How to submit a formal resignation letter and understand the offboarding process**\n\n**Reason for rewrite:** The original query \"leave??\" is too vague for search algorithms and knowledge-base tagging. The rewritten version replaces ambiguous terms with specific HR keywords (\"resignation letter,\" \"offboarding process\") that employees typically use when searching for policy documents or procedural guides. This structure ensures the query matches relevant internal FAQs and external web resources regarding notice periods, exit interviews, and final paychecks, while strictly preserving the user's original intent to leave their employment."
+      },
+      "checks": {
+        "keyword_coverage": 0.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 4.8,
+      "tokens": {
+        "input": 59,
+        "output": 113,
+        "total": 172
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 0.2,
+          "success": false,
+          "reason": "The actual output misinterprets the ambiguous input 'leave??' as a query about resignation and offboarding, while the expected output correctly identifies the intent as asking about paid annual leave entitlement and request procedures. Although the actual output uses clear HR terminology and is formatted as a search query, it fails to preserve the intended meaning and does not align with the expected output's intent.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 1,
+      "golden": {
+        "input": "wfh",
+        "expected_output": "What is the company remote work (work from home) policy?",
+        "context": [
+          "Eligible employees may work remotely up to 2 days per week with manager approval. Employees must remain reachable during agreed working hours, use company-approved collaboration tools, and protect confidential information. Remote work is not a substitute for dependent-care arrangements during working hours."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Remote Work Policy",
+          "expected_keywords": [
+            "remote work"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "Remote work policy and eligibility guidelines for employees."
+      },
+      "checks": {
+        "keyword_coverage": 1.0,
+        "context_hit_original": false,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.397,
+      "tokens": {
+        "input": 59,
+        "output": 10,
+        "total": 69
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output effectively rewrites the abbreviated input 'wfh' into a clear, standard HR search query ('Remote work policy and eligibility guidelines for employees') that preserves the user's intent to learn about remote work policies, uses appropriate terminology for knowledge-base retrieval, and is structured as a keyword phrase rather than an answer or conversation. It aligns with the expected intent despite differing phrasing from the Expected Output.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 2,
+      "golden": {
+        "input": "when do we get paid",
+        "expected_output": "On what date is the monthly salary paid?",
+        "context": [
+          "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Payroll",
+          "expected_keywords": [
+            "salary",
+            "paid"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "When is the next payroll processing date and what is the standard pay schedule for salaried and hourly employees?"
+      },
+      "checks": {
+        "keyword_coverage": 0.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.441,
+      "tokens": {
+        "input": 62,
+        "output": 23,
+        "total": 85
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 0.4,
+          "success": false,
+          "reason": "The actual output preserves the general intent of asking about pay timing but adds assumptions (next payroll processing date, salaried vs. hourly schedules) not present in the input. It uses clear HR terminology suitable for search, but it is not semantically equivalent to the expected output, which specifically asks for the monthly salary payment date. The output is a rewritten query, not an answer.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 3,
+      "golden": {
+        "input": "sick note thing",
+        "expected_output": "When is medical documentation required for sick leave?",
+        "context": [
+          "Employees may take up to 10 paid sick days per calendar year. For absences longer than 2 consecutive working days, HR may request appropriate medical documentation. Employees should notify their manager as early as possible on the first day of absence."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Sick Leave",
+          "expected_keywords": [
+            "sick leave",
+            "medical documentation"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "**Guidelines for submitting and managing medical certificates and sick leave documentation.**\n\n**Why this works:**\n*   **Keywords:** \"medical certificates,\" \"sick leave documentation,\" \"submission guidelines\" are standard terms employees and search engines use for HR policies.\n*   **Intent:** It preserves the original request about \"sick notes\" but frames it as a procedural query, which is how knowledge bases are typically structured.\n*   **Non-answer:** It describes the *process* rather than providing a specific answer about a specific case."
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 2.761,
+      "tokens": {
+        "input": 60,
+        "output": 110,
+        "total": 170
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 0.2,
+          "success": false,
+          "reason": "The Actual Output is not phrased as a search query; it is a heading followed by an explanatory section, violating step 3. It also does not match the Expected Output's search intent (when documentation is required vs. guidelines for submission), failing step 4. While it uses standard HR terminology (step 2) and loosely preserves the input's core topic (step 1), the format and intent misalignment significantly reduce its suitability.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 4,
+      "golden": {
+        "input": "carry over days",
+        "expected_output": "Can unused annual leave be carried forward to the next year?",
+        "context": [
+          "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests should normally be submitted through the HR portal at least 5 working days before the planned leave date. Manager approval is required. Unused leave may be carried forward up to 5 days into the next calendar year and must be used by March 31 unless HR grants an exception."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Annual Leave",
+          "expected_keywords": [
+            "unused leave",
+            "carried forward"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "**Rewrite:** \"What is the policy for carrying over unused vacation days to the next calendar year?\""
+      },
+      "checks": {
+        "keyword_coverage": 0.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.506,
+      "tokens": {
+        "input": 60,
+        "output": 21,
+        "total": 81
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The rewrite preserves the original intent of asking about carry-over days, uses standard HR terms like 'policy', 'unused vacation days', and 'calendar year', is semantically equivalent to the expected output (both ask about carrying forward unused leave to the next year), and is strictly a search query without answering or adding explanations.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 5,
+      "golden": {
+        "input": "someone's harassing me",
+        "expected_output": "How do I report workplace harassment?",
+        "context": [
+          "Employees are expected to maintain a respectful, professional, and harassment-free workplace. Discrimination, retaliation, bullying, or harassment should be reported to a manager, HR, or the confidential ethics channel. Retaliation against employees who raise concerns in good faith is prohibited."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Code of Conduct",
+          "expected_keywords": [
+            "harassment",
+            "report"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "**Workplace harassment complaint: reporting procedure, filing a formal grievance, and available support resources**"
+      },
+      "checks": {
+        "keyword_coverage": 1.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.461,
+      "tokens": {
+        "input": 62,
+        "output": 22,
+        "total": 84
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output effectively preserves the employee's intent to address harassment, uses clear HR terminology (workplace harassment complaint, reporting procedure, formal grievance, support resources), is formatted as a keyword-based search query without answers or explanations, and semantically aligns with the expected output's focus on reporting harassment while also including relevant related concepts.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 6,
+      "golden": {
+        "input": "bank change",
+        "expected_output": "How do I update my bank details in the HR system?",
+        "context": [
+          "Changes to legal name, bank details, emergency contact, or home address must be submitted through the HR portal with required supporting documents where applicable. Bank-detail changes should be verified before the next payroll cutoff."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Employee Record Changes",
+          "expected_keywords": [
+            "bank details",
+            "update"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "How to update my direct deposit information to switch to a new bank account."
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.358,
+      "tokens": {
+        "input": 59,
+        "output": 16,
+        "total": 75
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "golden": {
+        "input": "new joiner stuff",
+        "expected_output": "What is the onboarding process for new employees?",
+        "context": [
+          "HR should confirm the signed offer, identity and payroll documentation, manager assignment, start date, and required policy acknowledgements before the employee begins. On the first day, provide access to the HR portal, benefits information, mandatory training, and the employee handbook."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "New Employee Onboarding",
+          "expected_keywords": [
+            "onboarding",
+            "new employee"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "New employee onboarding checklist and first-week essentials for HR and payroll setup"
+      },
+      "checks": {
+        "keyword_coverage": 1.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.362,
+      "tokens": {
+        "input": 61,
+        "output": 17,
+        "total": 78
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 0.9,
+          "success": true,
+          "reason": "The Actual Output effectively translates the vague input 'new joiner stuff' into a precise search query using standard HR terminology (onboarding checklist, first-week essentials, HR/payroll setup). It preserves the user's intent to learn about new employee onboarding without providing answers or explanations. It is a search query only. While it is more specific than the Expected Output (which asks broadly about the onboarding process), it conveys the same core intent and meets terminology standards, making it a strong reformulation.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 8,
+      "golden": {
+        "input": "quitting, what now",
+        "expected_output": "What is the offboarding process when an employee leaves?",
+        "context": [
+          "For a planned departure, HR should confirm the final working day, manager handover, return of company assets, benefit termination timing, final payroll inputs, and required exit documentation. Access-removal requests should be coordinated with IT and the manager according to the employee's final working day."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Offboarding",
+          "expected_keywords": [
+            "offboarding",
+            "final working day"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "I am resigning from my position. What are the next steps regarding my final paycheck, benefits continuation, and returning company property?"
+      },
+      "checks": {
+        "keyword_coverage": 0.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.279,
+      "tokens": {
+        "input": 62,
+        "output": 28,
+        "total": 90
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 9,
+      "golden": {
+        "input": "payslip wrong",
+        "expected_output": "How do I report a payroll discrepancy on my payslip?",
+        "context": [
+          "Monthly salary is normally paid on the final business day of each month. Employees should review their payslip in the HR portal. Payroll discrepancies should be reported to Payroll Support within 5 business days of receiving the payslip."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Payroll",
+          "expected_keywords": [
+            "payslip",
+            "discrepancy"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "**Incorrect payroll amount on payslip: verify tax codes, deductions, and payment date**"
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.622,
+      "tokens": {
+        "input": 60,
+        "output": 21,
+        "total": 81
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": null,
+          "success": false,
+          "reason": null,
+          "error": "[429] Too Many Requests\n{'status': 429, 'title': 'Too Many Requests'}"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "golden": {
+        "input": "change insurance",
+        "expected_output": "Can I change my benefits enrollment outside the annual window?",
+        "context": [
+          "Eligible full-time employees receive the company medical plan, life insurance coverage, and access to the employee assistance program. Enrollment changes outside the annual enrollment window require a qualifying life event and supporting documentation."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Benefits",
+          "expected_keywords": [
+            "benefits",
+            "enrollment"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "Revised Query: change health insurance plan open enrollment eligibility requirements qualifying life event documentation"
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.305,
+      "tokens": {
+        "input": 59,
+        "output": 17,
+        "total": 76
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The Actual Output effectively preserves the core intent of the Input ('change insurance') by expanding it into a comprehensive search query using standard HR terminology such as 'health insurance plan', 'open enrollment', 'eligibility requirements', 'qualifying life event', and 'documentation'. It is structured as a search query (not an answer) and aligns with the intent of the Expected Output, which asks about changing benefits enrollment outside the annual window. Key entities and context from the Input are retained without distortion, and the added terms are relevant and appropriate for knowledge-base retrieval.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 11,
+      "golden": {
+        "input": "office timings?",
+        "expected_output": "What are the standard working hours?",
+        "context": [
+          "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Working Hours and Attendance",
+          "expected_keywords": [
+            "working hours"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "What are the standard office hours and flexible working policies for employees?"
+      },
+      "checks": {
+        "keyword_coverage": 0.0,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.333,
+      "tokens": {
+        "input": 61,
+        "output": 14,
+        "total": 75
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 0.7,
+          "success": true,
+          "reason": "The Actual Output preserves the core intent of the user's query about office timings and uses clear, standard HR terminology suitable for knowledge-base retrieval. It is correctly formatted as a search query. However, it adds \"flexible working policies for employees,\" which introduces an assumption not present in the original input and makes the query broader than the Expected Output, which only asks for standard working hours. This extra element reduces semantic equivalence with the Expected Output.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 12,
+      "golden": {
+        "input": "portal broken, need leave",
+        "expected_output": "How do I submit a leave request when the HR portal is unavailable?",
+        "context": [
+          "If an employee cannot submit leave through the HR portal, first verify that the employee has an active profile and sufficient leave balance. If the portal is unavailable, record the request by email and ask the manager to confirm approval. HR should update the HR system after service is restored."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Leave Request Support",
+          "expected_keywords": [
+            "leave request",
+            "HR portal"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "Unable to access employee portal to submit leave request; seeking guidance on alternative submission methods or technical support."
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.482,
+      "tokens": {
+        "input": 62,
+        "output": 21,
+        "total": 83
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output preserves the core intent of the vague input (portal broken, need leave) and aligns with the expected output's intent (how to submit leave when HR portal is unavailable). It uses clear, standard HR terminology such as 'employee portal', 'leave request', and 'alternative submission methods', and is structured as a search query without providing an answer.",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 13,
+      "golden": {
+        "input": "salary not came",
+        "expected_output": "What should I do if I have not received my salary?",
+        "context": [
+          "P1: multiple employees are missing salary or there is a major payroll processing failure. P2: an individual employee has not received salary. P3: incorrect allowance, deduction, tax, or benefits line item. P4: general payslip or payroll information request."
+        ],
+        "additional_metadata": {
+          "expected_source": "hr_operations_runbook.md",
+          "section": "Payroll Issue Priority",
+          "expected_keywords": [
+            "salary",
+            "not received"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "Delayed salary payment inquiry: employee requesting status update on pending payroll disbursement for the current pay period."
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.425,
+      "tokens": {
+        "input": 60,
+        "output": 24,
+        "total": 84
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output captures the core intent of the input (unpaid salary), employs clear HR terminology (delayed salary payment, payroll disbursement, pay period), is structured as a search query without providing an answer, and aligns in intent with the expected output (both address missing salary).",
+          "error": null
+        }
+      }
+    },
+    {
+      "index": 14,
+      "golden": {
+        "input": "always late, will I get in trouble",
+        "expected_output": "What is the policy on repeated lateness or unapproved absence?",
+        "context": [
+          "Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday, with a 1-hour meal break. Teams may use approved flexible schedules if business coverage is maintained. Repeated unapproved absence or lateness should be discussed with the manager and may be escalated to HR."
+        ],
+        "additional_metadata": {
+          "expected_source": "company_hr_handbook.md",
+          "section": "Working Hours and Attendance",
+          "expected_keywords": [
+            "lateness",
+            "attendance"
+          ],
+          "criteria": "Preserves the user's intent, uses clear HR terminology, does not answer the question."
+        }
+      },
+      "fields": {
+        "actual_output": "Is there a policy regarding chronic lateness and potential disciplinary action for employees?"
+      },
+      "checks": {
+        "keyword_coverage": 0.5,
+        "context_hit_original": true,
+        "context_hit_rewritten": true
+      },
+      "source_used": null,
+      "trace": null,
+      "latency_s": 1.388,
+      "tokens": {
+        "input": 65,
+        "output": 16,
+        "total": 81
+      },
+      "metrics": {
+        "Rewrite Quality [GEval]": {
+          "score": 1.0,
+          "success": true,
+          "reason": "The actual output preserves the user's intent about chronic lateness and potential consequences, uses standard HR terminology (chronic lateness, disciplinary action), aligns with the expected output's core intent (policy on repeated lateness and disciplinary action), and is structured as a clear search query without extra explanation.",
+          "error": null
+        }
+      }
+    }
+  ]
+}

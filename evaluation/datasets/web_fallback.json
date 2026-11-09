@@ -1,0 +1,178 @@
+[
+  {
+    "input": "What is the statutory maternity leave duration in India?",
+    "expected_output": "Under the Maternity Benefit Act, women are entitled to 26 weeks of paid maternity leave for their first two children (12 weeks from the third child).",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "How many weeks of leave does the US FMLA provide?",
+    "expected_output": "The FMLA provides eligible employees up to 12 workweeks of unpaid, job-protected leave in a 12-month period.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "Who is eligible for FMLA leave in the US?",
+    "expected_output": "Employees who have worked for a covered employer for at least 12 months, for at least 1,250 hours in the past 12 months, at a location with 50 or more employees within 75 miles.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What is the US federal minimum wage?",
+    "expected_output": "The US federal minimum wage is $7.25 per hour.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What is the overtime rate under the US Fair Labor Standards Act?",
+    "expected_output": "Non-exempt employees must be paid at least 1.5 times their regular rate for hours worked over 40 in a workweek.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "How long can an employee keep health coverage under COBRA?",
+    "expected_output": "COBRA generally allows continuation of group health coverage for up to 18 months after job loss or reduced hours, longer in some circumstances.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What does Title VII of the Civil Rights Act prohibit?",
+    "expected_output": "Title VII prohibits employment discrimination based on race, color, religion, sex, and national origin.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "Which US employers must comply with the Americans with Disabilities Act employment rules?",
+    "expected_output": "Employers with 15 or more employees must comply and provide reasonable accommodations to qualified individuals with disabilities.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What age group does the US Age Discrimination in Employment Act protect?",
+    "expected_output": "The ADEA protects employees and job applicants who are 40 years of age or older.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What does the US Equal Pay Act require?",
+    "expected_output": "The Equal Pay Act requires that men and women in the same workplace receive equal pay for equal work.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "When must a US employer complete Form I-9 for a new hire?",
+    "expected_output": "Form I-9 verifies identity and employment authorization; the employer must complete Section 2 within 3 business days of the employee's first day of work.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "How much statutory annual leave are UK workers entitled to?",
+    "expected_output": "Most UK workers are entitled to 5.6 weeks of paid holiday a year, which is 28 days for someone working 5 days a week.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "How long is statutory maternity leave in the UK?",
+    "expected_output": "Statutory maternity leave in the UK is up to 52 weeks.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "How much statutory paternity leave can UK employees take?",
+    "expected_output": "Eligible employees can take either 1 or 2 weeks of statutory paternity leave.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What is the maximum average working week under the EU Working Time Directive?",
+    "expected_output": "The EU Working Time Directive limits average weekly working time to 48 hours, including overtime.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  },
+  {
+    "input": "What percentage of salary does an employee contribute to EPF in India?",
+    "expected_output": "Employees typically contribute 12% of their basic wages plus dearness allowance to the Employees' Provident Fund.",
+    "additional_metadata": {
+      "expected_route": "kb",
+      "expected_kb_grade": "weak",
+      "expected_source_used": "web_search",
+      "criteria": "The answer must state that this is external public information to be validated with HR.",
+      "facts_as_of": "2026-11"
+    }
+  }
+]
